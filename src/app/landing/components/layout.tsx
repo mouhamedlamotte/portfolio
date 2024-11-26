@@ -3,7 +3,7 @@ import { Navbar } from './navbar'
 
 const Layout = (props : PropsWithChildren) => {
   return (
-    <div>
+    <div className='space-y-24'>
         <Navbar />
         {props.children}
     </div>
