@@ -4,7 +4,7 @@ import { toPng, toSvg } from "html-to-image";
 import { jsPDF } from "jspdf";
 
 
-export const downloadAsImage = async (format: "png" | "svg", cardRef: React.RefObject<HTMLDivElement>, imgname : string = "card") => {
+export const downloadAsImage = async (format: "png" | "svg", cardRef: React.RefObject<HTMLDivElement>, imgname : string = "card", dl : boolean = true) => {
     if (!cardRef.current) return;
 
     try {
@@ -18,9 +18,15 @@ export const downloadAsImage = async (format: "png" | "svg", cardRef: React.RefO
 
       const link = document.createElement("a");
       link.href = dataUrl;
-      link.download = `${imgname}.${format}`;
-      audio.play();
-      link.click();
+      
+      
+      if (dl){
+        link.download = `${imgname}.${format}`;
+        audio.play();
+        link.click();
+      }else{
+        return dataUrl
+      }
     } catch (error) {
       console.error("Error capturing the card:", error);
     }
@@ -44,3 +50,26 @@ export  const downloadAsPDF = async (cardRef: React.RefObject<HTMLDivElement>, p
       console.error("Error generating PDF:", error);
     }
   };
+
+
+
+  export const createImg = async (
+    format: "png" | "svg",
+    cardRef: React.RefObject<HTMLDivElement>
+  ): Promise<string | null> => {
+    if (!cardRef.current) return null;
+  
+    try {
+      let dataUrl: string;
+      if (format === "png") {
+        dataUrl = await toPng(cardRef.current);
+      } else {
+        dataUrl = await toSvg(cardRef.current);
+      }
+      return dataUrl;
+    } catch (error) {
+      console.error("Error generating image:", error);
+      return null;
+    }
+  };
+  

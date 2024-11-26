@@ -35,7 +35,7 @@ export default  function Page({ params }: { params: { name: string } }) {
 
   return (
     <div className="w-full md:px-16 max-w-7xl mx-auto">
-      <div className=" pt-20 pb-10 flex  items-start">
+      <div className=" pb-10 flex  items-start">
         <div>
           <h2 className="text-lg md:text-4xl mb-4 max-w-4xl uppercase font-bold">
             {project.title}

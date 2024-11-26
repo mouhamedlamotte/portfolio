@@ -7,56 +7,92 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
-
 model User {
-  id            Int             @id @default(autoincrement())
-  username      String          @unique @default(cuid()) @db.VarChar(30)
-  name          String          @db.VarChar(150)
-  email         String          @unique @db.VarChar(150)
-  password      String?         @db.VarChar(200)
-  createdAt     DateTime        @default(now())
-  updatedAt     DateTime        @updatedAt
+  id        Int      @id @default(autoincrement())
+  username  String   @unique @default(cuid()) @db.VarChar(30)
+  name      String   @db.VarChar(150)
+  email     String   @unique @db.VarChar(150)
+  password  String?  @db.VarChar(200)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
-
 model Visit {
-  id           String          @id @default(uuid())
-  ipAddress    String?         
-  country      String?         
-  region       String?         
-  deviceType   String?        
-  os           String?         
-  browser      String?         
-  language     String?         
-  referrer     String?         
-  visitedPage  String          
-  visitDate    DateTime        @default(now()) 
-  sessionId    String?       
-  interactions PageInteraction[] 
-  deviceId     Int? 
-
+  id           String            @id @default(uuid())
+  ipAddress    String?
+  country      String?
+  region       String?
+  deviceType   String?
+  os           String?
+  browser      String?
+  language     String?
+  referrer     String?
+  visitedPage  String
+  visitDate    DateTime          @default(now())
+  interactions PageInteraction[]
+  isBot        Boolean           @default(false)
   @@index([ipAddress, visitDate])
 }
 
 model PageInteraction {
-  id           String  @id @default(uuid())
-  visitId      String  
-  visit        Visit   @relation(fields: [visitId], references: [id])
-  actionType   String 
-  targetElement String? 
-  timestamp    DateTime @default(now()) 
+  id            String   @id @default(uuid())
+  visitId       String
+  visit         Visit    @relation(fields: [visitId], references: [id])
+  actionType    String
+  targetElement String?
+  timestamp     DateTime @default(now())
 
   @@unique([visitId, actionType, targetElement])
+  @@index([actionType, timestamp])
+}
 
-  @@index([actionType, timestamp]) 
+model Messages {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  message   String
+  createdAt DateTime @default(now())
+  Contact   Contact  @relation(fields: [contactId], references: [id])
+  contactId String
 }
 
 model Contact {
-  id           String  @id @default(uuid())
-  name         String  
-  email        String  @unique
-  message      String  
-  createdAt    DateTime @default(now())
+  id        String     @id @default(uuid())
+  name      String
+  email     String     @unique
+  createdAt DateTime   @default(now())
+  messages  Messages[]
 }
 
+enum Winner {
+  USER
+  COMPUTER
+}
+
+enum Level {
+  EASY
+  MEDIUM
+  HARD
+}
+
+model Game {
+  id          String     @id @default(uuid())
+  name        String
+  description String?
+  image       String?
+  createdAt   DateTime   @default(now())
+  plays       Int        @default(0)
+  GamePlay    GamePlay[]
+}
+
+model GamePlay {
+  id        String   @id @default(uuid())
+  level     Level 
+  winner    Winner?
+  time      Int?
+  game      Game     @relation(fields: [gameId], references: [id])
+  gameId    String
+  createdAt DateTime @default(now())
+  image     String?
+  pattern   String?
+}

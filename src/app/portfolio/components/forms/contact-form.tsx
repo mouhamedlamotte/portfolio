@@ -9,10 +9,10 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from 'zod';
 import { ContactformSchema } from '../../schemas/contactFormSchema';
-import { useToast } from '@/components/ui/use-toast';
 import { Textarea } from '@/components/ui/textarea';
 import { addContact } from '@/db/contacts';
 import { Loader } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
 
 
 export const ContactForm = () => {
@@ -33,16 +33,18 @@ const { toast } = useToast();
     setLoading(true);
     await addContact(values).then(() => {
       toast({
-        title: "Merci !",
-        description: "Votre message a bien ete envoye.",
+        title: "Merci pour votre message 💫",
+        description: "Je vous reviendrai très vite 🔥.",
       });
       setLoading(false);
       form.reset();
     }).catch(() => {
       toast({
         title: "Une erreur est survenue",
+        variant: "destructive",
         description: "Votre message n'a pas pu etre envoye.",
       });
+      form.reset();
       setLoading(false);
     });
    
@@ -54,7 +56,7 @@ const { toast } = useToast();
     </CardHeader>
       <Form {...form} >
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-    <CardContent className="space-y-4">
+    <CardContent className="space-y-4 pb-0">
           <FormField
             control={form.control}
             name="name"
@@ -62,7 +64,7 @@ const { toast } = useToast();
               <FormItem>
                 <FormLabel>Nom</FormLabel>
                 <FormControl>
-                  <Input placeholder="Votre nom" {...field} />
+                  <Input className='py-6' placeholder="Votre nom" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -75,7 +77,7 @@ const { toast } = useToast();
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input placeholder="votre@email.com" {...field} />
+                  <Input className='py-6' placeholder="votre@email.com" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -88,7 +90,7 @@ const { toast } = useToast();
               <FormItem>
                 <FormLabel>Message</FormLabel>
                 <FormControl>
-                  <Textarea placeholder="Votre message..." {...field} />
+                  <Textarea rows={4} placeholder="Votre message..." {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -97,8 +99,11 @@ const { toast } = useToast();
 
     </CardContent>
     <CardFooter className="flex justify-end">
-          <Button type="submit" className="">
-            {loading ? <Loader className="animate-spin mr-2" /> : "Envoyer"}
+          <Button disabled={loading} 
+          variant="outline"
+          size={loading ? "icon" : "default"}
+          type="submit" className="">
+            {loading ? <Loader className="animate-spin" /> : "Envoyer"}
           </Button>
       </CardFooter>
           </form>

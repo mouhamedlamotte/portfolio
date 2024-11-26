@@ -31,12 +31,11 @@ export function HomeHero() {
         </Avatar>
 
         <h1 className="z-20 text-4xl font-bold tracking-tight sm:text-6xl text-center mb-6">
-          Mouhameth Lamotte
+          {resume.name}
         </h1>
 
         <p className="z-20 mx-auto max-w-2xl text-lg text-muted-foreground text-center mb-6">
-          Salut, je suis un développeur passionné de web, de données et
-          d&apos;intelligence artificielle.
+          {resume.description}
         </p>
 
         <div className="z-20 flex flex-wrap justify-center gap-4 mb-6">

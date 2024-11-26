@@ -14,11 +14,16 @@ import {
 
 import { Dispatch, SetStateAction, useEffect,  useState } from "react";
 import { useTictactoeLevelStore } from "../stores/tictactoeStore";
-import { findBestMove, isBoardFull } from "@/lib/tictactoe";
+import { downloadSVG, findBestMove, isBoardFull } from "@/lib/tictactoe";
 import { toast } from "@/components/ui/use-toast";
+import { addGamePlay } from "@/db/gameplay";
+import { createImg } from "@/lib/save-images";
+import { uploadFile } from "@/db/blob";
 
 
-export default function Tictactoe() {
+export default function Tictactoe({cardRef} : {cardRef: React.RefObject<HTMLDivElement>}) {
+
+  const gameId = "3a443b1b-307b-481e-a41c-6e6de4130efa";
 
   const level = useTictactoeLevelStore((state)=>state.level);
 
@@ -30,25 +35,43 @@ export default function Tictactoe() {
 
   const [playerOne, setplayerOne] = useState(true); // True for player, false for machine
   const [hasWinner, setHaswinner] = useState(false);
+  const [playing, setPlaying] = useState(false);
+  const [time, setTime] = useState(0);
 
   // Fonction de mise à jour de la matrice de jeu
-  const handleUpdateMatrice = (i: number, j: number, value: number) => {
+  const handleUpdateMatrice = async (i: number, j: number, value: number) => {
+    
+    if (time === 0) {
+        setPlaying(true);
+    }
     try {
       // S'assurer que la case est vide avant de la mettre à jour
       const new_matrice = matrice.map(row => [...row]);
       if (new_matrice[i][j] === 0) {
         new_matrice[i][j] = value;
         setMatrice(new_matrice);
-  
         if (isWinner(new_matrice)) {
           setHaswinner(true);
+          setPlaying(false);
           setOpen(true);
+          const dataUrl = await createImg("png", cardRef);
+          const image = await uploadFile("ticatoe/tictactoe.png", dataUrl ?? "");
+          await addGamePlay({
+            level: level === 1 ? "EASY" :  "HARD",
+            winner: playerOne ? "USER" : "COMPUTER",
+            time,
+            gameId,
+            image,
+            pattern: JSON.stringify(new_matrice)
+          })
+
         } else {
           setplayerOne(!playerOne);
         }
   
         // Vérifier si la matrice est pleine et qu'il n'y a pas de gagnant
         if (!hasWinner && isBoardFull(new_matrice)) {
+          setPlaying(false);
           setTimeout(() => {
             toast({
               title: "Match nul !",
@@ -66,15 +89,33 @@ export default function Tictactoe() {
               )
             })
           }, 1000);
+          const dataUrl = await createImg("png", cardRef);
+          const image = await uploadFile("ticatoe/tictactoe.png", dataUrl ?? "");
+          await addGamePlay({
+
+            level: level === 1 ? "EASY" :  "HARD",
+            time,
+            gameId,
+            image,
+            pattern: JSON.stringify(new_matrice)
+          })
         }
       } else {
-        // Si la case est déjà occupée, on peut afficher un message ou un avertissement
         console.warn("Case déjà occupée !");
       }
     } catch (error) {
-      console.error("Erreur lors de la mise à jour de la matrice : ", error);
+      console.warn("Erreur lors de la mise à jour de la matrice : ", error);
     }
   };
+  
+  useEffect(() => {
+    if (playing) {
+      const interval = setInterval(() => {
+        setTime(prevTime => prevTime + 1);
+      }, 1000);
+      return () => clearInterval(interval);
+    }
+  }, [playing]); 
   
   
 
@@ -88,10 +129,13 @@ export default function Tictactoe() {
       ]);
       setplayerOne(true);
       setHaswinner(false);
+      setTime(0);
+      setPlaying(false);
     } catch (error) {
-      console.error("Erreur lors de la réinitialisation du jeu : ", error);
+      console.warn("Erreur lors de la réinitialisation du jeu : ", error);
     }
   };
+
   
 
   // Vérification de la condition de victoire
@@ -117,7 +161,7 @@ export default function Tictactoe() {
         return true;
       }
     } catch (error) {
-      console.error("Erreur lors de la vérification de la victoire : ", error);
+      console.warn("Erreur lors de la vérification de la victoire : ", error);
       return false;  // Retourne false en cas d'erreur pour éviter un crash
     }
   
@@ -134,10 +178,10 @@ export default function Tictactoe() {
       if (bestMove.i !== -1 && bestMove.j !== -1) {
         handleUpdateMatrice(bestMove.i, bestMove.j, -1); // La machine joue "0"
       } else {
-        console.error("Aucun coup valide trouvé pour la machine !");
+        console.warn("Aucun coup valide trouvé pour la machine !");
       }
     } catch (error) {
-      console.error("Erreur lors de la sélection du coup de la machine : ", error);
+      console.warn("Erreur lors de la sélection du coup de la machine : ", error);
     }
   };
 

@@ -6,7 +6,6 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { useTictactoeLevelStore } from '../stores/tictactoeStore';
 import { ArrowRight, Camera, Share } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Meteors } from '@/components/ui/meteors';
 import { downloadAsImage } from '@/lib/save-images';
 import Tictactoe from './tictactoe';
 
@@ -22,7 +21,7 @@ export const TictactoePlate = () => {
 
 
   return (
-    <Card className="relative overflow-hidden" ref={cardRef}>
+    <Card className="relative overflow-hidden h-fit" ref={cardRef}>
       <CardHeader className="flex-row justify-between">
         <div className="">
         <CardTitle>TicTacToe</CardTitle>
@@ -41,7 +40,7 @@ export const TictactoePlate = () => {
         </Select>
       </CardHeader>
       <CardContent className="s">
-        <Tictactoe />
+        <Tictactoe cardRef={cardRef} />
       </CardContent>
       <CardFooter>
         <p className="text-muted-foreground text-xs">Tu as gagné(e) contre le niveau Impossible ? 🥵 montre moi </p>
@@ -55,7 +54,6 @@ export const TictactoePlate = () => {
           </Button>
         </div>
       </CardFooter>
-      <Meteors number={20} />
     </Card>
   )
 }
