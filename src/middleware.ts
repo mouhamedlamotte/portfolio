@@ -5,6 +5,13 @@ export async function  middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname
   const trackPaths = ['/portfolio', '/devis', "/"]
   
+  
+  const headers = new Headers(request.headers);
+  
+  if (pathname.includes("/admin/messages")) {
+      headers.set("x-current-path", request.nextUrl.pathname + request.nextUrl.search);
+  }
+  
   if (trackPaths.includes(pathname)) {
         await fetch('http://localhost:3000/api/visit', {
             method: 'POST',
@@ -23,5 +30,5 @@ export async function  middleware(request: NextRequest) {
         })
   }
 
-  return NextResponse.next()
+  return NextResponse.next({headers})
 }

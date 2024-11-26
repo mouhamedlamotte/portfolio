@@ -74,7 +74,7 @@ export const AdminLayout = (props: PropsWithChildren) => {
   return (
     <div
       className={cn(
-        "rounded-md flex flex-col md:flex-row  w-full flex-1  mx-auto border  overflow-hidden",
+        "rounded-md flex flex-col md:flex-row w-full flex-1  mx-auto border  overflow-hidden bg-secondary",
         "h-screen"
       )}
     >
@@ -108,7 +108,7 @@ export const AdminLayout = (props: PropsWithChildren) => {
         </SidebarBody>
       </Sidebar>
       <div className="flex flex-1">
-        <div className="p-2 md:p-10 rounded-tl-2xl border  flex flex-col gap-2 flex-1 w-full h-full">
+        <div className="p-2 md:p-10 rounded-tl-2xl border  flex flex-col gap-2 flex-1 w-full h-full bg-background">
           {props.children}
         </div>
       </div>
