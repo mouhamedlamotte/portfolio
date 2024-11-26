@@ -14,8 +14,8 @@ import {
 
 const mainNavigation = [
   { name: "Accueil", href: "/" },
-  { name: "Blog", href: "/blog" },
-  { name: "Devis", href: "/devis" },
+  { name: "Blog", href: "/portfolio/blog" },
+  { name: "Devis", href: "/portfolio/devis" },
 ];
 
 
@@ -25,7 +25,7 @@ export function Navbar() {
 
   return (
     <nav className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-6 xl:px-40">
-      <div className="container flex h-16 items-center justify-between">
+      <div className="container flex h-16 items-center justify-between w-full md:px-16 max-w-7xl mx-auto">
         <div className="hidden md:flex md:gap-x-6">
           {mainNavigation.map((item) => (
             <Link

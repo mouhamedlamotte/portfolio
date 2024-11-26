@@ -18,7 +18,7 @@ import { downloadSVG, findBestMove, isBoardFull } from "@/lib/tictactoe";
 import { toast } from "@/components/ui/use-toast";
 import { addGamePlay } from "@/db/gameplay";
 import { createImg } from "@/lib/save-images";
-import { uploadFile } from "@/db/blob";
+import { uploadDataUrlFile } from "@/db/blob";
 
 
 export default function Tictactoe({cardRef} : {cardRef: React.RefObject<HTMLDivElement>}) {
@@ -55,7 +55,7 @@ export default function Tictactoe({cardRef} : {cardRef: React.RefObject<HTMLDivE
           setPlaying(false);
           setOpen(true);
           const dataUrl = await createImg("png", cardRef);
-          const image = await uploadFile("ticatoe/tictactoe.png", dataUrl ?? "");
+          const image = await uploadDataUrlFile("ticatoe/tictactoe.png", dataUrl ?? "");
           await addGamePlay({
             level: level === 1 ? "EASY" :  "HARD",
             winner: playerOne ? "USER" : "COMPUTER",
@@ -90,7 +90,7 @@ export default function Tictactoe({cardRef} : {cardRef: React.RefObject<HTMLDivE
             })
           }, 1000);
           const dataUrl = await createImg("png", cardRef);
-          const image = await uploadFile("ticatoe/tictactoe.png", dataUrl ?? "");
+          const image = await uploadDataUrlFile("ticatoe/tictactoe.png", dataUrl ?? "");
           await addGamePlay({
 
             level: level === 1 ? "EASY" :  "HARD",
