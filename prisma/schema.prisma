@@ -1,0 +1,62 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+
+model User {
+  id            Int             @id @default(autoincrement())
+  username      String          @unique @default(cuid()) @db.VarChar(30)
+  name          String          @db.VarChar(150)
+  email         String          @unique @db.VarChar(150)
+  password      String?         @db.VarChar(200)
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+}
+
+
+model Visit {
+  id           String          @id @default(uuid())
+  ipAddress    String?         
+  country      String?         
+  region       String?         
+  deviceType   String?        
+  os           String?         
+  browser      String?         
+  language     String?         
+  referrer     String?         
+  visitedPage  String          
+  visitDate    DateTime        @default(now()) 
+  sessionId    String?       
+  interactions PageInteraction[] 
+  deviceId     Int? 
+
+  @@index([ipAddress, visitDate])
+}
+
+model PageInteraction {
+  id           String  @id @default(uuid())
+  visitId      String  
+  visit        Visit   @relation(fields: [visitId], references: [id])
+  actionType   String 
+  targetElement String? 
+  timestamp    DateTime @default(now()) 
+
+  @@unique([visitId, actionType, targetElement])
+
+  @@index([actionType, timestamp]) 
+}
+
+model Contact {
+  id           String  @id @default(uuid())
+  name         String  
+  email        String  @unique
+  message      String  
+  createdAt    DateTime @default(now())
+}
+

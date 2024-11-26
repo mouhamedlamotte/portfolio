@@ -13,7 +13,7 @@ export const projects = [
       ] as string[],
       name: "nexcom",
       title: "NexCom",
-      href: "/projects/nexcom",
+      href: "/portfolio/nexcom",
       description:
         "NexCom est une plateforme de communication centralisée qui aide les entreprises à gérer leurs interactions client sur plusieurs canaux (WhatsApp, Facebook Messenger, Twitter, etc.). Son objectif est de simplifier les échanges, d'améliorer la réactivité et d'offrir une expérience client optimale grâce à une gestion unifiée et en temps réel des messages.",
       dates: "2024 - en cours",
@@ -49,9 +49,9 @@ export const projects = [
       ] as string[],
       name: "windam",
       title: "Windam pro",
-      href: "/projects/windam",
+      href: "/portfolio/windam",
       description:
-        "Windam pre (refonte de **[windam-v1](/projects/windam-v1)** est une application de chat moderne offrant des fonctionnalités telles que la messagerie en temps réel, la gestion d'amis, des publications (feed) et la recherche utilisateur en collaboration avec **[@Helicia Tsika](https://heli2805.github.io/Personal-Portfolio/)**. Conçue pour être rapide, intuitive et évolutive, elle utilise des technologies modernes pour une expérience fluide.",
+        "Windam pre (refonte de **[windam-v1](/portfolio/windam-v1)** est une application de chat moderne offrant des fonctionnalités telles que la messagerie en temps réel, la gestion d'amis, des publications (feed) et la recherche utilisateur en collaboration avec **[@Helicia Tsika](https://heli2805.github.io/Personal-Portfolio/)**. Conçue pour être rapide, intuitive et évolutive, elle utilise des technologies modernes pour une expérience fluide.",
       dates: "2024 - en cours",
       tags: [
         "Django",
@@ -88,7 +88,7 @@ export const projects = [
       ] as string[],
       name: "indexation",
       title: "Indexation et Recherche de Données",
-      href: "/projects/indexation",
+      href: "/portfolio/indexation",
       description:
         "Projet de création d'un moteur de recherche spécialisé basé sur Elasticsearch et Kibana, permettant la collecte, l'analyse et la visualisation des données pour identifier les tendances et extraire des insights exploitables.",
       dates: "2024",
@@ -103,7 +103,7 @@ export const projects = [
       ],
       links: [
         {
-          icon: <Icons.github className="size-4" />,
+          icon: <Icons.github className="size-a" />,
           type: "Code",
           href: "https://github.com/mouhamedlamotte/search_engine",
         },
@@ -121,7 +121,7 @@ export const projects = [
       ] as string[],
       name: "windam-v1",
       title: "Windam Chat V1",
-      href: "/projects/windam-v1",
+      href: "/portfolio/windam-v1",
       description:
         "Windam Chat V1 est une application de messagerie conçue comme un projet d'apprentissage pour expérimenter des technologies modernes comme React, Next.js, Tailwind CSS, et Firebase. L'accent est mis sur l'authentification utilisateur sécurisée, mais le système de messagerie n'est pas destiné à des communications sensibles. Ce projet vise à démontrer des compétences techniques.",
       dates: "2023",
@@ -154,7 +154,7 @@ export const projects = [
       ] as string[],
       name: "boblioloan",
       title: "Boblioloan",
-      href: "/projects/boblioloan",
+      href: "/portfolio/boblioloan",
       description:
         "Boblioloan (projet de cours) est une plateforme de gestion de prêts en collaboration avec **[@Kamal moustoifa](https://www.linkedin.com/in/moustoifa-ben-kamal-moussa-38a698236/)** qui facilite le suivi des emprunts et des remboursements pour les bibliothèques et autres institutions. Conçue pour être intuitive, elle permet une gestion efficace des membres, des prêts et des retours grâce à une interface moderne et une intégration d'outils de reporting.",
       dates: "2024 - en cours",
@@ -185,7 +185,7 @@ export const projects = [
       ] as string[],
       name: "promptmaster",
       title: "PromptMaster",
-      href: "/projects/promptmaster",
+      href: "/portfolio/promptmaster",
       description:
         "PromptMaster est un projet de cours où une API REST est développée avec Flask pour gérer des utilisateurs et des propositions de textes (Prompts). Le système inclut des rôles différents pour les utilisateurs, comme administrateurs et membres, et propose des mécanismes pour gérer les connexions, autorisations, ainsi que la notation et l'activation des Prompts en fonction des votes.",
       dates: "2024 - en cours",
@@ -220,7 +220,7 @@ export const projects = [
       ] as string[],
       name: "odc-inside",
       title: "Odc Inside",
-      href: "/projects/odc-inside",
+      href: "/portfolio/odc-inside",
       description:
         "Un site comprenant deux parties principales : une section 'Inside' permettant de tirer au sort aléatoirement un étudiant de Sonatel Academy pour aller à la table, et une section présentant les alumni de la Sonatel Academy avec des filtres par niveau et d'autres critères pour les recruteurs.",
       dates: "2024",
@@ -256,7 +256,7 @@ export const projects = [
       ] as string[],
       name: "mysubito-landing-clone",
       title: "MySubito Landing Page Clone",
-      href: "/projects/mysubito-landing-clone",
+      href: "/portfolio/mysubito-landing-clone",
       description:
         "Le clone de la landing page de MySubito est une reproduction réalisée pour apprendre React. Cette version permet de présenter les fonctionnalités de l'application de réservation de voitures avec un design réactif, tout en intégrant des pratiques modernes de développement frontend avec React et Tailwind CSS.",
       dates: "2024",
@@ -278,7 +278,7 @@ export const projects = [
       ]  as string[],
       name: "aora",
       title: "Aora",
-      href: "/projects/aora",
+      href: "/portfolio/aora",
       description:
         "Aora est une application mobile de partage de vidéos et de création de contenu, développée avec React Native, Appwrite et NativeWind. L'application permet aux utilisateurs de créer, partager et interagir avec des vidéos tout en offrant des outils intuitifs de création de contenu et une interface fluide.",
       dates: "2024",
@@ -311,7 +311,7 @@ export const projects = [
       ] as string[],
       name: "mysubito",
       title: "MySubito app",
-      href: "/projects/mysubito",
+      href: "/portfolio/mysubito",
       description:
         "MySubito est une refonte de l'application Subito, développée avec React Native. L'application permet aux utilisateurs de réserver des voitures de manière simple et rapide, avec des fonctionnalités comme la gestion des réservations, le suivi en temps réel et des notifications pour une expérience utilisateur fluide.",
       dates: "2024 - en cours",
@@ -343,7 +343,7 @@ export const projects = [
       ] as string[],
       name: "gestion-fichiers",
       title: "Gestion de Fichiers",
-      href: "/projects/gestion-fichiers",
+      href: "/portfolio/gestion-fichiers",
       description:
         "Ce projet permet de gérer des fichiers au format JSON, YAML, XLSX, CSV, et plus. Il dispose d'une version desktop, développée avec Tkinter, et d'une version web utilisant Flask, Tailwind CSS et JavaScript. Les utilisateurs peuvent importer des fichiers dans l'un de ces formats et les convertir dans un autre format, grâce à une interface intuitive et fluide.",
       dates: "2024",
@@ -379,7 +379,7 @@ export const projects = [
       ] as string[],
       name: "organick",
       title: "Organick",
-      href: "/projects/organick",
+      href: "/portfolio/organick",
       description:
         "Une intégration web basée sur une maquette fournie, réalisée avec Tailwind CSS. Cet exercice met en avant les compétences en design réactif et en structuration moderne.",
       dates: "2024",
@@ -414,7 +414,7 @@ export const projects = [
         "/img/subitoapp/5.png",
       ] as string[],
       name: "golio",
-      href: "/projects/golio",
+      href: "/portfolio/golio",
       title: "Golio",
       description:
         "Une intégration web réalisée uniquement avec HTML et CSS, basée sur une maquette fournie. Cet exercice se concentre sur la structuration propre et le design fidèle aux maquettes.",
@@ -445,7 +445,7 @@ export const projects = [
         "/img/subitoapp/5.png",
       ] as string[],
       name: "bella",
-      href: "/projects/bella",
+      href: "/portfolio/bella",
       title: "Bella Ojene",
       description:
         "Une intégration web fidèle à une maquette fournie, réalisée exclusivement avec HTML et CSS. L'objectif est de perfectionner les compétences de base en intégration et en design statique.",

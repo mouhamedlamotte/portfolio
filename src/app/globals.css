@@ -70,3 +70,31 @@
     @apply bg-background text-foreground;
   }
 }
+
+.scrollbar-none::-webkit-scrollbar{
+  display: none !important;
+}
+
+
+
+::-webkit-scrollbar {
+  width: 10px !important; 
+  height: 10px !important; 
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #1e1669, #3060b8) !important; 
+  border-radius: 5px !important; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #160796, #7a3ca4) !important;
+}
+
