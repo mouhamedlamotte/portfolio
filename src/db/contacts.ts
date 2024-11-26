@@ -31,3 +31,14 @@ export const addContact = async (contact: z.infer<typeof ContactformSchema>) => 
         return false
     }
 }
+
+
+export const getContacts = async () => {
+    try {
+        const res = await prismaClient.contact.findMany()
+        return res
+    } catch (error) {
+        console.error(error)
+        return []
+    }
+}
