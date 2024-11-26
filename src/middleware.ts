@@ -2,14 +2,17 @@ import { NextRequest, NextResponse, userAgent } from 'next/server'
  
 export async function  middleware(request: NextRequest) {
   const user_agent = userAgent(request)
-  if (request.url === 'http://localhost:3000' || request.url.includes('/portfolio')) {
+  const pathname = request.nextUrl.pathname
+  const trackPaths = ['/portfolio', '/devis', "/"]
+  
+  if (trackPaths.includes(pathname)) {
         await fetch('http://localhost:3000/api/visit', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                visitedPage: request.url,
+                visitedPage: pathname ?? "",
                 deviceType: user_agent.device.type ?? "",
                 os: user_agent.os.name ?? "",
                 browser: user_agent.browser.name ?? "",
