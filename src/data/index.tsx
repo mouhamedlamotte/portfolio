@@ -11,8 +11,23 @@ export const resume = {
     locationLink: "https://www.google.com/maps/place/sanfrancisco",
     description:
       "Salut, je suis un développeur passionné de web, de données et d'intelligence artificielle.",
-    summary:
-      "At the end of 2022, I quit my job as a software engineer to go fulltime into building and scaling my own SaaS businesses. In the past, [I pursued a double degree in computer science and business](/#education), [interned at big tech companies in Silicon Valley](https://www.youtube.com/watch?v=d-LJ2e5qKdE), and [competed in over 21 hackathons for fun](/#hackathons). I also had the pleasure of being a part of the first ever in-person cohort of buildspace called [buildspace sf1](https://buildspace.so/sf1).",
+    summary:`# 🎉 Mouhamed Lamotte !
+
+Un **code lover** basé à Dakar 🌍, toujours en mode **créa vibes** pour inventer des solutions web **qui claquent** et qui répondent à des vrais besoins. 🛠️ Passionné par le mélange des outils modernes et des challenges réels, je me régale à chaque ligne de code. 🚀
+
+Formé à **Sonatel Academy** 🎓, j’ai une **double casquette** : backend et frontend, tout en explorant des terrains passionnants comme la gestion des données 📊, l’IA 🤖 et l’indexation 🔍. En vrai, mon crédo, c’est apprendre en **créant des trucs utiles pour la commu**. 🙌
+
+## 🌟 Mes vibes ?
+- Développer des **interfaces stylées et fluides** 🎨
+- Construire des **API en béton armé** 🧱
+- Jouer avec des montagnes de données 📈 (et kiffer ça 🤓)
+
+💡 **Objectif ultime ?** Allier **simplicité et efficacité** dans des projets qui **marquent la diff’** !
+
+---
+
+**Let’s code, collab, and create some magic ✨.**
+`,
     avatarUrl: "/me.jpeg",
     skills: skills,
     contact: contact,

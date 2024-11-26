@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { resume } from "@/data";
+import Markdown from "react-markdown";
 
 export default function About() {
   return (
@@ -11,7 +12,7 @@ export default function About() {
             <CardTitle className="text-xl text-gray-200">
               À propos de moi
             </CardTitle>
-            <Badge className="bg-gray-800 text-gray-300 border border-gray-700 hover:bg-gray-700 ml-auto space-x-2">
+            <Badge className="bg-gray-800 text-gray-300 border border-gray-700 hover:bg-gray-700 ml-auto space-x-2 py-3 px-5">
               Notion lover
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -33,7 +34,7 @@ export default function About() {
             </Badge>
           </CardHeader>
           <CardContent className="space-y-6 text-gray-300 py-4">
-            <div>
+            {/* <div>
               <p className="text-lg">
                 <span className="text-2xl font-bold text-blue-400 ">
                   🎉 Mouhamed Lamotte !
@@ -110,8 +111,10 @@ export default function About() {
               <p className="mt-6 text-center text-lg font-bold text-blue-400">
                 Let’s code, collab, and create some magic ✨.
               </p>
-            </div>
-
+            </div> */}
+            <Markdown>
+            {resume.summary}
+            </Markdown>
             <div className="space-y-4">
               <h3 className="text-lg font-semibold text-gray-200">
                 Compétences techniques

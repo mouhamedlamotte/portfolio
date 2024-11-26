@@ -99,10 +99,11 @@ const { toast } = useToast();
 
     </CardContent>
     <CardFooter className="flex justify-end">
-          <Button disabled={loading} 
-          variant="outline"
-          size={loading ? "icon" : "default"}
-          type="submit" className="">
+          <Button disabled={loading}
+          className="w-full -mt-1" 
+          variant="secondary"
+          size={loading ? "icon" : "lg"}
+          type="submit" >
             {loading ? <Loader className="animate-spin" /> : "Envoyer"}
           </Button>
       </CardFooter>

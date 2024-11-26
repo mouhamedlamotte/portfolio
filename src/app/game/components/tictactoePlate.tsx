@@ -2,7 +2,7 @@
 
 import React, { useRef } from 'react'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent,  CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { useTictactoeLevelStore } from '../stores/tictactoeStore';
 import { ArrowRight, Camera, Share } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -22,13 +22,8 @@ export const TictactoePlate = () => {
 
   return (
     <Card className="relative overflow-hidden h-fit" ref={cardRef}>
-      <CardHeader className="flex-row justify-between">
-        <div className="">
+      <CardHeader className="flex-row justify-between items-center">
         <CardTitle>TicTacToe</CardTitle>
-        <CardDescription>
-          Break 🕐 ! Essayes de gagner 🥵😏
-        </CardDescription>
-        </div>
         <Select defaultValue="1" onValueChange={(value) => setLevel(value as unknown as number)}>
           <SelectTrigger className="w-[180px]" >
             <SelectValue placeholder="Niveau" />

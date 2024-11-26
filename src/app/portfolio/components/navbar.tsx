@@ -72,7 +72,7 @@ export function Navbar() {
 
         <div className="flex items-center gap-4">
           <Button asChild variant="default">
-            <Link href="/devis">Demander un devis</Link>
+            <Link href="/portfolio/devis">Demander un devis</Link>
           </Button>
         </div>
       </div>

@@ -52,7 +52,7 @@ export default function Experience() {
   }));
 
   return (
-    <div className="w-full">
+    <div className="w-full ">
       <Timeline data={data} />
     </div>
   );
