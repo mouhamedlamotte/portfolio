@@ -1,7 +1,7 @@
 import {  getMessages } from "@/db/message";
-import { NextRequest, NextResponse } from "next/server";
+import {  NextResponse } from "next/server";
 
-export async function GET(req: NextRequest){
+export async function GET(){
     try {
         const messages = await getMessages()
         return NextResponse.json(messages, {status: 200})

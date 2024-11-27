@@ -13,6 +13,8 @@ import { useQuery } from '@tanstack/react-query'
 import { AxiosInstance } from '@/lib/axios'
 import { formatDate } from '@/lib/utils'
 import { Loader } from 'lucide-react'
+import { useMessagePreviewStore } from '../stores/messagePreviewStore'
+import { PreviewMessage } from './previewMessage'
 
 
 
@@ -41,60 +43,68 @@ export const MessageContent = () => {
         enabled: !!id
     })
 
+    const preview = useMessagePreviewStore((state) => state.preview.preview)
 
-    
+
+
   return (
-    <Card className='w-full overflow-hidden h-full'>
+    <>
         {
-            message && !isLoading ? (
-                <>
-        <CardHeader className='flex-row items-center'>
-            <div>
-            <CardTitle className='Capitalize'>{message.name}</CardTitle>
-                <Link href={`mailto:${message.email}`} className='mt-1 text-sm  underline'>{message.email}</Link>
-            </div>
-            
-            <div className='ml-auto flex space-x-2'>
-                <Button asChild>
-                        <Link  href={`mailto:${message.email}`}>
-                        Repondre sur Mail 
-                        <IconMail />
-                        </Link>
-                </Button>
-                <Button variant="destructive">
-                        Supprimer 
-                        <IconTrash />
-                </Button>
-            </div>
-        </CardHeader>
-        <Separator />
-        <CardContent className='p-4 pb-32 overflow-y-auto h-full'>
-            <div className='flex flex-col  w-fit'>
-                <Markdown className="p-4 rounded-sm bg-accent w-fit space-y-6 text-gray-300 h-fit max-w-xl">{message.message}</Markdown>
-                <span className='text-xs text-muted-foreground mt-1'>{formatDate(message.createdAt)}</span>
-            </div>
-            {
-                replies && replies.map((reply, index) => (
-                    <div className='flex flex-col  items-end' key={index}>
-                    <Markdown className="p-4 rounded-sm bg-primary/75 w-fit space-y-6 text-gray-300 h-fit max-w-xl">{reply.content}</Markdown>
-                    <span className='text-xs text-muted-foreground mt-1 '>{formatDate(reply.createdAt)}</span>
-                </div>
-                ))
-            }
-        </CardContent>
-                </>
-            ) : isLoading || isLoadingReply && <CardContent className='h-full w-full flex justify-center items-center'><Loader className='animate-spin' /></CardContent> 
-        }
-        {
-            !id && (
-<CardContent className='h-full w-full flex justify-center items-center'>
-                    <div className='flex flex-col gap-4 items-center'>
-                        <IconMessageOff className='h-40 w-40' />
-                        <span className='text-center font-bold text-xl'>Cliquer sur un message pour voir son contenu</span>
+            !preview ? (
+                <Card className='w-full overflow-hidden h-full'>
+                {
+                    message && !isLoading ? (
+                        <>
+                <CardHeader className='flex-row items-center'>
+                    <div>
+                    <CardTitle className='Capitalize'>{message.name}</CardTitle>
+                        <Link href={`mailto:${message.email}`} className='mt-1 text-sm  underline'>{message.email}</Link>
                     </div>
-            </CardContent>
-            )
+                    
+                    <div className='ml-auto flex space-x-2'>
+                        <Button asChild>
+                                <Link  href={`mailto:${message.email}`}>
+                                Repondre sur Mail 
+                                <IconMail />
+                                </Link>
+                        </Button>
+                        <Button variant="destructive">
+                                Supprimer 
+                                <IconTrash />
+                        </Button>
+                    </div>
+                </CardHeader>
+                <Separator />
+                <CardContent className='p-4 pb-32 overflow-y-auto h-full'>
+                    <div className='flex flex-col  w-fit'>
+                        <Markdown className="p-4 rounded-sm bg-accent w-fit space-y-6 text-gray-300 h-fit max-w-xl text-wrap overflow-hidden break-words whitespace-normal">{message.message}</Markdown>
+                        <span className='text-xs text-muted-foreground mt-1'>{formatDate(message.createdAt)}</span>
+                    </div>
+                    {
+                        replies && replies.map((reply, index) => (
+                            <div className='flex flex-col  items-end' key={index}>
+                            <Markdown className="p-4 rounded-sm bg-primary/75 w-fit space-y-6 text-gray-300 h-fit max-w-xl text-wrap overflow-hidden break-words whitespace-normal">{reply.content}</Markdown>
+                            <span className='text-xs text-muted-foreground mt-1 '>{formatDate(reply.createdAt)}</span>
+                        </div>
+                        ))
+                    }
+                </CardContent>
+                        </>
+                    ) : isLoading || isLoadingReply && <CardContent className='h-full w-full flex justify-center items-center'><Loader className='animate-spin' /></CardContent> 
+                }
+                {
+                    !id && (
+        <CardContent className='h-full w-full flex justify-center items-center'>
+                            <div className='flex flex-col gap-4 items-center'>
+                                <IconMessageOff className='h-40 w-40' />
+                                <span className='text-center font-bold text-xl'>Cliquer sur un message pour voir son contenu</span>
+                            </div>
+                    </CardContent>
+                    )
+                }
+                </Card>
+            ) : <PreviewMessage />
         }
-      </Card>
+    </>
   )
 }

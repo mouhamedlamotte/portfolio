@@ -3,9 +3,10 @@ import { NextRequest, NextResponse } from "next/server";
 
 
 
-export async function GET(req: NextRequest, {params} : {params: {id: string}}) {
+export async function GET(req: NextRequest, {params} : {params: Promise<{id: string}>}) {
         try {
-        const id = await params.id
+        const p = await params
+        const id = p.id
 
             const message = await getMessageById(id)
             return NextResponse.json(message, {status: 200})
@@ -15,10 +16,10 @@ export async function GET(req: NextRequest, {params} : {params: {id: string}}) {
         }
 }
 
-export async function PUT(req: NextRequest, {params} :  {params:  {id: string}}) {
+export async function PUT(req: NextRequest, {params} :  {params:  Promise<{id: string}>}) {
     try {
-        const id = await params.id
-        // const  data = MessageSchema.parse(await req.json());
+        const p = await params
+        const id = p.id
         const message = await updateMessage(id, await req.json())
         return NextResponse.json(message, {status: 200})
     } catch (error) {

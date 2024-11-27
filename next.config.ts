@@ -10,7 +10,8 @@ const nextConfig: NextConfig = {
         hostname: 'assets.aceternity.com',
       },
     ],
-  }
+  },
+  serverExternalPackages: ['@lib/generate-email-html'],
 };
 
 export default nextConfig;

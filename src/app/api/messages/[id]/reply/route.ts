@@ -1,14 +1,17 @@
+"use server"
+
+
 import { MessageType } from "@/app/admin/messages/types/message";
-import { resume } from "@/data";
 import { addReply, getMessageById, getReplyByMessageId, updateMessage } from "@/db/message";
 import { sendEmail } from "@/lib/nodemailer";
-import { replyMessageTemplate } from "@/templates/replymessage";
 import { NextRequest, NextResponse } from "next/server"
 
-export async function GET(req: NextRequest, {params} : {params: {id: string}}) {
+export async function GET(req: NextRequest, {params} : {params: Promise<{id: string}>}) {
+    const p = await params
+    const id = p.id
+
     try {
-    const id = await params.id
-        const reply = await getReplyByMessageId(id)
+        const reply = await getReplyByMessageId(id);
         return NextResponse.json(reply, {status: 200})
     } catch (error) {
         console.log("une erreur est survenue", error);
@@ -16,25 +19,19 @@ export async function GET(req: NextRequest, {params} : {params: {id: string}}) {
     }
 }
 
-export async function POST(request: NextRequest, {params} : {params: {id: string}}) {
-    const id = await params.id
+export async function POST(request: NextRequest, {params} : {params: Promise<{id: string}>}) {
+    const p = await params
+    const id = p.id
 
     try {
         const data = await request.json();
         await addReply({
-            ...data,
-            messageId: id,
+            via: "ADMIN",
+            content: data.content,
+            messageId: p.id,
         });
         const message = await getMessageById(id);
-        const html = replyMessageTemplate
-        .replace('{{portfolio_name}}', resume.name)
-        .replace('{{portfolio_name}}', resume.name)
-        .replace('{{recipient_name}}', message?.name as string)
-        .replace('{{message}}', data.content)
-        .replace('{{devis_link}}', "http://localhost:3000/portfolio/devis")
-        .replace('{{recipient_name}}', message?.name as string)
-        .replace('{{reply_email}}', 'mouhamedlamotte.dev')
-        .replace('{{reply_email}}', 'mouhamedlamotte.dev')
+        const html = data.html
         await sendEmail(message?.email as string, "Merci pour votre message", html);
         await updateMessage(id, {
             ...message,

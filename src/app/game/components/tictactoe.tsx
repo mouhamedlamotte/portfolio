@@ -14,7 +14,7 @@ import {
 
 import { Dispatch, SetStateAction, useEffect,  useState } from "react";
 import { useTictactoeLevelStore } from "../stores/tictactoeStore";
-import { downloadSVG, findBestMove, isBoardFull } from "@/lib/tictactoe";
+import {  findBestMove, isBoardFull } from "@/lib/tictactoe";
 import { toast } from "@/components/ui/use-toast";
 import { addGamePlay } from "@/db/gameplay";
 import { createImg } from "@/lib/save-images";
