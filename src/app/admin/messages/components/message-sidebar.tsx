@@ -1,20 +1,30 @@
-import { Button } from '@/components/ui/button'
+"use client"
+
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
 import React, { ComponentProps } from 'react'
 import { MessageType } from '../types/message'
 import Link from 'next/link'
-import { getMessages } from '@/db/contacts'
-import { formatDate } from '@/lib/utils'
+import { cn, formatDate } from '@/lib/utils'
 import Markdown from 'react-markdown'
+import { useMutation, useQuery } from '@tanstack/react-query'
+import { AxiosInstance } from '@/lib/axios'
+import {  Loader } from 'lucide-react'
+import { Badge } from '@/components/ui/badge'
+import { useSearchParams } from 'next/navigation'
 
 
   
 
-export const MessageSidebar = async () => {
+export const MessageSidebar = () => {
 
-    const messages = await getMessages()
+    const {data : messages, isLoading} = useQuery<MessageType[]>({
+        queryKey: ['messages'],
+        queryFn: async() => {
+            return await AxiosInstance.get('/messages').then((res) => res.data)
+        }
+    })
 
   return (
     <Card className='max-w-[25rem] w-full h-full rounded-sm overflow-hidden'>
@@ -25,9 +35,14 @@ export const MessageSidebar = async () => {
             <Separator />
             <CardContent className='grid grid-cols-1 p-0 overflow-y-auto h-full pb-32'>
                     {
-                        messages.map((message) => (
+                        messages?.map((message) => (
                             <MessagesItem key={message.id} message={message as unknown as MessageType}  />
                         ))
+                    }
+                    {
+                        isLoading && <div className='h-full w-full flex items-center justify-center'>
+                            <Loader className='animate-spin' />
+                        </div>
                     }
             </CardContent>
     </Card>
@@ -39,18 +54,49 @@ type MessagesItemProps = {
   } & Omit<ComponentProps<typeof Link>, 'href'>; 
   
   const MessagesItem = ({ message, ...props }: MessagesItemProps) => {
+
+    const searchParams = useSearchParams()
+    const id = searchParams.get('id')
+
+    const updateMessageMutation = useMutation({
+        mutationFn: async (data: MessageType) => {
+            return await AxiosInstance.put(`/messages/${message.id}`, data).then((res) => res.data)
+        }
+    })
+
+
+    const handleClick = () => {
+        message.read = true
+        updateMessageMutation.mutate({
+          ...message,
+          read: true
+        })
+    }
+    
+
     return (
       <Link 
+      onClick={handleClick}
         {...props} 
         href={`/admin/messages?id=${message.id}`} 
-        className='flex flex-col items-start gap-2 whitespace-nowrap border-b p-4 text-sm leading-tight last:border-b-0 hover:bg-accent hover:text-accent-foreground'
+        className={cn(
+          "flex flex-col items-start gap-2 whitespace-nowrap border-b p-4 text-sm leading-tight last:border-b-0 hover:bg-accent hover:text-accent-foreground h-fit",
+          message.read && "bg-muted/50 text-muted-foreground",
+          message.id === id && "bg-accent text-accent-foreground"
+        )}
       >
         <div className='flex w-full items-center gap-2'>
-                <span className='capitalize'>@{message.name}</span>
+                <span className='capitalize'>{message.name}</span>
                 <span className='ml-auto text-xs'>{formatDate(message.createdAt)}</span>
         </div>
-        <span className='font-medium'>{message.email}</span>
-        <Markdown className='line-clamp-2 w-[300px] whitespace-break-spaces text-xs'>{message.message}</Markdown>
+        <div className='w-full flex items-end'>
+            <Markdown className='line-clamp-2 w-[300px] whitespace-break-spaces text-xs'>{message.message}</Markdown>
+            {
+              message.replied && (
+                  <Badge className='ml-auto bg-green-500' variant="outline">{message.replied ? "Repondu" : "Non repondu"}</Badge>   
+              )
+            }
+        </div>
       </Link>
     );
   };

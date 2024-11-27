@@ -51,9 +51,27 @@ model Messages {
   name      String
   email     String
   message   String
+  read      Boolean @default(false)
+  replied   Boolean @default(false)
   createdAt DateTime @default(now())
   Contact   Contact  @relation(fields: [contactId], references: [id])
   contactId String
+
+  Replies Replies[]
+}
+
+enum ReplyVia {
+  GMAIL
+  ADMIN
+}
+
+model Replies {
+  id        String   @id @default(uuid())
+  content   String   @db.Text()
+  via       ReplyVia @default(ADMIN)
+  createdAt DateTime @default(now())
+  Message   Messages   @relation(fields: [messageId], references: [id])
+  messageId String   
 }
 
 model Contact {

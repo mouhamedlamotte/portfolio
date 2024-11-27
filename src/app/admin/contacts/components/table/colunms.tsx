@@ -13,6 +13,7 @@ export const contactColumns: ColumnDef<z.infer<typeof ContactformSchema>>[] = [
   {
     accessorKey: "id",
     header: "#",
+    cell : ({row}) => `#${row.index + 1}`
   },
   {
     accessorKey: "name",

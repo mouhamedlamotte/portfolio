@@ -1,41 +1,59 @@
+"use client"
+
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { IconMail, IconMessageOff, IconTrash } from '@tabler/icons-react'
-import { headers } from 'next/headers'
 import Link from 'next/link'
 import React from 'react'
 import Markdown from 'react-markdown'
 import { MessageType } from '../types/message'
-import { getMessageById } from '@/db/message'
+import { useSearchParams } from 'next/navigation'
+import { useQuery } from '@tanstack/react-query'
+import { AxiosInstance } from '@/lib/axios'
+import { formatDate } from '@/lib/utils'
+import { Loader } from 'lucide-react'
 
 
 
-export const MessageContent = async () => {
-    let message : MessageType | null = null;
-    const headerList = await headers();
-    const pathname = headerList.get("x-current-path")
 
-    console.log(pathname?.includes("?"));
-    
+export const MessageContent = () => {
 
-    if (pathname && pathname.includes("?")) {
-    const urlSearchParams = new URLSearchParams(pathname.split("?")[1]); 
-    const id = urlSearchParams.get("id"); 
-    message = await getMessageById(id ?? "");
-    } else {
-    console.log("ID introuvable dans le pathname.");
-    }
+    const searchParams = useSearchParams()
+    const id = searchParams.get('id')
+    const {data : message, isLoading} = useQuery<MessageType>({
+        queryKey: ['message', id],
+        queryFn: async() => {
+            return AxiosInstance.get(`/messages/${id}`).then((res) => res.data)
+        },
+        enabled: !!id
+    })
+
+    const {data : replies, isLoading: isLoadingReply} = useQuery<{
+        content : string,
+        createdAt: Date,
+        via : string
+    }[]>({
+        queryKey: ['reply', id],
+        queryFn: async() => {
+            return AxiosInstance.get(`/messages/${id}/reply`).then((res) => res.data)
+        },
+        enabled: !!id
+    })
 
 
     
   return (
     <Card className='w-full overflow-hidden h-full'>
         {
-            message ? (
+            message && !isLoading ? (
                 <>
         <CardHeader className='flex-row items-center'>
-            <CardTitle>@{message.name}</CardTitle>
+            <div>
+            <CardTitle className='Capitalize'>{message.name}</CardTitle>
+                <Link href={`mailto:${message.email}`} className='mt-1 text-sm  underline'>{message.email}</Link>
+            </div>
+            
             <div className='ml-auto flex space-x-2'>
                 <Button asChild>
                         <Link  href={`mailto:${message.email}`}>
@@ -50,16 +68,32 @@ export const MessageContent = async () => {
             </div>
         </CardHeader>
         <Separator />
-        <CardContent className='grid grid-cols-1 p-4 pb-32 overflow-y-auto h-full'>
-                <Markdown className="p-4 rounded-sm bg-accent w-fit space-y-6 text-gray-300 h-fit">{message.message}</Markdown>
+        <CardContent className='p-4 pb-32 overflow-y-auto h-full'>
+            <div className='flex flex-col  w-fit'>
+                <Markdown className="p-4 rounded-sm bg-accent w-fit space-y-6 text-gray-300 h-fit max-w-xl">{message.message}</Markdown>
+                <span className='text-xs text-muted-foreground mt-1'>{formatDate(message.createdAt)}</span>
+            </div>
+            {
+                replies && replies.map((reply, index) => (
+                    <div className='flex flex-col  items-end' key={index}>
+                    <Markdown className="p-4 rounded-sm bg-primary/75 w-fit space-y-6 text-gray-300 h-fit max-w-xl">{reply.content}</Markdown>
+                    <span className='text-xs text-muted-foreground mt-1 '>{formatDate(reply.createdAt)}</span>
+                </div>
+                ))
+            }
         </CardContent>
                 </>
-            ) : <CardContent className='h-full w-full flex justify-center items-center'>
+            ) : isLoading || isLoadingReply && <CardContent className='h-full w-full flex justify-center items-center'><Loader className='animate-spin' /></CardContent> 
+        }
+        {
+            !id && (
+<CardContent className='h-full w-full flex justify-center items-center'>
                     <div className='flex flex-col gap-4 items-center'>
                         <IconMessageOff className='h-40 w-40' />
                         <span className='text-center font-bold text-xl'>Cliquer sur un message pour voir son contenu</span>
                     </div>
             </CardContent>
+            )
         }
       </Card>
   )

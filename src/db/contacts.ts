@@ -43,17 +43,3 @@ export const getContacts = async () => {
     }
 }
 
-export const getMessages = async () => {
-    try {
-        const res = await prismaClient.messages.findMany({
-            orderBy: {
-                createdAt: 'desc'
-            }
-        })
-        return res
-    } catch (error) {
-        console.error(error)
-        return []
-    }
-}
-

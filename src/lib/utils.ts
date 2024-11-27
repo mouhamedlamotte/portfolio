@@ -14,7 +14,7 @@ export function formatDate(date: string | Date | dayjs.Dayjs): string {
   const now = dayjs();
   const inputDate = dayjs(date);
 
-  if (inputDate.isSame(now, "minute")) {
+  if (inputDate.isSame(now, "minutes")) {
     return "Just now";
   }
 
