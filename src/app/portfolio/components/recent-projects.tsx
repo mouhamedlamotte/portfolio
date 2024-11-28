@@ -4,13 +4,14 @@ import { resume } from "@/data"
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { ProjectCard } from "./cards/project-card"
+import { Section } from "./section"
 
 
 export const RecentProjects = () => {
   return (
-    <section id="projects" className=" xl:px-40 scroll-mt-16">
-   <div className="w-full md:px-16">
-      <div className="max-w-7xl mx-auto py-20 flex  items-start">
+    <Section>
+   <div className="w-full  max-auto">
+      <div className="flex  items-start">
         <div>
         <h2 className="text-lg md:text-4xl mb-4 text-black dark:text-white max-w-4xl">
           Projects Recent
@@ -22,7 +23,7 @@ export const RecentProjects = () => {
             <Button variant="link" className="ml-auto  hover:text-muted-foreground">
               <AnimatedShinyText className="inline-flex items-center" >
               <Link href="/portfolio" className="hover:underline-none" >
-              Voir tous mes projets
+              Voir plus
               </Link>
               <ArrowRight className="ml-2" size={16} />
               </AnimatedShinyText>
@@ -34,6 +35,6 @@ export const RecentProjects = () => {
         ))}
       </div>
     </div>
-  </section>
+  </Section>
   )
 }

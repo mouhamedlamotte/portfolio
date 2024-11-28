@@ -14,10 +14,10 @@ import { Boxes } from "@/components/ui/background-boxes";
 import { resume } from "@/data";
 import AnimatedShinyText from "@/components/ui/animated-shiny-text";
 import { Icons } from "@/icons";
+import { Section } from "./section";
 
 export function HomeHero() {
   return (
-    <div className="">
       <div className="relative bg-background w-full overflow-hidden  flex flex-col items-center justify-center rounded-lg py-14">
         <div className="absolute bg-background inset-0 w-full h-full  z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none space-y-6" />
 
@@ -101,6 +101,5 @@ export function HomeHero() {
           </Button>
         </div>
       </div>
-    </div>
   );
 }

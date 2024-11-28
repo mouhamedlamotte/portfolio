@@ -2,11 +2,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { resume } from "@/data";
 import Markdown from "react-markdown";
+import { Section } from "./section";
 
 export default function About() {
   return (
-    <section id="about" className="p-0 md:px-10 xl:px-40 md:scroll-mt-16">
-      <div className="space-y-8 p-2 ">
+    <Section>
+      <div className="space-y-8">
         <Card className="bg-gray-900 md:border border-gray-800  ">
           <CardHeader className="pb-4 border-b border-gray-800 flex-row items-center">
             <CardTitle className="text-xl text-gray-200">
@@ -134,6 +135,6 @@ export default function About() {
           </CardContent>
         </Card>
       </div>
-    </section>
+    </Section>
   );
 }

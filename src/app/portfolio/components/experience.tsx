@@ -1,5 +1,6 @@
 import { Timeline } from "@/components/ui/timeline";
 import { ExperienceCard } from "./cards/experience-card";
+import { Section } from "./section";
 
 
 const experiences : { year: string, story: string, company: string, role: string, description: string, technologies: string[], logo? : string}[] = [
@@ -52,8 +53,8 @@ export default function Experience() {
   }));
 
   return (
-    <div className="w-full ">
+    <Section>
       <Timeline data={data} />
-    </div>
+    </Section>
   );
 }
