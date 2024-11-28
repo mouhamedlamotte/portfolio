@@ -2,10 +2,9 @@
 
 import AnimatedShinyText from '@/components/ui/animated-shiny-text';
 import { Badge } from '@/components/ui/badge';
-import { ScrollBar } from '@/components/ui/scroll-area';
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { cn } from '@/lib/utils';
 import { useImagePreviewStore } from '@/stores/useImagePreviewStore';
-import { ScrollArea } from '@radix-ui/react-scroll-area'
 import Link from 'next/link';
 import React from 'react'
 
