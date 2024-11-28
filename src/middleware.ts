@@ -7,7 +7,6 @@ export async function middleware(request : NextRequest) {
   const { pathname } = request.nextUrl;
   const user_agent = userAgent(request);
   const allowedHosts = process.env.NEXT_PUBLIC_ALLOWED_HOSTS?.split(',').map(item => item.trim()) ?? [];
-  console.log("allowedHosts =-== >", allowedHosts);
   
 
   if (

@@ -4,6 +4,8 @@ import "./globals.css";
 import { Provider } from "./providers";
 import { Toaster } from "@/components/ui/toaster";
 import { ImgPreview } from "@/components/common/img-preview";
+import { Suspense } from "react";
+import { Loader } from "lucide-react";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -105,10 +107,19 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+            <Suspense fallback={<FallbackComponent/>}>
         <Provider>{children}</Provider>
         <Toaster />
         <ImgPreview />
+            </Suspense>
       </body>
     </html>
   );
+}
+
+
+const FallbackComponent = () => {
+  return <div className="w-full h-full">
+        <Loader className="animate-spin" />
+  </div>
 }
