@@ -16,6 +16,8 @@ import Link from "next/link";
 import React, { PropsWithChildren, useState } from "react";
 import { motion } from "framer-motion";
 import { resume } from "@/data";
+import { useSession } from "next-auth/react";
+
 
 const links = [
   {
@@ -71,6 +73,11 @@ const links = [
 
 export const AdminLayout = (props: PropsWithChildren) => {
   const [open, setOpen] = useState(false);
+
+  const { data: session, status } = useSession()
+
+  const user = session?.user
+
   return (
     <div
       className={cn(

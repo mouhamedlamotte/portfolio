@@ -1,29 +1,60 @@
-import { NextRequest, NextResponse, userAgent } from 'next/server'
+import { NextRequest, NextResponse, userAgent } from 'next/server';
 import { AxiosInstance } from './lib/axios';
- 
-export async function  middleware(request: NextRequest) {
-  const user_agent = userAgent(request)
-  const pathname = request.nextUrl.pathname
+import { getToken } from 'next-auth/jwt';
+import { kdebug } from './lib/kdebug';
 
+export async function middleware(request : NextRequest) {
+  const { pathname } = request.nextUrl;
+  const user_agent = userAgent(request);
+  const allowedHosts = process.env.NEXT_PUBLIC_ALLOWED_HOSTS?.split(',').map(item => item.trim()) ?? [];
+  console.log("allowedHosts =-== >", allowedHosts);
   
-  
-  const headers = new Headers(request.headers);
-  
-  if (pathname.includes("/admin/messages")) {
-      headers.set("x-current-path", request.nextUrl.pathname + request.nextUrl.search);
+
+  if (
+    pathname.startsWith('/_next') || 
+    pathname.startsWith('/api/auth') || 
+    pathname === '/'
+  ) {
+    return NextResponse.next();
   }
 
-  if (pathname.includes("/portfolio") && !pathname.includes("/_next/") || pathname === "/") { 
-        await AxiosInstance.post("/visit", {
-            visitedPage: pathname ?? "unknown",
-            deviceType: user_agent.device.type ?? "unknown",
-            os: user_agent.os.name ?? "unknown",
-            browser: user_agent.browser.name ?? "unknown",
-            referrer: request.referrer ?? "unknown",
-            ipAddress: request.headers.get('x-forwarded-for') ?? "unknown",
-            isBot : user_agent.isBot
-        })
+  const token = await getToken({
+    req: request,
+    secret: process.env.NEXTAUTH_SECRET,
+  });
+
+  if (pathname.startsWith('/admin') && !token) {
+    return NextResponse.redirect(
+      new URL(`/auth/login?next=${request.nextUrl.pathname}`, request.url)
+    );
   }
 
-  return NextResponse.next({headers})
+  if (pathname.startsWith('/api') && !allowedHosts.includes(request.headers.get('host') ?? '' )) {
+    return NextResponse.json({ message: 'unauthorized host' }, { status: 403 });
+  }
+
+  if (pathname.startsWith('/portfolio') && !token) {
+    try {
+      await AxiosInstance.post('/visit', {
+        visitedPage: pathname ?? 'unknown',
+        deviceType: user_agent.device.type ?? 'unknown',
+        os: user_agent.os.name ?? 'unknown',
+        browser: user_agent.browser.name ?? 'unknown',
+        referrer: request.referrer ?? 'unknown',
+        ipAddress: request.headers.get('x-forwarded-for') ?? 'unknown',
+        isBot: user_agent.isBot,
+      });
+      
+    } catch (error) {
+      kdebug("une erreur est survenue", error);
+    }
+  }
+
+  if (pathname.startsWith('/admin/messages')) {
+    const headers = new Headers(request.headers);
+    headers.set('x-current-path', request.nextUrl.pathname + request.nextUrl.search);
+    return NextResponse.next({ headers });
+  }
+
+  return NextResponse.next();
 }
