@@ -93,6 +93,7 @@ export const ProjectDetails = ({project, imgs} : projectDetailsProps) => {
                     </video>
                   ) : (
                     <img
+                      alt=''
                       src={img}
                       className="h-full object-contain rounded-lg"
                     />
