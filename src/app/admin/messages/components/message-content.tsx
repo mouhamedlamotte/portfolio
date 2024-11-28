@@ -11,7 +11,7 @@ import { MessageType } from '../types/message'
 import { useSearchParams } from 'next/navigation'
 import { useQuery } from '@tanstack/react-query'
 import { AxiosInstance } from '@/lib/axios'
-import { formatDate } from '@/lib/utils'
+import { cn, formatDate } from '@/lib/utils'
 import { Loader } from 'lucide-react'
 import { useMessagePreviewStore } from '../stores/messagePreviewStore'
 import { PreviewMessage } from './previewMessage'
@@ -50,8 +50,15 @@ export const MessageContent = () => {
   return (
     <>
         {
-            !preview ? (
-                <Card className='w-full overflow-hidden h-full'>
+            preview && message   && (
+                <PreviewMessage  />
+            ) 
+        }
+        {
+            !preview && (
+                <Card className={cn('w-full overflow-hidden h-full',
+                    !message && "hidden md:block"
+                )}>
                 {
                     message && !isLoading ? (
                         <>
@@ -103,7 +110,7 @@ export const MessageContent = () => {
                     )
                 }
                 </Card>
-            ) : <PreviewMessage />
+            )
         }
     </>
   )

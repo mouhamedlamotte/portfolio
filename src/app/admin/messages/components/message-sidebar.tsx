@@ -19,6 +19,9 @@ import { useSearchParams } from 'next/navigation'
 
 export const MessageSidebar = () => {
 
+  const searchParams = useSearchParams()
+  const id = searchParams.get('id')
+
     const {data : messages, isLoading} = useQuery<MessageType[]>({
         queryKey: ['messages'],
         queryFn: async() => {
@@ -27,13 +30,15 @@ export const MessageSidebar = () => {
     })
 
   return (
-    <Card className='max-w-[25rem] w-full h-full rounded-sm overflow-hidden'>
+    <Card className={cn('md:max-w-[25rem] w-full h-full rounded-sm overflow-hidden',
+        id  && "hidden md:block"
+    )}>
             <CardHeader className='space-y-4'>
                 <CardTitle>Messages</CardTitle>
                 <Input placeholder='Rechercher' />
             </CardHeader>
             <Separator />
-            <CardContent className='grid grid-cols-1 p-0 overflow-y-auto h-full pb-32'>
+            <CardContent className='flex flex-col p-0 overflow-y-auto h-full pb-[7.4rem]'>
                     {
                         messages?.map((message) => (
                             <MessagesItem key={message.id} message={message as unknown as MessageType}  />
