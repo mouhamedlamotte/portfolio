@@ -55,7 +55,7 @@ export default function Tictactoe({cardRef} : {cardRef: React.RefObject<HTMLDivE
           setPlaying(false);
           setOpen(true);
           const dataUrl = await createImg("png", cardRef);
-          const image = await uploadDataUrlFile("ticatoe/tictactoe.png", dataUrl ?? "");
+          const image = await uploadDataUrlFile("ticatoe/tictactoe.png", dataUrl ?? ""); 
           await addGamePlay({
             level: level === 1 ? "EASY" :  "HARD",
             winner: playerOne ? "USER" : "COMPUTER",

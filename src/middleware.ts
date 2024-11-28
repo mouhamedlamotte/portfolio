@@ -13,9 +13,6 @@ export async function  middleware(request: NextRequest) {
       headers.set("x-current-path", request.nextUrl.pathname + request.nextUrl.search);
   }
 
-  console.log("pathname ==>" , pathname);
-  
-
   if (pathname.includes("/portfolio") && !pathname.includes("/_next/") || pathname === "/") { 
         await AxiosInstance.post("/visit", {
             visitedPage: pathname ?? "unknown",
