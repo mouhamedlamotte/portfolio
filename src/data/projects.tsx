@@ -318,7 +318,6 @@ export const projects = [
         "/img/gestion-fichiers/5.png",
         "/img/gestion-fichiers/6.png",
         "/img/gestion-fichiers/7.png",
-        "/img/gestion-fichiers/8.png",
       ] as string[],
       name: "gestion-fichiers",
       title: "Gestion de Fichiers",

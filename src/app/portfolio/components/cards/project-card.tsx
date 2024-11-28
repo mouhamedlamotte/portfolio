@@ -49,7 +49,7 @@ export function ProjectCard({project, stack}: {project: Props, stack?: boolean})
             loop
             muted
             playsInline
-            className="pointer-events-none mx-auto h-40 w-full object-cover object-top" // needed because random black line at bottom of video
+            className="pointer-events-none mx-auto h-40 w-full object-cover object-top hover:scale-110 transition-transform ease-out duration-1000"
           />
         )}
         {project.image && (
@@ -58,7 +58,7 @@ export function ProjectCard({project, stack}: {project: Props, stack?: boolean})
             alt={project.title}
             width={500}
             height={300}
-            className="h-40 w-full overflow-hidden object-cover object-top"
+            className="h-40 w-full overflow-hidden object-cover object-top hover:scale-110 transition-transform ease-out duration-1000"
           />
         )}
       </Link>

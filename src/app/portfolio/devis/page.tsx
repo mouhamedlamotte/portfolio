@@ -5,10 +5,11 @@ import { Button } from '@/components/ui/button'
 import { ArrowLeft } from 'lucide-react'
 import React from 'react'
 import DevisForm from '../components/forms/devis-form'
+import { Section } from '../components/section'
 
 export default function Devis ()  {
   return (
-    <div className="w-full md:px-16 max-w-7xl mx-auto">
+    <Section>
     <div className="pb-10 flex  items-start">
       <div>
         <h2 className="text-lg md:text-4xl mb-4 max-w-4xl uppercase font-bold">
@@ -34,6 +35,6 @@ export default function Devis ()  {
     <div className="pb-20">
         <DevisForm />
     </div>
-  </div>
+  </Section>
   )
 }

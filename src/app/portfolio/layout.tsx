@@ -6,7 +6,7 @@ const Layout = (props : PropsWithChildren) => {
 
 
   return (
-    <div className='space-y-24'>
+    <div className='space-y-10'>
         <Navbar />
         <main className='space-y-24'>
         {props.children}

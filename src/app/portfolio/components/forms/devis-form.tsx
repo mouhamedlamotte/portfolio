@@ -93,12 +93,12 @@ export default function DevisForm() {
 
 
   return (
-    <Card className="p-4">
+    <Card className="py-4">
       <CardContent>
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="flex w-full gap-4"
+            className="flex flex-col lg:flex-row w-full gap-4"
           >
             <div className="flex-1 space-y-6">
               <FormField
@@ -241,7 +241,7 @@ export default function DevisForm() {
                   </FormItem>
                 )}
               />
-              <Button type="submit" size={loading ? "icon" : "default"} className="w-full">
+              <Button type="submit" size={loading ? "icon" : "lg"} className="w-full">
                 {loading ? <Loader className="animate-spin" /> : "Demander un devis"}
               </Button>
             </div>

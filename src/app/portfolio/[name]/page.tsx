@@ -9,6 +9,7 @@ import Markdown from "react-markdown";
 import { ProjectCard } from "../components/cards/project-card";
 import React from "react";
 import { projectCardType, ProjectDetails } from "./components/project-details";
+import { Section } from "../components/section";
 
 
 export default async function Page({ params }: { params: Promise<{ name: string }> }) {
@@ -29,8 +30,8 @@ export default async function Page({ params }: { params: Promise<{ name: string 
   });
 
   return (
-    <div className="w-full md:px-16 max-w-7xl mx-auto">
-      <div className=" pb-10 flex  items-start">
+    <Section >
+      <div className="pb-10 flex  items-start">
         <div>
           <h2 className="text-lg md:text-4xl mb-4 max-w-4xl uppercase font-bold">
             {project.title}
@@ -80,6 +81,6 @@ export default async function Page({ params }: { params: Promise<{ name: string 
           </div>
         </>
       ) : null}
-    </div>
+    </Section>
   );
 }

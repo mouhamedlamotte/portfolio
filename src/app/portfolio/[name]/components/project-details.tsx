@@ -52,7 +52,7 @@ export const ProjectDetails = ({project, imgs} : projectDetailsProps) => {
   return (
     <div className="pb-20">
     <div className="md:px:16  mr-auto  gap-4 flex flex-col md:flex-row">
-      <div className="p-2 border  overflow-hidden rounded-md max-w-xl">
+      <div className="border  overflow-hidden rounded-md md:max-w-xl p-1">
         {project.video ? (
           <video
             className="rounded-md cursor-pointer"
@@ -111,7 +111,7 @@ export const ProjectDetails = ({project, imgs} : projectDetailsProps) => {
         </div>
       </div>
       {/* Project Details Section */}
-      <div className="flex flex-col gap-6 px-2">
+      <div className="flex flex-col gap-6">
         {/* Tags */}
         {project.tags && project.tags.length > 0 && (
           <div className="flex flex-wrap gap-2">
