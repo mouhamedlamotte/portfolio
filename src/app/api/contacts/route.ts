@@ -10,4 +10,4 @@ export async function GET(){
         kdebug("une erreur est survenue", error);
         return NextResponse.json({message: "une erreur est survenue"}, {status: 500})
     }
-}
+}  
