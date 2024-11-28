@@ -73,36 +73,41 @@ export const ProjectDetails = ({project, imgs} : projectDetailsProps) => {
           />
         )}
         <div>
-          <ScrollArea className="mt-2">
-            <div className="flex w-max space-x-2 p-0 mt-4 pb-4 border-b">
-              {project.images.map((img, index) => (
-                <a
-                  href="#"
-                  className={cn(
-                    "rounded-lg border overflow-hidden  max-w-[230px]"
-                  )}
-                  key={img}
-                  onClick={() => setSrc(imgs, index + 1)}
-                >
-                  {img.endsWith(".mp4") || img.endsWith(".webm") ? (
-                    <video
-                      className="h-full object-contain rounded-lg"
-                      controls
-                    >
-                      <source src={img} />
-                    </video>
-                  ) : (
-                    <img
-                      alt=''
-                      src={img}
-                      className="h-full object-contain rounded-lg"
-                    />
-                  )}
-                </a>
-              ))}
-            </div>
-            <ScrollBar orientation="horizontal" />
-          </ScrollArea>
+          {
+            project.images.length > 1 ? (
+              <ScrollArea className="mt-2">
+              <div className="flex w-max space-x-2 p-0 mt-4 pb-4 border-b">
+                {project.images.map((img, index) => (
+                  <a
+                    href="#"
+                    className={cn(
+                      "rounded-lg border overflow-hidden  max-w-[230px]"
+                    )}
+                    key={img}
+                    onClick={() => setSrc(imgs, index + 1)}
+                  >
+                    {img.endsWith(".mp4") || img.endsWith(".webm") ? (
+                      <video
+                        className="h-full object-contain rounded-lg"
+                        controls
+                      >
+                        <source src={img} />
+                      </video>
+                    ) : (
+                      <img
+                        alt=''
+                        src={img}
+                        className="h-full object-contain rounded-lg"
+                      />
+                    )}
+                  </a>
+                ))}
+              </div>
+              <ScrollBar orientation="horizontal" />
+            </ScrollArea>
+            ) : null
+          }
+
         </div>
       </div>
       {/* Project Details Section */}
