@@ -34,7 +34,7 @@ export function HomeHero() {
           {resume.name}
         </h1>
 
-        <p className="z-20 mx-auto max-w-2xl text-lg text-muted-foreground text-center mb-6">
+        <p className="z-20 px-2 mx-auto max-w-2xl text-lg text-muted-foreground text-center mb-6">
           {resume.description}
         </p>
 

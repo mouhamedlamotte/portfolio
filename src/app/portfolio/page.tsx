@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { ProjectCard } from "./components/cards/project-card";
 import { resume } from "@/data";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { projectCardType } from "./[name]/components/project-details";
 
 
 
@@ -42,15 +43,15 @@ const Portfolio = () => {
     }
   ]
 
-  const [projects, setProjets] = useState(resume.projects)
+  const [projects, setProjets] = useState<projectCardType[]>(resume.projects as unknown as projectCardType[])
 
   const handleChangeCategory = (c : string) =>{
       if (c === "all" ) {
-        setProjets(resume.projects)
+        setProjets(resume.projects as unknown as projectCardType[])
         return
       }
       const filteredProject = resume.projects.filter((project)=> project.type === c)
-      setProjets(filteredProject)
+      setProjets(filteredProject as unknown as projectCardType[])
   }
 
   return (

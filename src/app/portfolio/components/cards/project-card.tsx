@@ -18,7 +18,7 @@ interface Props {
   title: string;
   href?: string;
   description: string;
-  dates: string;
+  // dates: string;
   tags: readonly string[];
   link?: string;
   image?: string;
@@ -65,7 +65,7 @@ export function ProjectCard({project, stack}: {project: Props, stack?: boolean})
       <CardHeader className="px-2 pb-4">
         <div className="space-y-1">
           <CardTitle className="mt-1 text-base">{project.title}</CardTitle>
-          <time className="font-sans text-xs">{project.dates}</time>
+          {/* <time className="font-sans text-xs">{project.dates}</time> */}
           <div className="hidden font-sans text-xs underline print:visible">
             {project.link?.replace("https://", "").replace("www.", "").replace("/", "")}
           </div>

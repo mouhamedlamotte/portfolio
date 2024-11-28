@@ -5,9 +5,9 @@ import Markdown from "react-markdown";
 
 export default function About() {
   return (
-    <section id="about" className=" xl:px-40 scroll-mt-16">
-      <div className="space-y-8  p-6 ">
-        <Card className="bg-gray-900 border border-gray-800 ">
+    <section id="about" className="p-0 md:px-10 xl:px-40 md:scroll-mt-16">
+      <div className="space-y-8 p-2 ">
+        <Card className="bg-gray-900 md:border border-gray-800  ">
           <CardHeader className="pb-4 border-b border-gray-800 flex-row items-center">
             <CardTitle className="text-xl text-gray-200">
               À propos de moi
@@ -119,11 +119,11 @@ export default function About() {
               <h3 className="text-lg font-semibold text-gray-200">
                 Compétences techniques
               </h3>
-              <div className="flex flex-wrap gap-2">
+              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-2">
                 {resume.skills.map((skill) => (
                   <Badge
                     key={skill.name}
-                    className="bg-gray-800 text-gray-300 border border-gray-700 hover:bg-gray-700 py-1 px-5"
+                    className="bg-gray-800 text-gray-300 border border-gray-700 hover:bg-gray-700 py-1 px-5 flex justify-between"
                   >
                     <p>{skill.name}</p>
                     <skill.logo className="ms-1 h-6 w-6" />
