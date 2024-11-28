@@ -42,12 +42,14 @@ export default async function Page({ params }: { params: Promise<{ name: string 
         <Button
           variant="link"
           className="ml-auto  hover:text-muted-foreground"
-          // onClick={() => window.history.back()}
+
         >
+          <Link href="/portfolio">
           <AnimatedShinyText className="inline-flex items-center">
             <ArrowLeft className="me-2" size={16} />
             Retour
           </AnimatedShinyText>
+          </Link>
         </Button>
       </div>
     
@@ -63,7 +65,6 @@ export default async function Page({ params }: { params: Promise<{ name: string 
             <Button
               variant="link"
               className="ml-auto  hover:text-muted-foreground"
-              // onClick={() => window.history.back()}
             >
               <AnimatedShinyText className="inline-flex items-center">
                 <Link href="/projects">Voir tous les projets</Link>

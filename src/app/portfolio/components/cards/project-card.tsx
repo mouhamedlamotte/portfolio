@@ -1,5 +1,6 @@
 import AnimatedShinyText from "@/components/ui/animated-shiny-text";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -93,16 +94,12 @@ export function ProjectCard({project, stack}: {project: Props, stack?: boolean})
             {project.links?.map((link, idx) => (
               <Link href={link?.href} key={idx} target="_blank">
 <div className="items-center justify-center">
-      <div
-        className={cn(
-          "group rounded-lg border border-black/5 bg-neutral-100 text-base text-white transition-all ease-in hover:cursor-pointer hover:bg-neutral-200 dark:border-white/5 dark:bg-neutral-900 dark:hover:bg-neutral-800",
-        )}
-      >
-        <AnimatedShinyText className="inline-flex items-center justify-center px-4 py-1 transition ease-out hover:text-neutral-600 hover:duration-300 hover:dark:text-neutral-400">
+      <Button variant="outline">
+      <AnimatedShinyText className="inline-flex items-center justify-center px-4 py-1 transition ease-out ">
           {link.icon}
           <span className="ml-1">{link.type}</span>
         </AnimatedShinyText>
-      </div>
+      </Button>
     </div>
               </Link>
             ))}

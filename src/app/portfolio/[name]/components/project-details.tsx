@@ -2,6 +2,7 @@
 
 import AnimatedShinyText from '@/components/ui/animated-shiny-text';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { cn } from '@/lib/utils';
 import { useImagePreviewStore } from '@/stores/useImagePreviewStore';
@@ -124,14 +125,14 @@ export const ProjectDetails = ({project, imgs} : projectDetailsProps) => {
         {project.links && project.links.length > 0 && (
           <div className="flex flex-wrap gap-4">
             {project.links.map((link, idx) => (
-              <Link href={link.href} key={idx} target="_blank">
-                <div className="group flex items-center justify-center rounded-lg border border-neutral-300 bg-neutral-100 px-4 py-2 text-sm text-neutral-800 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-800">
-                  <AnimatedShinyText className="inline-flex items-center gap-2">
+                <Button variant="outline" key={idx}  asChild>
+              <Link href={link.href} target="_blank">
+                  <AnimatedShinyText className="inline-flex items-center justify-center px-4 py-1 transition ease-out gap-2">
                     {link.icon}
                     <span>{link.type}</span>
                   </AnimatedShinyText>
-                </div>
               </Link>
+                </Button>
             ))}
           </div>
         )}
