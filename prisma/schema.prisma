@@ -31,6 +31,7 @@ model Visit {
   visitDate    DateTime          @default(now())
   interactions PageInteraction[]
   isBot        Boolean           @default(false)
+
   @@index([ipAddress, visitDate])
 }
 
@@ -51,8 +52,8 @@ model Messages {
   name      String
   email     String
   message   String
-  read      Boolean @default(false)
-  replied   Boolean @default(false)
+  read      Boolean  @default(false)
+  replied   Boolean  @default(false)
   createdAt DateTime @default(now())
   Contact   Contact  @relation(fields: [contactId], references: [id])
   contactId String
@@ -70,8 +71,8 @@ model Replies {
   content   String   @db.Text()
   via       ReplyVia @default(ADMIN)
   createdAt DateTime @default(now())
-  Message   Messages   @relation(fields: [messageId], references: [id])
-  messageId String   
+  Message   Messages @relation(fields: [messageId], references: [id])
+  messageId String
 }
 
 model Contact {
@@ -105,7 +106,7 @@ model Game {
 
 model GamePlay {
   id        String   @id @default(uuid())
-  level     Level 
+  level     Level
   winner    Winner?
   time      Int?
   game      Game     @relation(fields: [gameId], references: [id])
@@ -115,17 +116,16 @@ model GamePlay {
   pattern   String?
 }
 
-
 model Devis {
-  id           String   @id @default(cuid())
-  name         String   @db.VarChar(255)
-  email        String   @db.VarChar(255)
-  company      String?  @db.VarChar(255)
-  phone        String?  @db.VarChar(20)
-  projectType  String   @db.VarChar(255)
-  budget       String?  @db.VarChar(255)
-  description  String   @db.Text
-  file         String?  @db.VarChar(255)
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  id          String   @id @default(cuid())
+  name        String   @db.VarChar(255)
+  email       String   @db.VarChar(255)
+  company     String?  @db.VarChar(255)
+  phone       String?  @db.VarChar(20)
+  projectType String   @db.VarChar(255)
+  budget      String?  @db.VarChar(255)
+  description String   @db.Text
+  file        String?  @db.VarChar(255)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }

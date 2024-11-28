@@ -14,7 +14,7 @@ export const ReplyMessageTemplate: React.FC<ReplyMessageTemplateProps> = ({
   portfolioName = "Mouhamed Lamotte",
   recipientName,
   message,
-  devisLink = "http://localhost:3000/portfolio/devis",
+  devisLink = `${process.env.NEXT_PUBLIC_BASE_URL}portfolio/devis`,
   replyEmail = "mouhamedlamotte.dev",
   preview = true,
 }) => {
