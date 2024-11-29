@@ -11,8 +11,7 @@ export async function middleware(request : NextRequest) {
 
   if (
     pathname.startsWith('/_next') || 
-    pathname.startsWith('/api/auth') || 
-    pathname === '/'
+    pathname.startsWith('/api/auth')
   ) {
     return NextResponse.next();
   }
@@ -32,7 +31,7 @@ export async function middleware(request : NextRequest) {
     return NextResponse.json({ message: 'unauthorized host' }, { status: 403 });
   }
 
-  if (pathname.startsWith('/portfolio') && !token) {
+  if ((pathname.startsWith('/portfolio') || pathname === '/')  && !token) {
     try {
       await AxiosInstance.post('/visit', {
         visitedPage: pathname ?? 'unknown',

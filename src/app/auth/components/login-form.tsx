@@ -43,7 +43,7 @@ export function LoginForm() {
     <Card className="mx-auto max-w-sm">
       <CardHeader>
       {error && error === "AccessDenied" ? <AlertMessage variant="destructive" title="Attention" description="Vous n'avez pas le droit de vous connecter" className="mb-2" /> 
-      : <AlertMessage variant="default" title="Oups" description="Une erreur est survenue" className="mb-2" />
+      : error &&  <AlertMessage variant="default" title="Oups" description="Une erreur est survenue" className="mb-2" />
        }
         <CardTitle className="text-2xl">Hi !</CardTitle>
         <CardDescription>

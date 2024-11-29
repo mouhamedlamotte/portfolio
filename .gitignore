@@ -44,4 +44,5 @@ prisma/migrations/*
 
 
 # vscode
-.vscode
+.vscode/ 
+*.code-workspace
