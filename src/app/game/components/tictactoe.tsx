@@ -24,7 +24,7 @@ import { kdebug } from "@/lib/kdebug";
 
 export default function Tictactoe({cardRef} : {cardRef: React.RefObject<HTMLDivElement>}) {
 
-  const gameId = "3a443b1b-307b-481e-a41c-6e6de4130efa";
+  const gameId = "tictactoe";
 
   const level = useTictactoeLevelStore((state)=>state.level);
 

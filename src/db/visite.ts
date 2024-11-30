@@ -18,25 +18,26 @@ export const addVisite = async (visitData: z.infer<typeof VisitSchema>) => {
             id: true,
           }
         });
-        return res;
+        return res.id;
       } catch (error) {
         console.error("Database Error:", error);
-        return {
-          id: "",
-        };
+        return ""
       }
 };
 
 export const addVisitedPage = async (visitedPageData: z.infer<typeof VisitedPageSchema>) => {
     try {
-      await prismaClient.visitedPage.create({
+      const res = await prismaClient.visitedPage.create({
         data: {
           ...visitedPageData,
         },
+        select: {
+          id: true,
+        },
       });
-      return true;
+      return res.id;
     } catch (error) {
       console.error("Database Error:", error);
-      return false;
+      return "";
     }
 }

@@ -42,6 +42,8 @@ model VisitedPage {
   visitId   String
   url      String
   visitDate DateTime @default(now())
+  
+  @@unique([visitId, url])
 }
 
 model PageInteraction {
