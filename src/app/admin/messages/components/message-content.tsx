@@ -57,7 +57,7 @@ export const MessageContent = () => {
         {
             !preview && (
                 <Card className={cn('w-full overflow-hidden h-full',
-                    !message && "hidden md:block"
+                    !message && "hidden md:block border-none"
                 )}>
                 {
                     message && !isLoading ? (

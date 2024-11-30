@@ -43,8 +43,9 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Mouhameth Lamotte - Développeur Web",
-    description: "Portfolio de Mouhameth Lamotte, développeur web basé à Dakar.",
-    url: "https://mouhamedbaba.vercel.app", 
+    description:
+      "Portfolio de Mouhameth Lamotte, développeur web basé à Dakar.",
+    url: "https://mouhamedbaba.vercel.app",
     siteName: "Mouhameth Lamotte Portfolio",
     images: [
       {
@@ -59,10 +60,11 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: "@MouhamedLamotly", 
+    site: "@MouhamedLamotly",
     creator: "@MouhamedLamotly",
     title: "Mouhameth Lamotte - Développeur Web",
-    description: "Portfolio de Mouhameth Lamotte, développeur web basé à Dakar.",
+    description:
+      "Portfolio de Mouhameth Lamotte, développeur web basé à Dakar.",
     images: ["https://mouhamedbaba.vercel.app/og.png"],
   },
 };
@@ -75,7 +77,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <head>
-        <meta property="og:title" content="Mouhameth Lamotte - Développeur Web" />
+        <meta
+          property="og:title"
+          content="Mouhameth Lamotte - Développeur Web"
+        />
         <meta
           property="og:description"
           content="Portfolio de Mouhameth Lamotte, développeur web basé à Dakar."
@@ -88,13 +93,19 @@ export default function RootLayout({
         />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="Aperçu du portfolio de Mouhameth Lamotte" />
+        <meta
+          property="og:image:alt"
+          content="Aperçu du portfolio de Mouhameth Lamotte"
+        />
         <meta property="og:type" content="website" />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@MouhamedLamotly" />
         <meta name="twitter:creator" content="@MouhamedLamotly" />
-        <meta name="twitter:title" content="Mouhameth Lamotte - Développeur Web" />
+        <meta
+          name="twitter:title"
+          content="Mouhameth Lamotte - Développeur Web"
+        />
         <meta
           name="twitter:description"
           content="Portfolio de Mouhameth Lamotte, développeur web basé à Dakar."
@@ -107,19 +118,26 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-            <Suspense fallback={<FallbackComponent/>}>
-        <Provider>{children}</Provider>
-        <Toaster />
-        <ImgPreview />
-            </Suspense>
+        <Suspense fallback={<FallbackComponent />}>
+          <Provider>
+            {children}
+            {/* <FallbackComponent/> */}
+            </Provider>
+          <Toaster />
+          <ImgPreview />
+        </Suspense>
       </body>
     </html>
   );
 }
 
-
 const FallbackComponent = () => {
-  return <div className="w-full h-full">
+  return (
+    <div className="w-full h-screen flex items-center justify-center">
+      <div className="flex flex-col items-center gap-2">
+        <span className=" text-center font-bold">Mouhamed lamotte</span>
         <Loader className="animate-spin" />
-  </div>
-}
+      </div>
+    </div>
+  );
+};

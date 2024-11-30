@@ -39,7 +39,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
 
   return (
     <div className="font-sans" ref={containerRef}>
-      <div className="md:py-20 flex items-start">
+      <div className="md:py-20 flex flex-col gap-4 md:flex-row md:gap-0 items-start">
         <div>
           <h2 className="text-lg md:text-4xl mb-4 text-black dark:text-white">
             Journal de Mon Parcours
@@ -49,10 +49,10 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
             développeur. Voici une chronologie de mon parcours.
           </p>
         </div>
-        <div className="ml-auto flex border p-1 rounded gap-1">
+        <div className="md:ml-auto flex border p-1 rounded gap-1 w-full md:w-auto">
           <Button
             variant="ghost"
-            className={cn("", tab === "experience" && "bg-muted text-white")}
+            className={cn("flex-1", tab === "experience" && "bg-muted text-white")}
             onClick={() => {
               router.replace("?timeline-tab=experience", {
                 scroll: false,
@@ -63,7 +63,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
           </Button>
           <Button
             variant="ghost"
-            className={cn("", tab === "education" && "bg-muted text-white")}
+            className={cn("flex-1", tab === "education" && "bg-muted text-white")}
             onClick={() => {
               router.replace("?timeline-tab=education", {
                 scroll: false,
@@ -74,7 +74,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
           </Button>
         </div>
       </div>
-      <div ref={ref} className="relative pb-20">
+      <div ref={ref} className="relative pb-20 !overflow-hidden">
         {data.map((item, index) => (
           <div
             key={index}

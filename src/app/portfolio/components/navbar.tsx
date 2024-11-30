@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Menu } from "lucide-react";
+import { Menu, User } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,6 +12,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Section } from "./section";
+import { useSession } from "next-auth/react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { resume } from "@/data";
 
 const mainNavigation = [
   { name: "Accueil", href: "/" },
@@ -22,6 +25,7 @@ const mainNavigation = [
 
 export function Navbar() {
   const pathname = usePathname();
+  const session = useSession();
 
   return (
     <nav className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -74,6 +78,19 @@ export function Navbar() {
             <Button asChild variant="default">
               <Link href="/portfolio/devis">Demander un devis</Link>
             </Button>
+            {session.status === "authenticated" && (
+                <Link href="/admin">
+                <Avatar>
+                  <AvatarImage
+                  className="rotate-3"
+                    src={resume.avatarUrl}
+                    />
+                  <AvatarFallback>
+                    <User className="h-4 w-4" />
+                  </AvatarFallback>
+                </Avatar>
+                </Link>
+            )}
           </div>
         </div>
     </Section>

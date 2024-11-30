@@ -1,17 +1,15 @@
 "use client";
 
-import { X } from "lucide-react";
+import { ChevronsLeft, ChevronsRight, X } from "lucide-react";
 
 import React from "react";
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
+import 'swiper/css/navigation';
 
-// import required modules
-import { Pagination } from "swiper/modules";
+import { Keyboard, Navigation, Pagination } from "swiper/modules";
 import { useImagePreviewStore } from "@/stores/useImagePreviewStore";
 import { Button } from "../ui/button";
 
@@ -28,11 +26,12 @@ export const ImgPreview = () => {
           <X />
         </Button>
       </div>
-      <div className="max-w-md md:max-w-4xl px-6 md:px-0">
+      <div className="max-w-md md:max-w-4xl px-6 md:px-0 relative">
         <Swiper
           initialSlide={index}
           pagination={true}
-          modules={[Pagination]}
+          spaceBetween={10}
+          modules={[Pagination, Keyboard, Navigation]}
           className="mySwiper rounded-sm"
         >
           {imgs.map((src) => (
@@ -48,8 +47,29 @@ export const ImgPreview = () => {
               /> }
             </SwiperSlide>
           ))}
+          <SlideButtons />
         </Swiper>
       </div>
     </div>
   );
 };
+
+// n
+function SlideButtons() {
+  const swiper = useSwiper();
+  return (
+      <div className='w-full flex inset-0 pointer-events-none z-20 absolute justify-between items-end pb-2 px-2'>
+                  <Button  title='Previous'  className='pointer-events-auto  ' size="lg" variant="secondary"
+                  onClick={() => swiper.slidePrev()}
+                  >
+                      <ChevronsLeft className='stroke-muted-foreground' />
+                  </Button>
+                  <Button title='Next' className='pointer-events-auto ' size="lg" variant="secondary"
+                  onClick={() => swiper.slideNext()}
+                  >
+                      <ChevronsRight className='stroke-muted-foreground' />
+                  </Button>
+              </div>
+          
+  )
+}

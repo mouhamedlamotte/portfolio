@@ -2,6 +2,7 @@ import React from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import Markdown from 'react-markdown';
 
 
 export type EducationType = {
@@ -35,7 +36,7 @@ export const EducationCard = ({ exp  }: { exp: EducationType}) => {
           <CardContent className="space-y-4">
             <div>
               <h3 className="font-semibold">{exp.degree}</h3>
-              <p className="text-muted-foreground">{exp.description}</p>
+              <Markdown className="text-muted-foreground text-justify md:text-pretty text-xs md:text-base">{exp.description}</Markdown>
             </div>
             <div className="flex flex-wrap gap-2">
               {exp.technologies?.map((tech) => (

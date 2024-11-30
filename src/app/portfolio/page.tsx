@@ -68,8 +68,8 @@ const Portfolio = () => {
           </p>
         </div>
         <div className="ml-auto flex-1 max-w-md">
-        <Select onValueChange={(value)=>handleChangeCategory(value)}>
-          <SelectTrigger>
+        <Select onValueChange={(value)=>handleChangeCategory(value)} >
+          <SelectTrigger className="py-6">
           <SelectValue placeholder="Tous les projets" />
           </SelectTrigger>
           <SelectContent>

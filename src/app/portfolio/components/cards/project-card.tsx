@@ -69,7 +69,7 @@ export function ProjectCard({project, stack}: {project: Props, stack?: boolean})
           <div className="hidden font-sans text-xs underline print:visible">
             {project.link?.replace("https://", "").replace("www.", "").replace("/", "")}
           </div>
-          <Markdown className="prose max-w-full text-pretty font-sans text-xs text-muted-foreground dark:prose-invert">
+          <Markdown className="prose max-w-full text-pretty font-sans text-xs text-muted-foreground dark:prose-invert text-justify md:text-start">
             {project.description}
           </Markdown>
         </div>
