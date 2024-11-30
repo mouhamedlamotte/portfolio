@@ -27,14 +27,21 @@ model Visit {
   browser      String?
   language     String?
   referrer     String?
-  visitedPage  String
   visitDate    DateTime          @default(now())
   interactions PageInteraction[]
   isBot        Boolean           @default(false)
   dateID       String
+  VisitedPages VisitedPage[]
 
   @@index([ipAddress, visitDate])
-  @@unique([ipAddress, dateID, visitedPage])
+  @@unique([ipAddress, dateID])
+}
+model VisitedPage {
+  id        String   @id @default(uuid())
+  visit     Visit    @relation(fields: [visitId], references: [id])
+  visitId   String
+  url      String
+  visitDate DateTime @default(now())
 }
 
 model PageInteraction {
@@ -59,7 +66,8 @@ model Messages {
   createdAt DateTime @default(now())
   Contact   Contact  @relation(fields: [contactId], references: [id])
   contactId String
-
+  emailSent Boolean  @default(false)
+  unsentReason String?
   Replies Replies[]
 }
 

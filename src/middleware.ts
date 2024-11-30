@@ -34,7 +34,7 @@ export async function middleware(request : NextRequest) {
   if ((pathname.startsWith('/portfolio') || pathname === '/')  && !token) {
     try {
       await AxiosInstance.post('/visit', {
-        visitedPage: pathname ?? 'unknown',
+        url : pathname ?? 'unknown',
         deviceType: user_agent.device.type ?? 'unknown',
         os: user_agent.os.name ?? 'unknown',
         browser: user_agent.browser.name ?? 'unknown',
@@ -44,7 +44,7 @@ export async function middleware(request : NextRequest) {
       });
       
     } catch (error) {
-      kdebug("une erreur est survenue", error);
+      // kdebug("une erreur est survenue", error);
     }
   }
 

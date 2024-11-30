@@ -10,6 +10,12 @@ export const VisitSchema = z.object({
     browser: z.string().optional(),
     language: z.string().optional(),
     referrer: z.string().optional(),
-    visitedPage: z.string(),
-    isBot : z.boolean().default(false)
+    isBot : z.boolean().default(false),
+    url : z.string().optional(),
+  });
+
+
+export const VisitedPageSchema = z.object({
+      visitId: z.string(),
+      url    : z.string(),
   });
