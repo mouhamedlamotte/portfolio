@@ -98,7 +98,6 @@ export const SendMessageBox = () => {
                                 content: message,
                                 html 
                             })
-                            console.log(html);
                             
                         }}
                         >

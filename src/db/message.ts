@@ -1,6 +1,7 @@
 "use server"
 
 import { MessageType } from "@/app/admin/messages/types/message"
+import { kdebug } from "@/lib/kdebug"
 import { prismaClient } from "@/lib/prisma.client"
 
 
@@ -63,7 +64,7 @@ export const getReplyByMessageId = async (id: string) => {
         })
         return res
     } catch (error) {
-        console.log(error)
+        kdebug(error)
         return null
     }
 }

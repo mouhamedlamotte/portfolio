@@ -19,6 +19,7 @@ import { toast } from "@/components/ui/use-toast";
 import { addGamePlay } from "@/db/gameplay";
 import { createImg } from "@/lib/save-images";
 import { uploadDataUrlFile } from "@/db/blob";
+import { kdebug } from "@/lib/kdebug";
 
 
 export default function Tictactoe({cardRef} : {cardRef: React.RefObject<HTMLDivElement>}) {
@@ -209,7 +210,7 @@ export default function Tictactoe({cardRef} : {cardRef: React.RefObject<HTMLDivE
   
 
   useEffect(() => {
-    console.log(level);
+    kdebug(level);
     
     if (!playerOne && !hasWinner) {
       if (level === 1) {

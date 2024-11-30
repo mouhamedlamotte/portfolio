@@ -21,6 +21,7 @@ import {
   AlertTitle,
 } from "@/components/ui/alert"
 import { IconBrandGoogle } from "@tabler/icons-react";
+import { kdebug } from "@/lib/kdebug";
 
 export function LoginForm() {
 
@@ -35,7 +36,7 @@ export function LoginForm() {
         callbackUrl: next ?? "/",
       });
     } catch (error) {
-      console.log("error ===>", error);
+      kdebug("error ===>", error);
     }
   };
 

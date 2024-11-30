@@ -18,7 +18,6 @@ const Contatcs = () => {
     }
   })
 
-  console.log(contacts);
   
   return (
     <div className='space-y-4'>

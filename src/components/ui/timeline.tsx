@@ -1,17 +1,17 @@
 "use client";
-import {
-  useScroll,
-  useTransform,
-  motion,
-} from "framer-motion";
+import { useScroll, useTransform, motion } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
+import { Button } from "./button";
+import { useRouter, useSearchParams } from "next/navigation";
+import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 export type TimelineEntry = {
   title: string;
   content: React.ReactNode;
-  logo? : string
-}
+  logo?: string;
+};
 
 export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -33,20 +33,47 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
   const heightTransform = useTransform(scrollYProgress, [0, 1], [0, height]);
   const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
 
-  return (
-    <div
-      className="font-sans"
-      ref={containerRef}
-    >
-      <div className="md:py-20">
-        <h2 className="text-lg md:text-4xl mb-4 text-black dark:text-white">
-Journal de Mon Parcours
-        </h2>
-        <p className="text-neutral-700 dark:text-neutral-300 text-sm md:text-base max-w-sm">
-        Cela fait 3 ans que je construis et apprends en tant que développeur. Voici une chronologie de mon parcours.
-        </p>
-      </div>
+  const router = useRouter();
+  const params = useSearchParams();
+  const tab = params.get("timeline-tab") ?? "experience";
 
+  return (
+    <div className="font-sans" ref={containerRef}>
+      <div className="md:py-20 flex items-start">
+        <div>
+          <h2 className="text-lg md:text-4xl mb-4 text-black dark:text-white">
+            Journal de Mon Parcours
+          </h2>
+          <p className="text-neutral-700 dark:text-neutral-300 text-sm md:text-base max-w-sm">
+            Cela fait 3 ans que je construis et apprends en tant que
+            développeur. Voici une chronologie de mon parcours.
+          </p>
+        </div>
+        <div className="ml-auto flex border p-1 rounded gap-1">
+          <Button
+            variant="ghost"
+            className={cn("", tab === "experience" && "bg-muted text-white")}
+            onClick={() => {
+              router.replace("?timeline-tab=experience", {
+                scroll: false,
+              });
+            }}
+          >
+            Experience
+          </Button>
+          <Button
+            variant="ghost"
+            className={cn("", tab === "education" && "bg-muted text-white")}
+            onClick={() => {
+              router.replace("?timeline-tab=education", {
+                scroll: false,
+              });
+            }}
+          >
+            Education
+          </Button>
+        </div>
+      </div>
       <div ref={ref} className="relative pb-20">
         {data.map((item, index) => (
           <div
@@ -55,9 +82,9 @@ Journal de Mon Parcours
           >
             <div className="sticky flex flex-col lg:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-sm lg:w-full">
               <div className="h-10 absolute left-3 lg:left-3 w-10 rounded-full bg-white dark:bg-black flex items-center justify-center">
-              <Avatar className=''>
+                <Avatar className="">
                   <AvatarFallback>
-                <div className="h-4 w-4 rounded-full bg-neutral-200 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 p-2" />
+                    <div className="h-4 w-4 rounded-full bg-neutral-200 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 p-2" />
                   </AvatarFallback>
                   <AvatarImage src={item.logo} />
                 </Avatar>

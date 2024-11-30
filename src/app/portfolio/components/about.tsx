@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { resume } from "@/data";
 import Markdown from "react-markdown";
 import { Section } from "./section";
+import { Separator } from "@/components/ui/separator";
 
 export default function About() {
   return (
@@ -116,6 +117,7 @@ export default function About() {
             <Markdown>
             {resume.summary}
             </Markdown>
+            <Separator />
             <div className="space-y-4">
               <h3 className="text-lg font-semibold text-gray-200">
                 Compétences techniques

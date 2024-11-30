@@ -5,6 +5,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { IconUpload } from "@tabler/icons-react";
 import { useDropzone } from "react-dropzone";
+import { kdebug } from "@/lib/kdebug";
 
 const mainVariant = {
   initial: {
@@ -54,7 +55,7 @@ export const FileUpload = ({
     noClick: true,
     onDrop: handleFileChange,
     onDropRejected: (error) => {
-      console.log(error);
+      kdebug(error);
     },
   });
 

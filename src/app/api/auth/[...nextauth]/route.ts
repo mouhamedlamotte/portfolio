@@ -23,9 +23,7 @@ const handler = NextAuth({
   callbacks: {
 
   async signIn({ user, account, profile }) {
-    console.log("Sign-in callback triggered", user);
     const allowedEmails = process.env.NEXT_PUBLIC_ALLOWED_EMAIL?.split(",") ?? [];
-    console.log(allowedEmails);
     
 
     const verifyUser = await prismaClient.user.findUnique({

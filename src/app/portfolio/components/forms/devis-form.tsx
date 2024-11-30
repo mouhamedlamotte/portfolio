@@ -32,6 +32,7 @@ import { uploadFile } from "@/db/blob";
 import { addDevis } from "@/db/devis";
 import { useToast } from "@/hooks/use-toast";
 import { Loader } from "lucide-react";
+import { kdebug } from "@/lib/kdebug";
 
 export default function DevisForm() {
   const { toast } = useToast();
@@ -86,7 +87,7 @@ export default function DevisForm() {
       variant: "destructive",
       description: "Votre demande n'a pas pu etre envoye.",
     })
-    console.log("Database Error:", error);
+    kdebug("Database Error:", error);
    }
   }
 

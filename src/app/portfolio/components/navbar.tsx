@@ -15,6 +15,7 @@ import { Section } from "./section";
 
 const mainNavigation = [
   { name: "Accueil", href: "/" },
+  { name: "Portfolio", href: "/portfolio" },
   { name: "Blog", href: "/portfolio/blog" },
   { name: "Devis", href: "/portfolio/devis" },
 ];
