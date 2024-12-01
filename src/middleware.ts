@@ -4,7 +4,7 @@ import { getToken } from 'next-auth/jwt';
 import { kdebug } from './lib/kdebug';
 
 export async function middleware(request : NextRequest) {
-  const { pathname } = request.nextUrl;
+  const { pathname, searchParams } = request.nextUrl;
   const user_agent = userAgent(request);
   const allowedHosts = process.env.NEXT_PUBLIC_ALLOWED_HOSTS?.split(',').map(item => item.trim()) ?? [];
   
@@ -31,7 +31,9 @@ export async function middleware(request : NextRequest) {
     return NextResponse.json({ message: 'unauthorized host' }, { status: 403 });
   }
 
-  if ((pathname.startsWith('/portfolio') || pathname === '/')  && !token) {
+  // const isDirectVisit = !request.referrer 
+
+  if ((pathname.startsWith('/portfolio') || pathname === '/' )  && !token && !searchParams.get("_rsc")) {
     try {
       await AxiosInstance.post('/visit', {
         url : pathname ?? 'unknown',
