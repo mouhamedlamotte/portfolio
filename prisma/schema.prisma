@@ -28,14 +28,18 @@ model Visit {
   language     String?
   referrer     String?
   visitDate    DateTime          @default(now())
-  interactions PageInteraction[]
   isBot        Boolean           @default(false)
   dateID       String
-  VisitedPages VisitedPage[]
+  source       String?
 
+  interactions PageInteraction[]
+  VisitedPages VisitedPage[]
+  Downloads Downloads[]
+  Devis Devis[]
+  GamePlay GamePlay[]
+  Messages Messages[]
   @@index([ipAddress, visitDate])
   @@unique([ipAddress, dateID])
-  Downloads Downloads[]
 }
 model VisitedPage {
   id        String   @id @default(uuid())
@@ -72,6 +76,8 @@ model Messages {
   emailSent Boolean  @default(false)
   unsentReason String?
   Replies Replies[]
+  visit       Visit?   @relation(fields: [visitId], references: [id], onDelete: Cascade)
+  visitId     String?
 }
 
 enum ReplyVia {
@@ -127,6 +133,8 @@ model GamePlay {
   createdAt DateTime @default(now())
   image     String?
   pattern   String?
+  visit       Visit?   @relation(fields: [visitId], references: [id], onDelete: Cascade)
+  visitId     String?
 }
 
 model Devis {
@@ -141,6 +149,8 @@ model Devis {
   file        String?  @db.VarChar(255)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  visit       Visit?   @relation(fields: [visitId], references: [id], onDelete: Cascade)
+  visitId     String?
 }
 
 
