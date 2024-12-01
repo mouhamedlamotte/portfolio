@@ -9,6 +9,7 @@ export const GamePlaySchema = z.object({
     gameId: z.string(),
     image: z.string().url().optional(), 
     pattern: z.string().optional(), 
+    visitId : z.string().optional()
   });
   
 export const addGamePlay = async (gamePlayData: z.infer<typeof GamePlaySchema>) => {
@@ -21,6 +22,7 @@ export const addGamePlay = async (gamePlayData: z.infer<typeof GamePlaySchema>) 
           time: gamePlayData.time,
           image: gamePlayData.image,
           pattern: gamePlayData.pattern,
+          visitId: gamePlayData.visitId
         },
       });
       return true;

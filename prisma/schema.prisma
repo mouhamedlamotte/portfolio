@@ -36,6 +36,7 @@ model Visit {
   VisitedPages VisitedPage[]
   Downloads Downloads[]
   Devis Devis[]
+  
   GamePlay GamePlay[]
   Messages Messages[]
   @@index([ipAddress, visitDate])

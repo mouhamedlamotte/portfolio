@@ -11,8 +11,8 @@ export async function POST(request: NextRequest) {
         const data = VisitSchema.parse(await request.json());
         const verify_key = `${getDateId()}:${data.ipAddress}`;
         const visitId = await redis.get(verify_key);
+        const verify_page_key = `${verify_key}:${data.url}`;
         if (visitId) {
-            const verify_page_key = `${verify_key}:${data.url}`;
             const pageId = await redis.get(verify_page_key);
             if (pageId) {
                 return NextResponse.json({ message: "Page enregistrée" }, { status: 200 });
@@ -29,10 +29,13 @@ export async function POST(request: NextRequest) {
             
             await redis.set(verify_key, newVisitId, "EX", 3600);
 
-            await addVisitedPage({
+            const page = await addVisitedPage({
                 visitId: newVisitId,
                 url: url ?? "",
             });
+
+            await redis.set(verify_page_key, page, "EX", 3600);
+            
 
             return NextResponse.json({ message: "Visite enregistrée" }, { status: 200 });
         }

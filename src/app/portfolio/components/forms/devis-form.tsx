@@ -29,17 +29,33 @@ import { devisSchema } from "@/schemas/devisSchema";
 import { FileUpload } from "@/components/ui/file-upload";
 import { useState } from "react";
 import { uploadFile } from "@/db/blob";
-import { addDevis } from "@/db/devis";
 import { useToast } from "@/hooks/use-toast";
 import { Loader } from "lucide-react";
 import { kdebug } from "@/lib/kdebug";
+import { useMutation } from "@tanstack/react-query";
+import { AxiosInstance } from "@/lib/axios";
 
 export default function DevisForm() {
   const { toast } = useToast();
+  const [isUploading, setIsUploading] = useState(false);
+
+  const sendDevisMutation = useMutation({
+    mutationKey: ["sendDevis"],
+    mutationFn: async (data: z.infer<typeof devisSchema>) => {
+      return await AxiosInstance.post('/devis', data).then((res) => {
+        toast({
+          title: "Demande envoyee",
+          description: "Votre demande a ete envoyee avec success.",
+        })
+        form.reset();
+        setResetForm(true)
+        setIsUploading(false)
+      })
+    }
+  })
 
 
   const [files, setFiles] = useState<File[]>([])
-  const [loading, setLoading] = useState(false)
   const [resetForm, setResetForm] = useState(false)
 
 
@@ -54,40 +70,21 @@ export default function DevisForm() {
   });
 
   async function onSubmit(values: z.infer<typeof devisSchema>) {
-    setLoading(true)
    try {
+    setIsUploading(true)
     let url;
     if(files.length > 0) {
       const file = files[0]
        url = await uploadFile(file, "devis")
     }
-    await addDevis({
-      ...values,
-      file : url
-    }).then(() => {
-      setLoading(false);
-      toast({
-        title: "Merci pour votre demande 💫",
-        description: "Je vous reviendrai très vite 🔥.",
-      });
-      setResetForm(true)
-      form.reset();
-    }).catch(() => {
-      setLoading(false);
-      toast({
-        title: "Une erreur est survenue",
-        variant: "destructive",
-        description: "Votre demande n'a pas pu etre envoye.",
-      });
-    });
-
+    sendDevisMutation.mutate({ ...values, file: url })
    } catch (error) {
     toast({
       title: "Une erreur est survenue",
       variant: "destructive",
       description: "Votre demande n'a pas pu etre envoye.",
     })
-    kdebug("Database Error:", error);
+    kdebug("une erreur est survenue :", error);
    }
   }
 
@@ -242,8 +239,8 @@ export default function DevisForm() {
                   </FormItem>
                 )}
               />
-              <Button type="submit" size={loading ? "icon" : "lg"} className="w-full">
-                {loading ? <Loader className="animate-spin" /> : "Demander un devis"}
+              <Button type="submit" size={sendDevisMutation.isLoading || isUploading ? "icon" : "lg"} className="w-full">
+                {sendDevisMutation.isLoading || isUploading ? <Loader className="animate-spin" /> : "Demander un devis"}
               </Button>
             </div>
           </form>

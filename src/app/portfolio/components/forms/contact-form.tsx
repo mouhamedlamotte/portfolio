@@ -13,11 +13,32 @@ import { Textarea } from '@/components/ui/textarea';
 import { addContact } from '@/db/contacts';
 import { Loader } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { useMutation } from '@tanstack/react-query';
+import { AxiosInstance } from '@/lib/axios';
 
 
 export const ContactForm = () => {
 
-const [loading, setLoading] = React.useState(false);
+
+
+const sendMessageMutation = useMutation({
+  mutationKey: ["sendMessage"],
+  mutationFn: async (data: z.infer<typeof ContactformSchema>) => {
+    return await AxiosInstance.post('/contacts', data).then(() => {
+      toast({
+        title: "Merci pour votre message 💫",
+        description: "Je vous reviendrai très vite 🔥.",
+      });
+      form.reset();
+    }).catch(() => {
+      toast({
+        title: "Une erreur est survenue",
+        variant: "destructive",
+        description: "Votre message n'a pas pu etre envoye.",
+      });
+    })
+  }
+})
 
 const { toast } = useToast();
   const form = useForm<z.infer<typeof ContactformSchema>>({
@@ -30,24 +51,7 @@ const { toast } = useToast();
   });
 
   async function onSubmit(values : z.infer<typeof ContactformSchema>) {
-    setLoading(true);
-    await addContact(values).then(() => {
-      toast({
-        title: "Merci pour votre message 💫",
-        description: "Je vous reviendrai très vite 🔥.",
-      });
-      setLoading(false);
-      form.reset();
-    }).catch(() => {
-      toast({
-        title: "Une erreur est survenue",
-        variant: "destructive",
-        description: "Votre message n'a pas pu etre envoye.",
-      });
-      form.reset();
-      setLoading(false);
-    });
-   
+    sendMessageMutation.mutate(values)
   }
   return (
     <Card>
@@ -99,12 +103,12 @@ const { toast } = useToast();
 
     </CardContent>
     <CardFooter className="flex justify-end">
-          <Button disabled={loading}
+          <Button disabled={sendMessageMutation.isLoading}
           className="w-full -mt-1" 
           variant="secondary"
-          size={loading ? "icon" : "lg"}
+          size={sendMessageMutation.isLoading ? "icon" : "lg"}
           type="submit" >
-            {loading ? <Loader className="animate-spin" /> : "Envoyer"}
+            {sendMessageMutation.isLoading ? <Loader className="animate-spin" /> : "Envoyer"}
           </Button>
       </CardFooter>
           </form>

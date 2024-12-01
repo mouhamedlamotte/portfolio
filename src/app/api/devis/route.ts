@@ -1,25 +1,20 @@
-import { addGamePlay, GamePlaySchema } from "@/db/gameplay";
+import { addDevis } from "@/db/devis";
 import { kdebug } from "@/lib/kdebug";
 import { redis } from "@/lib/redis";
 import { getDateId } from "@/lib/utils";
 import { NextRequest, NextResponse } from "next/server";
 
-export const GET = async () => {
-    return NextResponse.json({ message: "hello" });
-};
-
 export const POST = async (req : NextRequest) => {
     try {
-        const data = GamePlaySchema.parse(await req.json());
+        const data = await req.json();
         const visitId = await redis.get(`${getDateId()}:${req.headers.get("x-forwarded-for")}`);
-        console.log("visitId", visitId);
-        
-        addGamePlay({
+        await addDevis({
             ...data,
-            visitId: visitId ?? undefined
+            visitId: visitId
         });
-        return NextResponse.json({ message: "Game played" });
+        return NextResponse.json({ message: "Devis envoyé" }, { status: 200 });
     } catch (error) {
         kdebug("une erreur est survenue", error);
+        return NextResponse.json({ message: "une erreur est survenue" }, { status: 500 });
     }
 }

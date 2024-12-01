@@ -68,6 +68,7 @@ export default function Tictactoe({cardRef} : {cardRef: React.RefObject<HTMLDivE
           const dataUrl = await createImg("png", cardRef);
           const image = await uploadDataUrlFile("ticatoe/tictactoe.png", dataUrl ?? ""); 
           addGamePlayMutation.mutate({
+            winner: playerOne ? "USER" : "COMPUTER",
             level: level === 1 ? "EASY" :  "HARD",
             time,
             gameId,
@@ -102,6 +103,7 @@ export default function Tictactoe({cardRef} : {cardRef: React.RefObject<HTMLDivE
           const dataUrl = await createImg("png", cardRef);
           const image = await uploadDataUrlFile("ticatoe/tictactoe.png", dataUrl ?? "");
           addGamePlayMutation.mutate({
+            winner: playerOne ? "USER" : "COMPUTER",
             level: level === 1 ? "EASY" :  "HARD",
             time,
             gameId,
