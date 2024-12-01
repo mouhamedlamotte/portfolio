@@ -43,6 +43,7 @@ export async function middleware(request : NextRequest) {
         referrer: request.referrer ?? 'unknown',
         ipAddress: request.headers.get('x-forwarded-for') ?? 'unknown',
         isBot: user_agent.isBot,
+        source : searchParams.get("source") ?? 'unknown'
       });
       
     } catch (error) {

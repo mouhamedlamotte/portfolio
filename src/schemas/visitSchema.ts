@@ -12,6 +12,7 @@ export const VisitSchema = z.object({
     referrer: z.string().optional(),
     isBot : z.boolean().default(false),
     url : z.string().optional(),
+    source : z.string().optional()
   });
 
 
