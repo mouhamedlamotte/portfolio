@@ -35,6 +35,7 @@ model Visit {
 
   @@index([ipAddress, visitDate])
   @@unique([ipAddress, dateID])
+  Downloads Downloads[]
 }
 model VisitedPage {
   id        String   @id @default(uuid())
@@ -140,4 +141,13 @@ model Devis {
   file        String?  @db.VarChar(255)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+}
+
+
+model Downloads {
+  id        String   @id @default(uuid())
+  downloadedItem String
+  visit     Visit?    @relation(fields: [visitId], references: [id], onDelete: Cascade)
+  visitId   String?
+  createdAt DateTime @default(now())
 }

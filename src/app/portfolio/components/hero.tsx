@@ -14,7 +14,9 @@ import { Boxes } from "@/components/ui/background-boxes";
 import { resume } from "@/data";
 import AnimatedShinyText from "@/components/ui/animated-shiny-text";
 import { Icons } from "@/icons";
-import { Section } from "./section";
+import { useMutation } from "@tanstack/react-query";
+import { AxiosInstance } from "@/lib/axios";
+
 
 export function HomeHero() {
   return (
@@ -42,42 +44,7 @@ export function HomeHero() {
           <Button asChild>
             <Link prefetch={false} href="/portfolio">Voir mes projets</Link>
           </Button>
-          <Popover>
-            <PopoverTrigger className="" asChild>
-              <Button variant="secondary">
-              <AnimatedShinyText className="inline-flex items-center justify-center px-4 py-1 transition ease-out ">
-                <Download className="mr-2 h-4 w-4" />
-                Télécharger CV
-              </AnimatedShinyText>
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="p-2">
-              <div className="flex flex-col gap-2">
-                <Button
-                  variant="outline"
-                  onClick={() => {
-                    const link = document.createElement("a");
-                    link.href = "/cv/FR_CV_MOUHAMED_LAMOTTE_DEV_DATA.pdf";
-                    link.download = "FR_CV_MOUHAMED_LAMOTTE.pdf";
-                    link.click();
-                  }}
-                >
-                  Francais
-                </Button>
-                <Button
-                  variant="outline"
-                  onClick={() => {
-                    const link = document.createElement("a");
-                    link.href = "/cv/EN_CV_MOUHAMED_LAMOTTE_DEV_DATA.pdf";
-                    link.download = "EN_CV_MOUHAMED_LAMOTTE.pdf";
-                    link.click();
-                  }}
-                >
-                  English
-                </Button>
-              </div>
-            </PopoverContent>
-          </Popover>
+          <DownloadCV />
         </div>
 
         <div className="z-20 flex justify-center gap-4 mb-6">
@@ -102,4 +69,63 @@ export function HomeHero() {
         </div>
       </div>
   );
+}
+
+
+const DownloadCV = () => {
+  
+
+  const english = "EN_CV_MOUHAMED_LAMOTTE_DEV_DATA.pdf";
+  const french = "FR_CV_MOUHAMED_LAMOTTE_DEV_DATA.pdf";
+
+  const addDownloadMutation = useMutation({
+    mutationKey: ["addDownload"],
+    mutationFn: async (data: {
+      downloadedItem: string;
+    }) => {
+        return await AxiosInstance.post('/downloads', data).then((res) => res.data)
+    },
+  })
+
+  const handleDownload = async (name: string) => {
+    const link = document.createElement("a");
+    link.href = `/cv/${name}`;
+    link.download = name;
+    link.click();
+
+
+    await addDownloadMutation.mutateAsync({
+      downloadedItem: name
+    });
+  }
+
+  return (
+    <Popover>
+    <PopoverTrigger className="" asChild>
+      <Button variant="secondary">
+      <AnimatedShinyText className="inline-flex items-center justify-center px-4 py-1 transition ease-out ">
+        <Download className="mr-2 h-4 w-4" />
+        Télécharger CV
+      </AnimatedShinyText>
+      </Button>
+    </PopoverTrigger>
+    <PopoverContent className="p-2">
+      <div className="flex flex-col gap-2">
+        <Button
+          variant="outline"
+          onClick={() => {handleDownload(french);}}
+        >
+          Francais
+        </Button>
+        <Button
+          variant="outline"
+          onClick={() => {
+            handleDownload(english);}}
+        >
+          Anglais
+        </Button>
+      </div>
+    </PopoverContent>
+  </Popover>
+  )
 }
