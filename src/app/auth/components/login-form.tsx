@@ -5,6 +5,7 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -13,70 +14,95 @@ import { Icons } from "@/icons";
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 
-import { AlertCircle } from "lucide-react"
- 
-import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-} from "@/components/ui/alert"
+import { AlertCircle } from "lucide-react";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { IconBrandGoogle } from "@tabler/icons-react";
 import { kdebug } from "@/lib/kdebug";
 
 export function LoginForm() {
-
   const params = useSearchParams();
   const error = params.get("error");
   const next = params.get("next");
 
-
-  const  oAuthLogin = async (provider: string) => {
+  const oAuthLogin = async (provider: string) => {
     try {
-    await signIn(provider, {
+      await signIn(provider, {
         callbackUrl: next ?? "/",
       });
     } catch (error) {
-      kdebug("error ===>", error);
+      kdebug("Login error:", error);
     }
   };
 
   return (
-    <Card className="mx-auto max-w-sm">
+    <Card className="mx-auto max-w-md shadow-lg">
       <CardHeader>
-      {error && error === "AccessDenied" ? <AlertMessage variant="destructive" title="Attention" description="Vous n'avez pas le droit de vous connecter" className="mb-2" /> 
-      : error &&  <AlertMessage variant="default" title="Oups" description="Une erreur est survenue" className="mb-2" />
-       }
-        <CardTitle className="text-2xl">Hi !</CardTitle>
-        <CardDescription>
-          Si vous n&apos;etes pas propriétaire de ce site, vous ne pouvez pas vous connecter,
-          <br/>
-          toutes les contributions sont volontaires, vous pouvez forker le site et ajouter des fonctionnalités.
-          <Button className="mt-4 w-full" variant='outline'>
-            Fork
-            <Icons.github />
-          </Button>
-        </CardDescription>
+        {error && (
+          <AlertMessage
+            variant={error === "AccessDenied" ? "destructive" : "default"}
+            title={
+              error === "AccessDenied" ? "Accès Refusé" : "Erreur Inconnue"
+            }
+            description={
+              error === "AccessDenied"
+                ? "Vous n'avez pas les permissions pour accéder à cette ressource."
+                : "Une erreur inattendue s'est produite. Veuillez réessayer."
+            }
+            className="mb-4"
+          />
+        )}
+
+        <CardTitle className="text-2xl font-semibold ">Bienvenue !</CardTitle>
       </CardHeader>
-      <Separator />
-      <CardContent className="mt-4">
-        <Button className="w-full" onClick={() => oAuthLogin("google")}>
-          <IconBrandGoogle />
-          Google
-        </Button>
+
+      <CardContent>
+        <CardDescription className="">
+          Ce site est réservé aux administrateurs. Si vous souhaitez contribuer,{" "}
+          <br />
+          n&apos;hésitez pas à forker le projet et ajouter vos propres
+          fonctionnalités.
+        </CardDescription>
+        <div className="flex mt-4">
+          <Button variant="outline" className="flex items-center gap-2">
+            Fork sur GitHub
+            <Icons.github className="h-4 w-4" />
+          </Button>
+        </div>
       </CardContent>
+      <Separator className="mb-4" />
+      <CardFooter>
+        <Button
+          className="w-full flex items-center justify-center gap-2"
+          onClick={() => oAuthLogin("google")}
+        >
+          <IconBrandGoogle className="h-5 w-5" />
+          Se connecter avec Google
+        </Button>
+      </CardFooter>
     </Card>
   );
 }
 
-
-const AlertMessage = ({ variant, title, description, className}:{variant: "destructive" | "default", title: string, description: string, className?: string}) => {
+const AlertMessage = ({
+  variant,
+  title,
+  description,
+  className,
+}: {
+  variant: "destructive" | "default";
+  title: string;
+  description: string;
+  className?: string;
+}) => {
   return (
     <Alert variant={variant} className={className}>
-      <AlertCircle className="h-4 w-4" />
-      <AlertTitle>{title}</AlertTitle>
-      <AlertDescription>
-        {description}
-      </AlertDescription>
+      <AlertCircle className="h-5 w-5 text-red-500" />
+      <div>
+        <AlertTitle className="font-medium text-lg">{title}</AlertTitle>
+        <AlertDescription className="text-sm text-gray-700">
+          {description}
+        </AlertDescription>
+      </div>
     </Alert>
-  )
-}
+  );
+};

@@ -16,13 +16,23 @@ import { Dispatch, SetStateAction, useEffect,  useState } from "react";
 import { useTictactoeLevelStore } from "../stores/tictactoeStore";
 import {  findBestMove, isBoardFull } from "@/lib/tictactoe";
 import { toast } from "@/components/ui/use-toast";
-import { addGamePlay } from "@/db/gameplay";
+import  {GamePlaySchema}  from "@/db/gameplay";
 import { createImg } from "@/lib/save-images";
 import { uploadDataUrlFile } from "@/db/blob";
 import { kdebug } from "@/lib/kdebug";
+import { useMutation } from "@tanstack/react-query";
+import { z } from "zod";
+import { AxiosInstance } from "@/lib/axios";
 
 
 export default function Tictactoe({cardRef} : {cardRef: React.RefObject<HTMLDivElement>}) {
+
+  const addGamePlayMutation = useMutation({
+    mutationKey: ["addGamePlay"],
+    mutationFn: async (data: z.infer<typeof GamePlaySchema>) => {
+      return await AxiosInstance.post('/game/play', data).then((res) => res.data)
+    }
+  })
 
   const gameId = "tictactoe";
 
@@ -57,9 +67,8 @@ export default function Tictactoe({cardRef} : {cardRef: React.RefObject<HTMLDivE
           setOpen(true);
           const dataUrl = await createImg("png", cardRef);
           const image = await uploadDataUrlFile("ticatoe/tictactoe.png", dataUrl ?? ""); 
-          await addGamePlay({
+          addGamePlayMutation.mutate({
             level: level === 1 ? "EASY" :  "HARD",
-            winner: playerOne ? "USER" : "COMPUTER",
             time,
             gameId,
             image,
@@ -92,8 +101,7 @@ export default function Tictactoe({cardRef} : {cardRef: React.RefObject<HTMLDivE
           }, 1000);
           const dataUrl = await createImg("png", cardRef);
           const image = await uploadDataUrlFile("ticatoe/tictactoe.png", dataUrl ?? "");
-          await addGamePlay({
-
+          addGamePlayMutation.mutate({
             level: level === 1 ? "EASY" :  "HARD",
             time,
             gameId,

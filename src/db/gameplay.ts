@@ -1,10 +1,8 @@
-"use server"
-
 import { prismaClient } from "@/lib/prisma.client";
-import { z } from "zod";
+import {  z } from "zod";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const GamePlaySchema = z.object({
+export const GamePlaySchema = z.object({
     level: z.enum(["EASY", "MEDIUM", "HARD"]),
     winner: z.enum(["USER", "COMPUTER"]).optional(),
     time: z.number().int().nonnegative().optional(),
@@ -17,7 +15,12 @@ export const addGamePlay = async (gamePlayData: z.infer<typeof GamePlaySchema>) 
     try {
       await prismaClient.gamePlay.create({
         data: {
-          ...gamePlayData,
+          gameId: gamePlayData.gameId,
+          level: gamePlayData.level,
+          winner: gamePlayData.winner,
+          time: gamePlayData.time,
+          image: gamePlayData.image,
+          pattern: gamePlayData.pattern,
         },
       });
       return true;
