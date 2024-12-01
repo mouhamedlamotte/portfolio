@@ -128,7 +128,7 @@ export const AdminLayout = (props: PropsWithChildren) => {
 
 export const Logo = () => {
   return (
-    <Link
+    <Link prefetch={false}
       href="#"
       className="font-normal flex space-x-2 items-center text-sm py-1 relative z-20"
     >
@@ -145,7 +145,7 @@ export const Logo = () => {
 };
 export const LogoIcon = () => {
   return (
-    <Link
+    <Link prefetch={false}
       href="#"
       className="font-normal flex space-x-2 items-center text-sm  py-1 relative z-20"
     >

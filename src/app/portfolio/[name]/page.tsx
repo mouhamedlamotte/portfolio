@@ -45,7 +45,7 @@ export default async function Page({ params }: { params: Promise<{ name: string 
           className="ml-auto  hover:text-muted-foreground"
 
         >
-          <Link href="/portfolio">
+          <Link prefetch={false} href="/portfolio">
           <AnimatedShinyText className="inline-flex items-center">
             <ArrowLeft className="me-2" size={16} />
             Retour
@@ -68,7 +68,7 @@ export default async function Page({ params }: { params: Promise<{ name: string 
               className="ml-auto  hover:text-muted-foreground"
             >
               <AnimatedShinyText className="inline-flex items-center">
-                <Link href="/projects">Voir tous les projets</Link>
+                <Link prefetch={false} href="/projects">Voir tous les projets</Link>
                 <ArrowRight className="ms-2" size={16} />
               </AnimatedShinyText>
             </Button>

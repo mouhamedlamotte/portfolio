@@ -40,7 +40,7 @@ export function HomeHero() {
 
         <div className="z-20 flex flex-wrap justify-center gap-4 mb-6">
           <Button asChild>
-            <Link href="/portfolio">Voir mes projets</Link>
+            <Link prefetch={false} href="/portfolio">Voir mes projets</Link>
           </Button>
           <Popover>
             <PopoverTrigger className="" asChild>
@@ -82,17 +82,17 @@ export function HomeHero() {
 
         <div className="z-20 flex justify-center gap-4 mb-6">
           <Button variant="ghost" size="icon" asChild>
-            <Link href="https://x.com/MouhamedLamotly" target="_blank">
+            <Link prefetch={false} href="https://x.com/MouhamedLamotly" target="_blank">
               <Icons.x className="h-5 w-5" />
             </Link>
           </Button>
           <Button variant="ghost" size="icon" asChild>
-            <Link href="https://github.com/mouhamedlamotte" target="_blank">
+            <Link prefetch={false} href="https://github.com/mouhamedlamotte" target="_blank">
               <Icons.github className="h-5 w-5" />
             </Link>
           </Button>
           <Button variant="ghost" size="icon" asChild>
-            <Link
+            <Link prefetch={false}
               href="https://www.linkedin.com/in/mouhamed-baba-lamotte-876291252/"
               target="_blank"
             >

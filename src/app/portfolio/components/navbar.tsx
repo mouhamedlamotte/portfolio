@@ -33,7 +33,7 @@ export function Navbar() {
         <div className="container flex h-16 items-center justify-between w-full">
           <div className="hidden md:flex md:gap-x-6">
             {mainNavigation.map((item) => (
-              <Link
+              <Link prefetch={false}
                 key={item.name}
                 href={item.href}
                 className={cn(
@@ -58,7 +58,7 @@ export function Navbar() {
               <DropdownMenuContent align="start" className="w-[200px]">
                 {mainNavigation.map((item) => (
                   <DropdownMenuItem key={item.name} asChild>
-                    <Link
+                    <Link prefetch={false}
                       href={item.href}
                       className={cn(
                         pathname === item.href
@@ -76,10 +76,10 @@ export function Navbar() {
 
           <div className="flex items-center gap-4">
             <Button asChild variant="default">
-              <Link href="/portfolio/devis">Demander un devis</Link>
+              <Link prefetch={false} href="/portfolio/devis">Demander un devis</Link>
             </Button>
             {session.status === "authenticated" && (
-                <Link href="/admin">
+                <Link prefetch={false} href="/admin">
                 <Avatar>
                   <AvatarImage
                   className="rotate-3"

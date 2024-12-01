@@ -31,10 +31,9 @@ export async function middleware(request : NextRequest) {
     return NextResponse.json({ message: 'unauthorized host' }, { status: 403 });
   }
 
-  console.log("_rsc", searchParams.get("_rsc"));
-  
+  // const isDirectVisit = !request.referrer 
 
-  if ((pathname.startsWith('/portfolio') || pathname === '/' )  && !token && searchParams.get("_rsc")) {
+  if ((pathname.startsWith('/portfolio') || pathname === '/' )  && !token && !searchParams.get("_rsc")) {
     try {
       await AxiosInstance.post('/visit', {
         url : pathname ?? 'unknown',

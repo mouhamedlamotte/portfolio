@@ -22,7 +22,7 @@ export const RecentProjects = () => {
         </div>
             <Button variant="link" className="ml-auto  hover:text-muted-foreground">
               <AnimatedShinyText className="inline-flex items-center" >
-              <Link href="/portfolio" className="hover:underline-none" >
+              <Link prefetch={false} href="/portfolio" className="hover:underline-none" >
               Voir plus
               </Link>
               <ArrowRight className="ml-2" size={16} />

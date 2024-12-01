@@ -23,7 +23,7 @@ export const contactColumns: ColumnDef<z.infer<typeof ContactformSchema>>[] = [
     accessorKey: "email",
     header: "Email",
     cell : ({row}) =>{
-      return <Link href={`mailto:${row.original.email}`} className="font-bold">{row.original.email}</Link>
+      return <Link prefetch={false} href={`mailto:${row.original.email}`} className="font-bold">{row.original.email}</Link>
     }
   },
 ]

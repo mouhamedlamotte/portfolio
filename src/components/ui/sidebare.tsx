@@ -168,7 +168,7 @@ export const SidebarLink = ({
 }) => {
   const { open, animate } = useSidebar();
   return (
-    <Link
+    <Link prefetch={false}
       onClick={onClick}
       href={link.href}
       className={cn(
