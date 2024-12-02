@@ -17,6 +17,7 @@ import React, { PropsWithChildren, useState } from "react";
 import { motion } from "framer-motion";
 import { resume } from "@/data";
 import { signOut, useSession } from "next-auth/react";
+import DynamicBreadcrumb from "./breadcrumb";
 
 
 const links = [
@@ -118,7 +119,8 @@ export const AdminLayout = (props: PropsWithChildren) => {
         </SidebarBody>
       </Sidebar>
       <div className="flex flex-1">
-        <div className="p-2 md:p-10 rounded-tl-2xl border  flex flex-col gap-2 flex-1 w-full h-full bg-background">
+        <div className="p-2 md:p-10 rounded-tl-2xl border  flex flex-col gap-2 flex-1 w-full h-full bg-background overflow-y-auto">
+          <DynamicBreadcrumb/>
           {props.children}
         </div>
       </div>

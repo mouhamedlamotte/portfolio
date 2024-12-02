@@ -1,8 +1,172 @@
-export const renderBroswer = (browser: string) => {
+import { Button } from "@/components/ui/button"
+import { Icons } from "@/icons"
+
+export const RenderBroswer = ({browser}:{browser:string}) => {
     browser = browser.toLowerCase()
-    if (browser.includes("chrome")) return "Chrome"
-    if (browser.includes("firefox")) return "Firefox"
-    if (browser.includes("edge")) return "Edge"
-    if (browser.includes("safari")) return "Safari"
-    return "Autre"
+    switch (browser) {
+        case "chrome":
+            return <Button className="px-0 hover:bg-transparent flex justify-between truncate" variant="ghost">
+            <Icons.chrome  className="h-5 w-5" />
+            <span>{browser}</span>
+            </Button>
+        case "safari":
+            return <Button className="px-0 hover:bg-transparent flex justify-between truncate" variant="ghost">
+            <Icons.safari className="h-5 w-5" />
+            <span>{browser}</span>
+            </Button>
+        case "edge":
+            return <Button className="px-0 hover:bg-transparent flex justify-between truncate" variant="ghost">
+            <Icons.edge className="h-5 w-5" />
+            <span>{browser}</span>
+            </Button>
+        default:
+            return <Button className="px-0 hover:bg-transparent flex justify-between truncate" variant="ghost">
+            <Icons.globe className="h-5 w-5" />
+            <span>{browser}</span>
+            </Button>
+
 }
+}
+
+export const RenderSource = ({ source }: { source: string }) => {
+    source = source.toLowerCase();
+    switch (source) {
+      case "facebook":
+        return (
+          <Button
+            className="px-0 hover:bg-transparent flex justify-between truncate"
+            variant="ghost"
+          >
+            <Icons.facebook className="h-5 w-5" />
+            <span>{source}</span>
+          </Button>
+        );
+      case "twitter":
+        return (
+          <Button
+            className="px-0 hover:bg-transparent flex justify-between truncate"
+            variant="ghost"
+          >
+            <Icons.x className="h-5 w-5" />
+            <span>{source}</span>
+          </Button>
+        );
+      case "linkedin":
+        return (
+          <Button
+            className="px-0 hover:bg-transparent flex justify-between truncate"
+            variant="ghost"
+          >
+            <Icons.linkedin className="h-5 w-5" />
+            <span>{source}</span>
+          </Button>
+        );
+        case "github":
+        return (
+          <Button
+            className="px-0 hover:bg-transparent flex justify-between truncate"
+            variant="ghost"
+          >
+            <Icons.github className="h-5 w-5" />
+            <span>{source}</span>
+          </Button>
+        )
+        case "instagram":
+        return (
+          <Button
+            className="px-0 hover:bg-transparent flex justify-between truncate"
+            variant="ghost"
+          >
+            <Icons.instagram className="h-5 w-5" />
+            <span>{source}</span>
+          </Button>
+        )
+      case "web":
+        return (
+          <Button
+            className="px-0 hover:bg-transparent flex justify-between truncate"
+            variant="ghost"
+          >
+            <Icons.globe className="h-5 w-5" />
+            <span>{source}</span>
+          </Button>
+        );
+      default:
+        return (
+          <Button
+            className="px-0 hover:bg-transparent flex justify-between truncate"
+            variant="ghost"
+          >
+            <Icons.globe className="h-5 w-5" />
+            <span>{source}</span>
+          </Button>
+        );
+    }
+  };
+  
+
+  export const RenderOS = ({ os }: { os: string }) => {
+    os = os.toLowerCase();
+    switch (os) {
+      case "windows":
+        return (
+          <Button
+            className="px-0 hover:bg-transparent flex justify-between truncate"
+            variant="ghost"
+          >
+            <Icons.windows className="h-5 w-5" />
+            <span>{os}</span>
+          </Button>
+        );
+      case "macos":
+        return (
+          <Button
+            className="px-0 hover:bg-transparent flex justify-between truncate"
+            variant="ghost"
+          >
+            <Icons.macos className="h-5 w-5" />
+            <span>{os}</span>
+          </Button>
+        );
+      case "linux":
+        return (
+          <Button
+            className="px-0 hover:bg-transparent flex justify-between truncate"
+            variant="ghost"
+          >
+            <Icons.lunix className="h-5 w-5" />
+            <span>{os}</span>
+          </Button>
+        );
+      case "android":
+        return (
+          <Button
+            className="px-0 hover:bg-transparent flex justify-between truncate"
+            variant="ghost"
+          >
+            <Icons.android className="h-5 w-5" />
+            <span>{os}</span>
+          </Button>
+        );
+      case "ios":
+        return (
+          <Button
+            className="px-0 hover:bg-transparent flex justify-between truncate"
+            variant="ghost"
+          >
+            <Icons.macos className="h-5 w-5" />
+            <span>{os}</span>
+          </Button>
+        );
+      default:
+        return (
+          <Button
+            className="px-0 hover:bg-transparent flex justify-between truncate"
+            variant="ghost"
+          >
+            <Icons.globe className="h-5 w-5" />
+            <span>{os}</span>
+          </Button>
+        );
+    }
+  };

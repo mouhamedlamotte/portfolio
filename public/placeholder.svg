@@ -42,28 +42,28 @@
   </g>
   <defs>
     <linearGradient id="a" x1="554.061" x2="-.48" y1=".083" y2=".087" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#FFFFFF" stop-opacity="0" />
-      <stop offset=".208" stop-color="#FFFFFF" />
-      <stop offset=".792" stop-color="#FFFFFF" />
-      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0" />
+      <stop stopColor="#FFFFFF" stopOpacity="0" />
+      <stop offset=".208" stopColor="#FFFFFF" />
+      <stop offset=".792" stopColor="#FFFFFF" />
+      <stop offset="1" stopColor="#FFFFFF" stopOpacity="0" />
     </linearGradient>
     <linearGradient id="b" x1="796.912" x2="404.507" y1="599.963" y2="599.965" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#FFFFFF" stop-opacity="0" />
-      <stop offset=".208" stop-color="#FFFFFF" />
-      <stop offset=".792" stop-color="#FFFFFF" />
-      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0" />
+      <stop stopColor="#FFFFFF" stopOpacity="0" />
+      <stop offset=".208" stopColor="#FFFFFF" />
+      <stop offset=".792" stopColor="#FFFFFF" />
+      <stop offset="1" stopColor="#FFFFFF" stopOpacity="0" />
     </linearGradient>
     <linearGradient id="c" x1="600.792" x2="600.794" y1="403.677" y2="796.082" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#FFFFFF" stop-opacity="0" />
-      <stop offset=".208" stop-color="#FFFFFF" />
-      <stop offset=".792" stop-color="#FFFFFF" />
-      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0" />
+      <stop stopColor="#FFFFFF" stopOpacity="0" />
+      <stop offset=".208" stopColor="#FFFFFF" />
+      <stop offset=".792" stopColor="#FFFFFF" />
+      <stop offset="1" stopColor="#FFFFFF" stopOpacity="0" />
     </linearGradient>
     <linearGradient id="d" x1="404.85" x2="796.972" y1="403.903" y2="796.02" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#FFFFFF" stop-opacity="0" />
-      <stop offset=".208" stop-color="#FFFFFF" />
-      <stop offset=".792" stop-color="#FFFFFF" />
-      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0" />
+      <stop stopColor="#FFFFFF" stopOpacity="0" />
+      <stop offset=".208" stopColor="#FFFFFF" />
+      <stop offset=".792" stopColor="#FFFFFF" />
+      <stop offset="1" stopColor="#FFFFFF" stopOpacity="0" />
     </linearGradient>
     <clipPath id="e">
       <path fill="#000000" d="M581.364 580.535h38.689v38.689h-38.689z" />
