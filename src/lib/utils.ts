@@ -31,7 +31,7 @@ export function formatDate(date: string | Date | dayjs.Dayjs): string {
   }
 
   if (inputDate.isSame(now, "week")) {
-    return `Il y'a ${inputDate.fromNow()}`; // e.g., "2 days ago"
+    return inputDate.from(now); // e.g., "2 days ago"
   }
 
   if (inputDate.isSame(now, "year")) {
