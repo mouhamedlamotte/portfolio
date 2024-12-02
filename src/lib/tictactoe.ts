@@ -95,7 +95,7 @@ export  const findBestMove = (board: number[][]): { i: number, j: number } => {
     let svgContent = `
       <svg xmlns="http://www.w3.org/2000/svg" width="300" height="300">
         <rect width="100%" height="100%" fill="#ffffff" />
-        <g stroke="#000000" stroke-width="2">
+        <g stroke="#000000" strokeWidth="2">
           <line x1="100" y1="0" x2="100" y2="300" />
           <line x1="200" y1="0" x2="200" y2="300" />
           <line x1="0" y1="100" x2="300" y2="100" />
@@ -107,12 +107,12 @@ export  const findBestMove = (board: number[][]): { i: number, j: number } => {
       row.forEach((cell, j) => {
         if (cell === 1) {
           svgContent += `
-            <line x1="${j * 100 + 10}" y1="${i * 100 + 10}" x2="${j * 100 + 90}" y2="${i * 100 + 90}" stroke="#0000FF" stroke-width="3" />
-            <line x1="${j * 100 + 90}" y1="${i * 100 + 10}" x2="${j * 100 + 10}" y2="${i * 100 + 90}" stroke="#0000FF" stroke-width="3" />
+            <line x1="${j * 100 + 10}" y1="${i * 100 + 10}" x2="${j * 100 + 90}" y2="${i * 100 + 90}" stroke="#0000FF" strokeWidth="3" />
+            <line x1="${j * 100 + 90}" y1="${i * 100 + 10}" x2="${j * 100 + 10}" y2="${i * 100 + 90}" stroke="#0000FF" strokeWidth="3" />
           `;
         } else if (cell === -1) {
           svgContent += `
-            <circle cx="${j * 100 + 50}" cy="${i * 100 + 50}" r="40" stroke="#00FF00" stroke-width="3" fill="none" />
+            <circle cx="${j * 100 + 50}" cy="${i * 100 + 50}" r="40" stroke="#00FF00" strokeWidth="3" fill="none" />
           `;
         }
       });

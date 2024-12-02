@@ -13,7 +13,7 @@ export const RecentPost = async () => {
 
   const posts = await fetchPages()
 
-  console.log("posts", posts.results);
+  console.log("posts", posts);
   
 
   return (
@@ -39,7 +39,7 @@ export const RecentPost = async () => {
       </div>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-10">
         {
-          posts.results.slice(0, 3).map((post: any) => (
+          posts.slice(0, 3).map((post: any) => (
             <div key={post.id}>
             <BlogCard
                 href={`/portfolio/blog/${post.properties?.slug?.rich_text[0]?.plain_text}`}

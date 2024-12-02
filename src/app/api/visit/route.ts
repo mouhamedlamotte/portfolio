@@ -1,10 +1,20 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { addVisite, addVisitedPage } from "@/db/visite";
+import { addVisite, addVisitedPage, getallAndNestedVisit } from "@/db/visite";
 import { VisitSchema } from "@/schemas/visitSchema";
 import { NextRequest, NextResponse } from "next/server";
 import { getDateId } from "@/lib/utils";
 import { redis } from "@/lib/redis";
 import { kdebug } from "@/lib/kdebug";
+
+
+export async function GET(request: NextRequest) {
+    try {
+        const data = await getallAndNestedVisit()
+        return NextResponse.json(data, { status: 200 });
+    } catch (error) {
+        kdebug('server error ==>', error);
+    }
+}
 
 export async function POST(request: NextRequest) {
     try {

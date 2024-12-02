@@ -3,13 +3,14 @@
 import { Button } from "@/components/ui/button";
 import { formatDate } from "@/lib/utils";
 import { ColumnDef } from "@tanstack/react-table"
-import { ArrowUpDown, ChevronDown, Copy, CopyCheck, MoreHorizontal } from "lucide-react";
+import { ChevronDown, Copy, CopyCheck, MoreHorizontal } from "lucide-react";
 import { useState } from "react";
 import { RenderBroswer, RenderOS, RenderSource } from "./render-badges";
 
 
 
 export type Visit = {
+  id : string
   ipAddress: string,
   deviceType: string,
   os : string,
@@ -156,7 +157,7 @@ export const visitColumns:ColumnDef<Visit>[] = [
     },
     cell : ({row}) => {
       return (
-        <RenderSource source={row.original.browser} />
+        <RenderSource source={row.original.source} />
       )
     }
   },

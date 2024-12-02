@@ -2,6 +2,14 @@ import { Button } from "@/components/ui/button"
 import { Icons } from "@/icons"
 
 export const RenderBroswer = ({browser}:{browser:string}) => {
+
+    if (!browser) {
+        return <Button className="px-0 hover:bg-transparent flex justify-between truncate" variant="ghost">
+        <Icons.globe className="h-5 w-5" />
+        <span>Unknown</span>
+        </Button>
+    }
+   
     browser = browser.toLowerCase()
     switch (browser) {
         case "chrome":
@@ -29,6 +37,13 @@ export const RenderBroswer = ({browser}:{browser:string}) => {
 }
 
 export const RenderSource = ({ source }: { source: string }) => {
+
+  if (!source) {
+    return <Button className="px-0 hover:bg-transparent flex justify-between truncate" variant="ghost">
+    <Icons.globe className="h-5 w-5" />
+    <span>Unknown</span>
+    </Button>
+}
     source = source.toLowerCase();
     switch (source) {
       case "facebook":
@@ -106,6 +121,14 @@ export const RenderSource = ({ source }: { source: string }) => {
   
 
   export const RenderOS = ({ os }: { os: string }) => {
+
+    if (!os) {
+      return <Button className="px-0 hover:bg-transparent flex justify-between truncate" variant="ghost">
+      <Icons.globe className="h-5 w-5" />
+      <span>Unknown</span>
+      </Button>
+  }
+
     os = os.toLowerCase();
     switch (os) {
       case "windows":

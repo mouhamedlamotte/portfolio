@@ -46,7 +46,7 @@ export default async function Page() {
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-10">
       
         {
-          posts.results.map((post: any) => (
+          posts.map((post: any) => (
             <div key={post.id}>
             <BlogCard
                 href={`/portfolio/blog/${post.properties?.slug?.rich_text[0]?.plain_text}`}
