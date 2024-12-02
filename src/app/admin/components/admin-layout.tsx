@@ -18,6 +18,7 @@ import { motion } from "framer-motion";
 import { resume } from "@/data";
 import { signOut, useSession } from "next-auth/react";
 import DynamicBreadcrumb from "./breadcrumb";
+import { Globe } from "lucide-react";
 
 
 const links = [
@@ -26,6 +27,13 @@ const links = [
     href: "#",
     icon: (
       <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+    ),
+  },
+  {
+    label: "Visites",
+    href: "/admin/visits",
+    icon: (
+      <Globe className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
     ),
   },
   {
