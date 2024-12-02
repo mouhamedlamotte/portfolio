@@ -40,7 +40,7 @@ export function ProjectCard({project, stack}: {project: Props, stack?: boolean})
     >
       <Link prefetch={false}
         href={project.href || "#"}
-        className={cn("block cursor-pointer", project.className)}
+        className={cn("block cursor-pointer bg-[url('/placeholder.svg')] h-40", project.className)}
       >
         {project.video && (
           <video
@@ -49,7 +49,7 @@ export function ProjectCard({project, stack}: {project: Props, stack?: boolean})
             loop
             muted
             playsInline
-            className="pointer-events-none mx-auto h-40 w-full object-cover object-top hover:scale-110 transition-transform ease-out duration-1000"
+            className="pointer-events-none mx-auto h-full w-full object-cover object-top hover:scale-110 transition-transform ease-out duration-1000"
           />
         )}
         {project.image && (
@@ -58,7 +58,7 @@ export function ProjectCard({project, stack}: {project: Props, stack?: boolean})
             alt={project.title}
             width={500}
             height={300}
-            className="h-40 w-full overflow-hidden object-cover object-top hover:scale-110 transition-transform ease-out duration-1000"
+            className="h-full w-full overflow-hidden object-cover object-top hover:scale-110 transition-transform ease-out duration-1000"
           />
         )}
       </Link>

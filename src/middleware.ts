@@ -28,7 +28,7 @@ export async function middleware(request : NextRequest) {
   }
 
   if (pathname.startsWith('/api') && !allowedHosts.includes(request.headers.get('host') ?? '' )) {
-    return NextResponse.json({ message: 'unauthorized host' }, { status: 403 });
+    return NextResponse.json({ message: `unauthorized host, ${request.headers.get("host")}` }, { status: 403 });
   }
 
   // const isDirectVisit = !request.referrer 

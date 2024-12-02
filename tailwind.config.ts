@@ -106,8 +106,65 @@ export default {
   			'accordion-down': 'accordion-down 0.2s ease-out',
   			'accordion-up': 'accordion-up 0.2s ease-out',
   			'shiny-text': 'shiny-text 8s infinite'
-  		}
+  		},
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		typography: ({ theme }: { theme: any }) => ({
+			DEFAULT: {
+			  css: {
+				color: theme('colors.foreground'),
+				a: {
+				  color: theme('colors.primary.DEFAULT'),
+				  '&:hover': {
+					color: theme('colors.primary.foreground'),
+				  },
+				},
+				strong: { color: theme('colors.foreground') },
+				blockquote: {
+				  borderLeftColor: theme('colors.muted.DEFAULT'),
+				  color: theme('colors.muted.foreground'),
+				},
+				code: {
+				  backgroundColor: theme('colors.muted.DEFAULT'),
+				  color: theme('colors.foreground'),
+				  padding: '0.2rem 0.4rem',
+				  borderRadius: theme('borderRadius.sm'),
+				},
+				pre: {
+					backgroundColor: theme('colors.muted.DEFAULT'),
+					color: theme('colors.foreground'),
+					padding: theme('spacing.4'),
+					borderRadius: theme('borderRadius.lg'),
+				  },
+				  'code::before': { content: 'none' },
+				  'code::after': { content: 'none' },
+			  },
+			},
+			invert: {
+			  css: {
+				color: theme('colors.foreground'),
+				a: {
+				  color: theme('colors.primary.foreground'),
+				  '&:hover': {
+					color: theme('colors.primary.DEFAULT'),
+				  },
+				},
+				strong: { color: theme('colors.foreground') },
+				blockquote: {
+				  borderLeftColor: theme('colors.secondary.DEFAULT'),
+				  color: theme('colors.secondary.foreground'),
+				},
+				code: {
+				  backgroundColor: theme('colors.secondary.DEFAULT'),
+				  color: theme('colors.foreground'),
+				},
+				pre: {
+					backgroundColor: theme('colors.secondary.DEFAULT'),
+					color: theme('colors.foreground'),
+				  },
+			  },
+			},
+		  }),
   	}
   },
-			plugins: [require("tailwindcss-animate"),],
+			plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 } satisfies Config;

@@ -11,6 +11,10 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
+    "@notion-render/bookmark-plugin": "^0.0.2",
+    "@notion-render/client": "^0.0.2",
+    "@notion-render/hljs-plugin": "^0.0.2",
+    "@notionhq/client": "^2.2.15",
     "@prisma/client": "5.22.0",
     "@radix-ui/react-avatar": "^1.1.1",
     "@radix-ui/react-collapsible": "^1.1.1",
@@ -58,6 +62,7 @@
     "zustand": "^5.0.1"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.15",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

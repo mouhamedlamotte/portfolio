@@ -7,6 +7,8 @@ import { ImgPreview } from "@/components/common/img-preview";
 import { Suspense } from "react";
 import { Loader } from "lucide-react";
 
+
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
