@@ -15,11 +15,11 @@ export function formatDate(date: string | Date | dayjs.Dayjs): string {
   const inputDate = dayjs(date);
 
   if (inputDate.isSame(now, "minutes")) {
-    return "Just now";
+    return "A l'instant";
   }
 
   if (inputDate.isSame(now, "hour")) {
-    return `il y'a ${now.diff(inputDate, "minute")}`;
+    return `il y'a ${now.diff(inputDate, "minute")} minutes`;
   }
 
   if (inputDate.isSame(now, "day")) {
