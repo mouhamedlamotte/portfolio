@@ -57,7 +57,7 @@ export const fetchBySlug = async (slug: string) => {
         property: "slug",
         rich_text: {
           equals: slug,
-        },
+        }
       },
     });
 

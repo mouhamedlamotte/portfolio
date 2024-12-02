@@ -10,6 +10,7 @@ import { NotionRenderer } from "@notion-render/client"
 import hljsPlugin from "@notion-render/hljs-plugin"
 import bookmarkPlugin from "@notion-render/bookmark-plugin"
 import { Block } from "@notion-render/client/dist/types"
+import { formatDate } from "@/lib/utils"
 
 export default async function BlogDetail({ params }: { params: Promise<{ slug: string }> }) {
 
@@ -45,7 +46,7 @@ export default async function BlogDetail({ params }: { params: Promise<{ slug: s
   <>
     <Section>
     <article className="max-w-3xl mx-auto">
-        <h1 className="text-4xl font-bold mb-4">{p.properties.title?.title[0]?.plain_text as unknown as string}</h1>
+        <h1 className="text-4xl font-bold mb-4">{p?.properties?.title?.title[0]?.plain_text as unknown as string}</h1>
         
         <div className="flex items-center space-x-4 mb-6">
           <Avatar>
@@ -56,21 +57,21 @@ export default async function BlogDetail({ params }: { params: Promise<{ slug: s
             <p className="font-medium">Mouhamed Lamotte</p>
             <div className="flex items-center text-sm text-muted-foreground">
               <CalendarIcon className="mr-1 h-4 w-4" />
-              5 avril 2024
+             {formatDate(post.created_time)}
             </div>
           </div>
         </div>
 
         <img 
           src={p.cover?.file?.url ?? "/placeholder.svg"}
-          alt={p.properties.title?.title[0]?.plain_text as unknown as string}
+          alt={p?.properties?.title?.title[0]?.plain_text as unknown as string}
           className="w-full h-[400px] object-cover rounded-lg mb-8"
         />
       <div className="prose prose-lg max-w-none dark:prose-invert" dangerouslySetInnerHTML={{ __html: html }} />
       </article>
     </Section>
 
-      <Section>
+      {/* <Section>
         <h2 className="text-2xl font-bold mb-6">Articles Similaires</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <Card>
@@ -113,7 +114,7 @@ export default async function BlogDetail({ params }: { params: Promise<{ slug: s
             <p>Excellent article ! J&apos;ai particulièrement apprécié la partie sur l&apos;optimisation des performances. C&apos;est fascinant de voir comment l&apos;IA peut améliorer l&apos;expérience utilisateur de manière si significative.</p>
           </CardContent>
         </Card>
-      </Section>
+      </Section> */}
     </>
   )
 }

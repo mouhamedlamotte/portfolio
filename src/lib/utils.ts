@@ -19,19 +19,19 @@ export function formatDate(date: string | Date | dayjs.Dayjs): string {
   }
 
   if (inputDate.isSame(now, "hour")) {
-    return `${now.diff(inputDate, "minute")} minutes ago`;
+    return `il y'a ${now.diff(inputDate, "minute")}`;
   }
 
   if (inputDate.isSame(now, "day")) {
-    return `Today at ${inputDate.format("HH:mm")}`;
+    return `Aujourd'hui a ${inputDate.format("HH:mm")}`;
   }
 
   if (inputDate.isSame(now.subtract(1, "day"), "day")) {
-    return `Yesterday at ${inputDate.format("HH:mm")}`;
+    return `Hier a ${inputDate.format("HH:mm")}`;
   }
 
   if (inputDate.isSame(now, "week")) {
-    return inputDate.from(now); // e.g., "2 days ago"
+    return `Il y'a ${inputDate.fromNow()}`; // e.g., "2 days ago"
   }
 
   if (inputDate.isSame(now, "year")) {
