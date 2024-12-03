@@ -50,7 +50,7 @@ export default async function BlogDetail({ params }: { params: Promise<{ slug: s
         
         <div className="flex items-center space-x-4 mb-6">
           <Avatar>
-            <AvatarImage src="/me.pmg" alt="Mouhamed Lamotte" />
+            <AvatarImage src="/me.jpeg" alt="Mouhamed Lamotte" />
             <AvatarFallback>ML</AvatarFallback>
           </Avatar>
           <div>

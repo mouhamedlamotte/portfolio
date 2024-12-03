@@ -56,7 +56,7 @@ export default async function Page() {
                 excerpt={post.properties?.excerpt?.rich_text[0]?.plain_text}
                 author={{
                   name: "Mouhamed Lamotte",
-                  avatarUrl: "/me.jpg",
+                  avatarUrl: "/me.jpeg",
                 }}
                 date={formatDate(post.created_time)}
               />
