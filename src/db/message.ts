@@ -1,6 +1,6 @@
 "use server"
 
-import { MessageType } from "@/app/[local]/admin/messages/types/message"
+import { MessageType } from "@/app/[locale]/admin/messages/types/message"
 import { kdebug } from "@/lib/kdebug"
 import { prismaClient } from "@/lib/prisma.client"
 

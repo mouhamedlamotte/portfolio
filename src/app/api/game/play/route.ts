@@ -11,9 +11,7 @@ export const GET = async () => {
 export const POST = async (req : NextRequest) => {
     try {
         const data = GamePlaySchema.parse(await req.json());
-        const visitId = await redis.get(`${getDateId()}:${req.headers.get("x-forwarded-for")}`);
-        console.log("visitId", visitId);
-        
+        const visitId = await redis.get(`${getDateId()}:${req.headers.get("x-forwarded-for")}`);        
         addGamePlay({
             ...data,
             visitId: visitId ?? undefined

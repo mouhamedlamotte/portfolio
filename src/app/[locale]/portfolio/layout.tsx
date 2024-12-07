@@ -1,0 +1,21 @@
+import React, { PropsWithChildren } from 'react'
+import { Navbar } from './components/navbar'
+import { Footer } from './components/footer'
+
+const Layout = (props : PropsWithChildren) => {
+
+
+  return (
+    <div>
+        <Navbar />
+        <div className='space-y-10'>
+        <main className='space-y-24'>
+        {props.children}
+        <Footer />
+        </main>
+        </div>
+    </div>
+  )
+}
+
+export default Layout

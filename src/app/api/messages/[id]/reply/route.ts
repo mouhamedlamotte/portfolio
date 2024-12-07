@@ -1,7 +1,7 @@
 "use server"
 
 
-import { MessageType } from "@/app/[local]/admin/messages/types/message";
+import { MessageType } from "@/app/[locale]/admin/messages/types/message";
 import { addReply, getMessageById, getReplyByMessageId, updateMessage } from "@/db/message";
 import { kdebug } from "@/lib/kdebug";
 import { sendEmail } from "@/lib/nodemailer";
