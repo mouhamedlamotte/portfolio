@@ -1,6 +1,6 @@
 "use server"
 
-import { ContactformSchema } from "@/app/portfolio/schemas/contactFormSchema";
+import { ContactformSchema } from "@/app/[local]/portfolio/schemas/contactFormSchema";
 import { prismaClient } from "@/lib/prisma.client";
 import { z } from "zod";
 

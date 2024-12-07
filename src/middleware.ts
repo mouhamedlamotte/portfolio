@@ -1,7 +1,17 @@
 import { NextRequest, NextResponse, userAgent } from 'next/server';
 import { AxiosInstance } from './lib/axios';
 import { getToken } from 'next-auth/jwt';
-import { kdebug } from './lib/kdebug';
+import { createI18nMiddleware } from 'next-international/middleware'
+
+
+// middleware.ts
+ 
+const I18nMiddleware = createI18nMiddleware({
+  locales: ['en', 'fr'],
+  defaultLocale: 'en'
+})
+ 
+
 
 export async function middleware(request : NextRequest) {
   const { pathname, searchParams } = request.nextUrl;
@@ -57,5 +67,13 @@ export async function middleware(request : NextRequest) {
     return NextResponse.next({ headers });
   }
 
-  return NextResponse.next();
+  return I18nMiddleware(request);
 }
+ 
+export const config = {
+  matcher: ['/((?!api|static|.*\\..*|_next|favicon.ico|robots.txt).*)']
+}
+
+
+
+

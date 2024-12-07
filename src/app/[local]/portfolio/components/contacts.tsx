@@ -1,4 +1,4 @@
-import { TictactoePlate } from "@/app/game/components/tictactoePlate";
+import { TictactoePlate } from "@/app/[local]/game/components/tictactoePlate";
 import React from "react";
 import { ContactForm } from "./forms/contact-form";
 import { Section } from "./section";

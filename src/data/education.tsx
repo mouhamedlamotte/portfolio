@@ -1,4 +1,4 @@
-import { EducationType } from "@/app/portfolio/components/cards/education-card";
+import { EducationType } from "@/app/[local]/portfolio/components/cards/education-card";
 
 
 export const educations: EducationType[] = [

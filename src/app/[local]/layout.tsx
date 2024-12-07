@@ -73,9 +73,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: { local: string };
 }>) {
+
+
+
+
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <head>
@@ -121,7 +127,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Suspense fallback={<FallbackComponent />}>
-          <Provider>
+          <Provider local={params.local}>
             {children}
             {/* <FallbackComponent/> */}
             </Provider>

@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import NotFound from "@/app/not-found";
+import NotFound from "@/app/[local]/not-found";
 import AnimatedShinyText from "@/components/ui/animated-shiny-text";
 import { Button } from "@/components/ui/button";
 import { resume } from "@/data";

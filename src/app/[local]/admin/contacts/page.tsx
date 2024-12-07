@@ -5,7 +5,7 @@ import { ContactsTable } from './components/table/data-table';
 import { contactColumns } from './components/table/colunms';
 import { Card, CardContent } from '@/components/ui/card';
 import { z } from 'zod';
-import { ContactformSchema } from '@/app/portfolio/schemas/contactFormSchema';
+import { ContactformSchema } from '@/app/[local]/portfolio/schemas/contactFormSchema';
 import { useQuery } from '@tanstack/react-query';
 import { AxiosInstance } from '@/lib/axios';
 

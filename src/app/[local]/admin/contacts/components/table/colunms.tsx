@@ -1,6 +1,6 @@
 "use client"
 
-import { ContactformSchema } from "@/app/portfolio/schemas/contactFormSchema"
+import { ContactformSchema } from "@/app/[local]/portfolio/schemas/contactFormSchema"
 import { ColumnDef } from "@tanstack/react-table"
 import Link from "next/link"
 import { z } from "zod"
