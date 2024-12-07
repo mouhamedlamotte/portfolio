@@ -7,7 +7,7 @@ export async function GET(request: NextRequest) {
         const { searchParams } = new URL(request.url);
         const key = searchParams.get('key');
         const patern = searchParams.get('patern');
-        const res = await cleanCache(key, patern);
+        await cleanCache(key, patern);
         return NextResponse.json({"message": "ok"}, {status: 200})
     } catch (error) {
         kdebug('server error ==>', error);

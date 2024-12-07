@@ -9,13 +9,18 @@ export const redis = new Redis(redisUrl)
 
 
 export const cleanCache = async (key?: string | null, patern?: string | null) => {
+    const keys = await redis.keys("*");
+        
     try {
         if (key) {
             await redis.del(key);
         }
         if  (patern) {
-            const k = redis.keys
-            console.log(k);
+            for (const key of keys) {
+                if (key.startsWith(patern)) {
+                    await redis.del(key);
+                }
+            }
         }
         return true
     } catch (error) {

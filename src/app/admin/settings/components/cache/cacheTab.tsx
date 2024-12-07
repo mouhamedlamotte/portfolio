@@ -6,7 +6,6 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
 import { Icons } from '@/icons'
-import { cleanCache } from '@/lib/redis'
 import { useQuery } from '@tanstack/react-query'
 import { AxiosInstance } from '@/lib/axios'
 import { Loader } from 'lucide-react'
@@ -18,7 +17,7 @@ export const CacheTab = () => {
     const {isFetching} = useQuery({
         queryKey: ['clean-blog-cache'],
         queryFn: async() => {
-            return await AxiosInstance.get('/cache/blog/clean').then(res => res.data)
+            return await AxiosInstance.get('/cache/blog/clean?patern=notion').then(res => res.data)
         },
         enabled: !!enableCache,
         onSuccess: () => {
