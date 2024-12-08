@@ -19,7 +19,7 @@ export  function HomeHero() {
   const t = useScopedI18n("landing.header.hero")
 
   return (
-      <div className="relative bg-background w-full overflow-hidden  flex flex-col items-center justify-center rounded-lg py-14 border-red-500" >
+      <div className="relative bg-background w-full overflow-hidden  flex flex-col items-center justify-center rounded-lg py-40 " >
         <div className="absolute bg-background inset-0 w-full h-full  z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none space-y-6" />
 
         <Boxes />
