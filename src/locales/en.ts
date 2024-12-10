@@ -78,4 +78,18 @@ Trained at **Sonatel Academy** 🎓, I bring a **dual expertise** in backend and
       }
     }
   },
+  portfolio: {
+    title: "Portfolio",
+    subtitle: "Discover the projects I have completed during courses, in companies, or through self-learning",
+    categories: {
+      all: "All projects",
+      saas: "SaaS projects",
+      chat: "Messaging projects",
+      data: "Data Engineering",
+      course: "Course projects",
+      integration: "Web integration",
+      mobile: "Mobile application projects",
+      web: "Web projects",
+    },
+  }
 } as const;

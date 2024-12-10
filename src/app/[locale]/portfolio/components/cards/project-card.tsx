@@ -1,3 +1,4 @@
+import { LiveIndicator } from "@/app/[locale]/components/common/live-indicator";
 import AnimatedShinyText from "@/app/[locale]/components/ui/animated-shiny-text";
 import { Badge } from "@/app/[locale]/components/ui/badge";
 import { Button } from "@/app/[locale]/components/ui/button";
@@ -29,6 +30,7 @@ interface Props {
     href: string;
   }[];
   className?: string;
+  ongoing?: boolean;
 }
 
 export function ProjectCard({project, stack}: {project: Props, stack?: boolean}) {
@@ -64,10 +66,18 @@ export function ProjectCard({project, stack}: {project: Props, stack?: boolean})
       </Link>
       <CardHeader className="px-2 pb-4">
         <div className="space-y-1">
-          <CardTitle className="mt-1 text-base">{project.title}</CardTitle>
+            
+            <CardTitle className="mt-1 text-base inline-flex items-center gap-2">{project.title}
+            {
+              project.ongoing && (
+                <LiveIndicator />
+              )
+            }
+          
+            </CardTitle>
           {/* <time className="font-sans text-xs">{project.dates}</time> */}
           <div className="hidden font-sans text-xs underline print:visible">
-            {project.link?.replace("https://", "").replace("www.", "").replace("/", "")}
+            {project.title} 
           </div>
           <Markdown className="prose max-w-full text-pretty font-sans text-xs text-muted-foreground dark:prose-invert text-justify md:text-start">
             {project.description}

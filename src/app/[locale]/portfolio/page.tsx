@@ -7,40 +7,43 @@ import { resume } from "@/app/[locale]/data";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/app/[locale]/components/ui/select";
 import { projectCardType } from "./[name]/components/project-details";
 import { Section } from "./components/section";
+import { useScopedI18n } from "@/locales/client";
 
 
 
 
 const Portfolio = () => {
 
+  const t = useScopedI18n("portfolio")
+
   const categories : {type:string, name:string}[] = [
     {
       type : "all",
-      name : "Tous les projets"
+      name : t("categories.all"),
     },
     {
       type : "saas",
-      name : "Projet de sass",
+      name : t("categories.saas"),
     },
     {
       type: "chat",
-      name: "projet de messagerie"
+      name: t("categories.chat")
     },
     {
       type: "data",
-      name: "data engenering"
+      name: t("categories.data")
     },
     {
       type: "cours",
-      name: "Mes projets de cours"
+      name: t("categories.course")
     },
     {
       type: "integration",
-      name: "Integration web"
+      name: t("categories.integration")
     },
     {
       type: "mobile",
-      name: "Projets d'applications mobiles"
+      name: t("categories.mobile")
     }
   ]
 
@@ -60,17 +63,16 @@ const Portfolio = () => {
       <div className="py-4 md:pt-8 md:pb-20 flex">
         <div className="flex-1">
           <h2 className="text-lg md:text-4xl mb-4 text-black dark:text-white max-w-4xl">
-            Projects
+            {t("title")}
           </h2>
           <p className="text-neutral-700 dark:text-neutral-300 text-sm md:text-base max-w-sm">
-            Decouvrez les projets que j&apos;ai pu realiser en cours, en
-            entreprise ou en autodidacte
+              {t("subtitle")}
           </p>
         </div>
         <div className="ml-auto flex-1 max-w-md">
         <Select onValueChange={(value)=>handleChangeCategory(value)} >
           <SelectTrigger className="py-6">
-          <SelectValue placeholder="Tous les projets" />
+          <SelectValue placeholder={t("categories.all")} />
           </SelectTrigger>
           <SelectContent>
             {

@@ -38,7 +38,7 @@ export const projects = [
       ],
     },
     {
-      ongoing : false,
+      ongoing : true,
       type : "chat",
       video : "",
       images: [
@@ -198,7 +198,7 @@ export const projects = [
       ],
     },
     {
-      ongoing : false,
+      ongoing : true,
       type : "cours",
       video : "",
       images: [

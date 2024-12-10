@@ -78,4 +78,18 @@ Formé à **Sonatel Academy** 🎓, j’ai une **double expertise** en développ
       }
     }
   },
+  portfolio: {
+    title: "Portfolio",
+    subtitle: "Decouvrez les projets que j'ai pu realiser en cours, en entreprise ou en autodidacte",
+    categories: {
+      all: "Tous les projets",
+      saas: "Projets de SaaS",
+      chat: "Projets de messagerie",
+      data: "Data Engineering",
+      course: "Projets de cours",
+      integration: "Integration web",
+      mobile: "Projets d'applications mobiles",
+      web: "Projets web",
+    },
+  }
 } as const;
