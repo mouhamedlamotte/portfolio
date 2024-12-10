@@ -199,7 +199,6 @@ export const projects = [
         "/img/odc-inside/2.png",
         "/img/odc-inside/3.png",
         "/img/odc-inside/4.png",
-        "/img/odc-inside/5.png",
       ] as string[],
       name: "odc-inside",
       title: "Odc Inside",
@@ -244,7 +243,11 @@ export const projects = [
       tags: ["React", "Tailwind CSS", "Landing Page", "Frontend", "Web Design"],
       image: "/img/preview/subito-web-clone.png",
       links: [
-        
+        {
+          icon: <Icons.github className="size-4" />,
+          type: "github",
+          href: "https://github.com/mouhamedlamotte/mysubito-landing-clone",
+        }
       ]
     },
     {
@@ -271,8 +274,8 @@ export const projects = [
       links: [
         {
           icon: <Icons.github className="size-4" />,
-          type: "landing page",
-          href: "https://aora-app.vercel.app/",
+          type: "github",
+          href: "https://github.com/mouhamedlamotte/aora",
         },
       ],
     },

@@ -142,8 +142,8 @@ const FallbackComponent = () => {
   return (
     <div className="w-full h-screen flex items-center justify-center">
       <div className="flex flex-col items-center gap-2">
-        <span className=" text-center font-bold">Mouhamed lamotte</span>
-        <Loader className="animate-spin" />
+        <span className=" text-center font-bold ">Hello ! 👋</span>
+        <span className=" text-center font-bold  text-xs inline-flex items-center">Please wait a few seconds <Loader className="h-4 w-4 animate-spin" /></span>
       </div>
     </div>
   );

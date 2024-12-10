@@ -1,19 +1,33 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Avatar, AvatarFallback, AvatarImage } from "@/app/[locale]/components/ui/avatar"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/app/[locale]/components/ui/card"
-import { CalendarIcon} from 'lucide-react'
-import { Section } from "../../components/section"
-import { fetchBySlug, fetchPageBlocks, notion } from "@/lib/notion"
-import { notFound } from "next/navigation"
-import { NotionRenderer } from "@notion-render/client"
-import hljsPlugin from "@notion-render/hljs-plugin"
-import bookmarkPlugin from "@notion-render/bookmark-plugin"
-import { Block } from "@notion-render/client/dist/types"
-import { formatDate } from "@/lib/utils"
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/app/[locale]/components/ui/avatar";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/app/[locale]/components/ui/card";
+import { CalendarIcon } from "lucide-react";
+import { Section } from "../../components/section";
+import { fetchBySlug, fetchPageBlocks, notion } from "@/lib/notion";
+import { notFound } from "next/navigation";
+import { NotionRenderer } from "@notion-render/client";
+import hljsPlugin from "@notion-render/hljs-plugin";
+import bookmarkPlugin from "@notion-render/bookmark-plugin";
+import { Block } from "@notion-render/client/dist/types";
+import { formatDate } from "@/lib/utils";
+import { Badge } from "@/app/[locale]/components/ui/badge";
 
-export default async function BlogDetail({ params }: { params: Promise<{ slug: string }> }) {
-
+export default async function BlogDetail({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const slug = (await params).slug;
 
   const post = await fetchBySlug(slug);
@@ -28,48 +42,66 @@ export default async function BlogDetail({ params }: { params: Promise<{ slug: s
       ...block,
     }))
   );
-  
+
   const renderer = new NotionRenderer({
     client: notion,
   });
-  
+
   renderer.use(hljsPlugin({}));
   renderer.use(bookmarkPlugin(undefined));
-  
+
   const html = await renderer.render(...blocks);
 
-  const p:any = post
+  const p: any = post;
+
+  console.log(p?.properties?.tags?.multi_select);
   
 
-
   return (
-  <>
-    <Section>
-    <article className="max-w-3xl mx-auto">
-        <h1 className="text-4xl font-bold mb-4">{p?.properties?.title?.title[0]?.plain_text as unknown as string}</h1>
-        
-        <div className="flex items-center space-x-4 mb-6">
-          <Avatar>
-            <AvatarImage src="/me.jpeg" alt="Mouhamed Lamotte" />
-            <AvatarFallback>ML</AvatarFallback>
-          </Avatar>
-          <div>
-            <p className="font-medium">Mouhamed Lamotte</p>
-            <div className="flex items-center text-sm text-muted-foreground">
-              <CalendarIcon className="mr-1 h-4 w-4" />
-             {formatDate(post.created_time)}
+    <>
+      <Section>
+        <article className="max-w-3xl mx-auto">
+          <h1 className="text-4xl font-bold mb-4">
+            {p?.properties?.title?.title[0]?.plain_text as unknown as string}
+          </h1>
+          <div className="mb-6 flex flex-col items-start space-y-2 md:flex-row md:items-center ">
+            <div className="flex items-center space-x-4 ">
+              <Avatar>
+                <AvatarImage src="/me.jpeg" alt="Mouhamed Lamotte" />
+                <AvatarFallback>ML</AvatarFallback>
+              </Avatar>
+              <div>
+                <p className="font-medium">Mouhamed Lamotte</p>
+                <div className="flex items-center text-sm text-muted-foreground">
+                  <CalendarIcon className="mr-1 h-4 w-4" />
+                  {formatDate(post.created_time)}
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center space-x-2 md:ml-auto flex-wrap">
+              {
+                p?.properties?.tags?.multi_select?.map((tag : {id: string, name: string, color: string}) => (
+                    <Badge key={tag.id}  variant="outline"
+                      style={{ backgroundColor: tag.color }}
+                    >{tag.name}</Badge>
+                ))
+              }
             </div>
           </div>
-        </div>
 
-        <img 
-          src={p.cover?.file?.url ?? "/placeholder.svg"}
-          alt={p?.properties?.title?.title[0]?.plain_text as unknown as string}
-          className="w-full h-[400px] object-cover rounded-lg mb-8"
-        />
-      <div className="prose prose-lg max-w-none dark:prose-invert" dangerouslySetInnerHTML={{ __html: html }} />
-      </article>
-    </Section>
+          <img
+            src={p.cover?.file?.url ?? "/placeholder.svg"}
+            alt={
+              p?.properties?.title?.title[0]?.plain_text as unknown as string
+            }
+            className="w-full h-[400px] object-cover rounded-lg mb-8"
+          />
+          <div
+            className="prose prose-lg max-w-none dark:prose-invert"
+            dangerouslySetInnerHTML={{ __html: html }}
+          />
+        </article>
+      </Section>
 
       {/* <Section>
         <h2 className="text-2xl font-bold mb-6">Articles Similaires</h2>
@@ -116,6 +148,5 @@ export default async function BlogDetail({ params }: { params: Promise<{ slug: s
         </Card>
       </Section> */}
     </>
-  )
+  );
 }
-

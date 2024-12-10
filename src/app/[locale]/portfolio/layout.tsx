@@ -6,10 +6,10 @@ const Layout = (props : PropsWithChildren) => {
 
 
   return (
-    <div>
+    <div className=''>
         <Navbar />
         <div className='space-y-10'>
-        <main className='space-y-24'>
+        <main className='space-y-24 mt-6'>
         {props.children}
         <Footer />
         </main>
