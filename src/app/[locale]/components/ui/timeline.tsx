@@ -5,7 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
 import { Button } from "./button";
 import { useRouter, useSearchParams } from "next/navigation";
 import { cn } from "@/lib/utils";
-import Link from "next/link";
+import { useScopedI18n } from "@/locales/client";
 
 export type TimelineEntry = {
   title: string;
@@ -37,16 +37,17 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
   const params = useSearchParams();
   const tab = params.get("timeline-tab") ?? "experience";
 
+  const t = useScopedI18n("landing.experience");
+
   return (
     <div className="font-sans" ref={containerRef}>
       <div className="md:py-20 flex flex-col gap-4 md:flex-row md:gap-0 items-start">
         <div>
           <h2 className="text-lg md:text-4xl mb-4 text-black dark:text-white">
-            Journal de Mon Parcours
+            {t("title")}
           </h2>
           <p className="text-neutral-700 dark:text-neutral-300 text-sm md:text-base max-w-sm">
-            Cela fait 3 ans que je construis et apprends en tant que
-            développeur. Voici une chronologie de mon parcours.
+            {t("subtitle")}
           </p>
         </div>
         <div className="md:ml-auto flex border p-1 rounded gap-1 w-full md:w-auto">
@@ -59,7 +60,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
               });
             }}
           >
-            Experience
+            {t("buttons.experience")}
           </Button>
           <Button
             variant="ghost"
@@ -70,7 +71,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
               });
             }}
           >
-            Education
+            {t("buttons.education")}
           </Button>
         </div>
       </div>

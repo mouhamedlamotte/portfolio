@@ -54,14 +54,28 @@ Formé à **Sonatel Academy** 🎓, j’ai une **double expertise** en développ
     },
     recent_projects: {
       title: "Projets Recents",
-      subtitle: "Voici quelques-uns de mes projets les plus résents",
+      subtitle: "Voici quelques-uns de mes projets les plus recents",
     },
     recent_posts: {
       title: "Articles Recents",
-      subtitle: "Voici quelques-uns de mes articles les plus resents",
+      subtitle: "Voici quelques-uns de mes articles les plus recents",
     },
     common: {
       see_more: "Voir plus",
     },
+    footer : {
+      contact : {
+        title : "Contactez-moi",
+      },
+      navigation : {
+        title : "Naviguer",
+        home : "Accueil",
+        portfolio : "Portfolio",
+        blog : "Blog",
+      },
+      social : {
+        title : "Suivez-moi",
+      }
+    }
   },
 } as const;

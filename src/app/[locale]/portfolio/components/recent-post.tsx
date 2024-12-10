@@ -7,12 +7,15 @@ import { Section } from "./section"
 import BlogCard from "./cards/blog-card"
 import { fetchPages } from "@/lib/notion"
 import { formatDate } from "@/lib/utils"
+import { getScopedI18n } from "@/locales/server"
 
 
 export const RecentPost = async () => {
 
   const posts = await fetchPages()
 
+  const t = await getScopedI18n("landing.recent_posts")
+  const common = await getScopedI18n("landing.common")
   
 
   return (
@@ -21,16 +24,16 @@ export const RecentPost = async () => {
       <div className="flex  items-start">
         <div>
         <h2 className="text-lg md:text-4xl mb-4 text-black dark:text-white max-w-4xl">
-            Articles Recents
+            {t("title")}
         </h2>
         <p className="text-neutral-700 dark:text-neutral-300 text-sm md:text-base max-w-sm">
-          Voici quelques-uns de mes articles les plus résents
+            {t("subtitle")}
         </p>
         </div>
             <Button variant="link" className="ml-auto  hover:text-muted-foreground">
               <AnimatedShinyText className="inline-flex items-center" >
               <Link prefetch={false} href="/portfolio/blog" className="hover:underline-none" >
-              Voir plus
+              {common("see_more")}
               </Link>
               <ArrowRight className="ml-2" size={16} />
               </AnimatedShinyText>

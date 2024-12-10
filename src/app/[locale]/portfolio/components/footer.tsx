@@ -3,15 +3,19 @@ import { Mail, MapPin } from "lucide-react";
 import Link from "next/link";
 import { Section } from "./section";
 import { Button } from "@/app/[locale]/components/ui/button";
+import { getScopedI18n } from "@/locales/server";
 
-export function Footer() {
+export async function Footer () {
+
+  const t = await getScopedI18n("landing.footer")
+
   return (
     <footer className="py-8 border-t">
       <Section>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Contact Information */}
           <div className="space-y-4">
-            <h3 className="font-semibold text-lg mb-2">Contact</h3>
+            <h3 className="font-semibold text-lg mb-2">{t("contact.title")}</h3>
             <div className="flex items-center space-x-2 text-muted-foreground">
               <Mail className="h-5 w-5" />
               <a
@@ -38,35 +42,35 @@ export function Footer() {
 
           {/* Navigation Links */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">Navigation</h3>
+            <h3 className="font-semibold text-lg mb-4">{t("navigation.title")}</h3>
             <nav className="space-y-2 text-muted-foreground">
               <Link
                 prefetch={false}
                 href="/"
                 className="block  transition-colors"
               >
-                Home
+                {t("navigation.home")}
               </Link>
               <Link
                 prefetch={false}
-                href="/projects"
+                href="/portfolio"
                 className="block  transition-colors"
               >
-                Projects
+                {t("navigation.portfolio")}
               </Link>
               <Link
                 prefetch={false}
                 href="/blog"
                 className="block  transition-colors"
               >
-                Blog
+                {t("navigation.blog")}
               </Link>
             </nav>
           </div>
 
           {/* Social Media Links */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">Social</h3>
+            <h3 className="font-semibold text-lg mb-4">{t("social.title")}</h3>
             <div className="z-20 flex  gap-4 mb-6">
               <Button variant="ghost" size="icon" asChild>
                 <Link

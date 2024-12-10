@@ -5,25 +5,30 @@ import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { ProjectCard } from "./cards/project-card"
 import { Section } from "./section"
+import { getScopedI18n } from "@/locales/server"
 
 
-export const RecentProjects = () => {
+export const RecentProjects = async () => {
+
+  const t = await getScopedI18n("landing.recent_projects")
+  const common = await getScopedI18n("landing.common")
+
   return (
     <Section>
    <div className="w-full  max-auto">
       <div className="flex  items-start">
         <div>
         <h2 className="text-lg md:text-4xl mb-4 text-black dark:text-white max-w-4xl">
-          Projects Recent
+          {t("title")}
         </h2>
         <p className="text-neutral-700 dark:text-neutral-300 text-sm md:text-base max-w-sm">
-          Voici quelques-uns de mes projets les plus résents
+          {t("subtitle")}
         </p>
         </div>
             <Button variant="link" className="ml-auto  hover:text-muted-foreground">
               <AnimatedShinyText className="inline-flex items-center" >
               <Link prefetch={false} href="/portfolio" className="hover:underline-none" >
-              Voir plus
+              {common("see_more")}
               </Link>
               <ArrowRight className="ml-2" size={16} />
               </AnimatedShinyText>

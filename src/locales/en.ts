@@ -18,7 +18,7 @@ export default {
           "I am a web developer passionate about data and artificial intelligence",
         buttons: {
           see_my_projects: "See my projects",
-          download_cv: "Download My CV",
+          download_cv: "Download my resume",
         },
       },
     },
@@ -63,5 +63,19 @@ Trained at **Sonatel Academy** 🎓, I bring a **dual expertise** in backend and
     common: {
       see_more: "See More",
     },
+    footer : {
+      contact : {
+        title : "Contact",
+      },
+      navigation : {
+        title : "Navigation",
+        home : "Home",
+        portfolio : "Portfolio",
+        blog : "Blog",
+      },
+      social : {
+        title : "Follow Me",
+      }
+    }
   },
 } as const;
