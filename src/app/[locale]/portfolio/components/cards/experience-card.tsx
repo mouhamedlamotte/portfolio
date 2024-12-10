@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/app/[locale]/compone
 import { Badge } from "@/app/[locale]/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from '@/app/[locale]/components/ui/avatar';
 import Markdown from 'react-markdown';
+import { LiveIndicator } from '@/app/[locale]/components/common/live-indicator';
 
 
 export type ExperienceType = {
@@ -12,7 +13,9 @@ export type ExperienceType = {
     year: string;
     description: string;
     technologies: string[];
-    logo? : string
+    logo? : string;
+    ongoing? : boolean
+
 };
 
 
@@ -29,6 +32,9 @@ export const ExperienceCard = ({ exp  }: { exp: ExperienceType}) => {
                   <AvatarImage src={exp.logo} />
                 </Avatar>
                 {exp.company}
+                {
+                  exp.ongoing && <LiveIndicator />
+                }
                 </CardTitle>
               <Badge variant="outline">{exp.story}</Badge>
             </div>

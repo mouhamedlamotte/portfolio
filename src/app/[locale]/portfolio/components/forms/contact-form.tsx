@@ -15,6 +15,7 @@ import { Loader } from 'lucide-react';
 import { useToast } from '@/app/[locale]/hooks/use-toast';
 import { useMutation } from '@tanstack/react-query';
 import { AxiosInstance } from '@/lib/axios';
+import { playMp3 } from '@/lib/mp3';
 
 
 export const ContactForm = () => {
@@ -25,12 +26,15 @@ const sendMessageMutation = useMutation({
   mutationKey: ["sendMessage"],
   mutationFn: async (data: z.infer<typeof ContactformSchema>) => {
     return await AxiosInstance.post('/contacts', data).then(() => {
+  // Fonction de mise à jour de la matrice de jeu
+      playMp3("/mp3/notif.mp3")
       toast({
         title: "Merci pour votre message 💫",
         description: "Je vous reviendrai très vite 🔥.",
       });
       form.reset();
     }).catch(() => {
+      playMp3("/mp3/notif.mp3")
       toast({
         title: "Une erreur est survenue",
         variant: "destructive",

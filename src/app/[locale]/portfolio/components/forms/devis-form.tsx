@@ -34,6 +34,7 @@ import { Loader } from "lucide-react";
 import { kdebug } from "@/lib/kdebug";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosInstance } from "@/lib/axios";
+import { playMp3 } from "@/lib/mp3";
 
 export default function DevisForm() {
   const { toast } = useToast();
@@ -43,6 +44,7 @@ export default function DevisForm() {
     mutationKey: ["sendDevis"],
     mutationFn: async (data: z.infer<typeof devisSchema>) => {
       return await AxiosInstance.post('/devis', data).then((res) => {
+      playMp3("/mp3/notif.mp3")
         toast({
           title: "Demande envoyee",
           description: "Votre demande a ete envoyee avec success.",
@@ -79,6 +81,7 @@ export default function DevisForm() {
     }
     sendDevisMutation.mutate({ ...values, file: url })
    } catch (error) {
+    playMp3("/mp3/notif.mp3")
     toast({
       title: "Une erreur est survenue",
       variant: "destructive",

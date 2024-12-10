@@ -1,5 +1,6 @@
 export const work  =[
   {
+    ongoing : true,
     year: "Nov. 2024",
     story : "À l'ère des données avec le Groupe Sonatel 📊",
     company: "Groupe Sonatel",
@@ -8,7 +9,7 @@ export const work  =[
     technologies: ["Kibana", "Elasticsearch", "StreamSets", "Python", "VBA"],
     logo : "/img/logo/sonatel.png"
   },
-  {
+  {ongoing : false,
     year: "Avril 2024",
     story : "En Plein Essor avec Subito International 🚀",
     company: "Subito International",
@@ -17,7 +18,7 @@ export const work  =[
     technologies: ["Nextjs", "Tailwind CSS", "Shadcn UI"],
     logo : "/img/logo/subito.png"
   },
-  {
+  {ongoing : false,
     year: "Août 2024",
     story : "Sur la Route avec Jolof Taxi 🚖",
     company: "Jolof Taxi",
@@ -26,7 +27,7 @@ export const work  =[
     technologies: ["Next.js", "Firebase", "Tailwind CSS", "Vercel"],
     logo : "/img/logo/jolof.svg"
   },
-  {
+  {ongoing : false,
     year: "Juillet 2022",
     story : "Le Déclic 🌟",
     company: "Sante de Coeur",

@@ -13,6 +13,7 @@ import { useState } from "react"
 import { useMessagePreviewStore } from "../stores/messagePreviewStore"
 import { generateEmailHtml } from "@/lib/generate-email-html"
 import { replyMessageTemplate } from "@/templates/replymessage"
+import { playMp3 } from "@/lib/mp3"
 
 export const SendMessageBox = () => {
 
@@ -37,6 +38,7 @@ export const SendMessageBox = () => {
                 queryClient.invalidateQueries(['reply', id])
                 setMessage('')
             }).catch(() => {
+                playMp3("/mp3/notif.mp3")
                 toast({
                     title: "Une erreur est survenue",
                     variant: "destructive",
