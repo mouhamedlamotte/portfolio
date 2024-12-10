@@ -3,6 +3,7 @@ import { Icons } from "@/app/[locale]/icons";
 
 export const projects = [
     {
+      ongoing : true,
       type : "saas",
       video : "",
       images: [
@@ -37,6 +38,7 @@ export const projects = [
       ],
     },
     {
+      ongoing : false,
       type : "chat",
       video : "",
       images: [
@@ -74,6 +76,7 @@ export const projects = [
       ],
     },
     {
+      ongoing : false,
       type : "data",
       video : "/img/preview/indexation.mp4",
       images: [
@@ -106,6 +109,7 @@ export const projects = [
       ],
     },
     {
+      ongoing : false,
       type : "chat",
       video : "/img/preview/demo-windam-1.mp4",
       images: [] as string[],
@@ -133,6 +137,7 @@ export const projects = [
       ],
     },
     {
+      ongoing : false,
       type : "cours",
       video : "",
       images: [
@@ -160,6 +165,7 @@ export const projects = [
       ],
     },
     {
+      ongoing : false,
       type : "cours",
       video : "",
       images: [
@@ -192,6 +198,7 @@ export const projects = [
       ],
     },
     {
+      ongoing : false,
       type : "cours",
       video : "",
       images: [
@@ -227,6 +234,7 @@ export const projects = [
       ],
     },
     {
+      ongoing : false,
       type : "integration",
       video : "",
       images: [
@@ -251,6 +259,7 @@ export const projects = [
       ]
     },
     {
+      ongoing : false,
       type : "mobile",
       video : "",
       images: [
@@ -280,6 +289,7 @@ export const projects = [
       ],
     },
     {
+      ongoing : false,
       type : "mobile",
       video : "",
       images: [
@@ -312,6 +322,7 @@ export const projects = [
       ],
     },
     {
+      ongoing : false,
       type : "data",
       video : "",
       images: [
@@ -350,6 +361,7 @@ export const projects = [
       ],
     },
     {
+      ongoing : false,
       type : "integration",
       video : "",
       images: [] as string[],
@@ -380,6 +392,7 @@ export const projects = [
       ],
     },
     {
+      ongoing : false,
       type : "integration",
       video : "",
       images: [] as string[],
@@ -405,6 +418,7 @@ export const projects = [
       ],
     },
     {
+      ongoing : false,
       type : "integration",
       video : "",
       images: [] as string[],
