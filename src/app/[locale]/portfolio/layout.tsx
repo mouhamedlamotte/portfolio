@@ -1,6 +1,7 @@
 import React, { PropsWithChildren } from 'react'
 import { Navbar } from './components/navbar'
 import { Footer } from './components/footer'
+import { FloatingChatWidget } from './components/floatingChatWidget'
 
 const Layout = (props : PropsWithChildren) => {
 

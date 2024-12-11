@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SessionProvider } from "next-auth/react";
 import { PropsWithChildren } from "react";
 import { ThemeProvider } from "./themeProvider";
+import { FloatingChatWidget } from "../portfolio/components/floatingChatWidget";
 
 const queryClient = new QueryClient();
 
@@ -19,6 +20,7 @@ export const Provider = (props: PropsWithChildren<{ locale: string }>) => {
       <I18nProviderClient locale={props.locale}>
         <QueryClientProvider client={queryClient}>
           <SessionProvider>{props.children}</SessionProvider>
+        <FloatingChatWidget />
         </QueryClientProvider>
       </I18nProviderClient>
     </ThemeProvider>

@@ -6,6 +6,7 @@ import { Toaster } from "@/app/[locale]/components/ui/toaster";
 import { ImgPreview } from "@/app/[locale]/components/common/img-preview";
 import { Suspense } from "react";
 import { Loader } from "lucide-react";
+import { FloatingChatWidget } from "./portfolio/components/floatingChatWidget";
 
 
 

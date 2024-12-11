@@ -10,7 +10,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from 'zod';
 import { ContactformSchema } from '../../schemas/contactFormSchema';
 import { Textarea } from '@/app/[locale]/components/ui/textarea';
-import { addContact } from '@/db/contacts';
 import { Loader } from 'lucide-react';
 import { useToast } from '@/app/[locale]/hooks/use-toast';
 import { useMutation } from '@tanstack/react-query';
