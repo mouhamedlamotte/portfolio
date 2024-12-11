@@ -39,6 +39,13 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
 
   const t = useScopedI18n("landing.experience");
 
+  useEffect(() => {
+    if (ref.current) {
+      const rect = ref.current.getBoundingClientRect();
+      setHeight(rect.height);
+    }
+  }, [ref, data, tab]);
+
   return (
     <div className="font-sans" ref={containerRef}>
       <div className="md:py-20 flex flex-col gap-4 md:flex-row md:gap-0 items-start">
@@ -75,7 +82,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
           </Button>
         </div>
       </div>
-      <div ref={ref} className="relative pb-20 !overflow-hidden">
+      <div ref={ref} className="relative pb-20 ">
         {data.map((item, index) => (
           <div
             key={index}
