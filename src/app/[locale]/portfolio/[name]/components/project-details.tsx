@@ -24,25 +24,11 @@ export type projectCardType = {
             type: string;
             href: string;
         }[];
+        eng_desc : string 
 }
 
 type projectDetailsProps = {
-    project: {
-        title: string;
-        description: string;
-        type: string;
-        image: string;
-        video: string;
-        images: string[];
-        link: string;
-        github: string;
-        tags: string[];
-        links: {
-            icon: React.ReactNode;
-            type: string;
-            href: string;
-        }[];
-    }
+    project: projectCardType
     imgs: string[]
 }
 

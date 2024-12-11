@@ -84,7 +84,7 @@ const Portfolio = () => {
         </Select>
         </div>
       </div>
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-10 mb-20">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-10 mb-20 sm:mx-20 md:mx-0">
         {projects.map((project) => (
           <ProjectCard key={project.title} project={project} stack={true} />
         ))}

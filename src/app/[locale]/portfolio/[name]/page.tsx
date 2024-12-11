@@ -10,6 +10,7 @@ import { ProjectCard } from "../components/cards/project-card";
 import React from "react";
 import { projectCardType, ProjectDetails } from "./components/project-details";
 import { Section } from "../components/section";
+import { getCurrentLocale } from "@/locales/server";
 
 
 export default async function Page({ params }: { params: Promise<{ name: string }> }) {
@@ -29,6 +30,8 @@ export default async function Page({ params }: { params: Promise<{ name: string 
     return pj.type === project.type && pj.name !== project.name;
   });
 
+  const locale = await getCurrentLocale()
+
   return (
     <Section >
       <div className="pb-10 flex  items-start">
@@ -37,7 +40,7 @@ export default async function Page({ params }: { params: Promise<{ name: string 
             {project.title}
           </h2>
           <Markdown className="text-neutral-700 dark:text-neutral-300 text-sm md:text-base  max-w-lg">
-            {project.description}
+            {locale === "fr" ? project.description : project.eng_desc}
           </Markdown>
         </div>
         <Button

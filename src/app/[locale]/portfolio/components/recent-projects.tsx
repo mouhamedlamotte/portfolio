@@ -15,7 +15,7 @@ export const RecentProjects = async () => {
 
   return (
     <Section>
-   <div className="w-full  max-auto">
+   <div className="w-full  mx-auto px-10 md:px-0">
       <div className="flex  items-start">
         <div>
         <h2 className="text-lg md:text-4xl mb-4 text-black dark:text-white max-w-4xl">
@@ -34,7 +34,7 @@ export const RecentProjects = async () => {
               </AnimatedShinyText>
             </Button>
       </div>
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-10">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-10 sm:mx-20 md:mx-0">
         {resume.projects.slice(0, 3).map((project) => (
           <ProjectCard key={project.title} project={project} stack={false} />
         ))}
