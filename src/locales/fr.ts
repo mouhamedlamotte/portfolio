@@ -92,7 +92,18 @@ Formé à **Sonatel Academy** 🎓, j’ai une **double expertise** en développ
           placeholder: "Ton message...",
           error_message: "Le message doit contenir au moins 10 caractères."
         },
-        send: "Envoyer"
+        send: "Envoyer",
+        tost_messages: {
+          success: {
+            title: "Merci pour votre message 💫",
+            description: "Je vous reviendrai très vite 🔥."
+          },
+          error: {
+            title: "Une erreur est survenue.",
+            description: "Votre message n'a pas pu être envoyé."
+          }
+        }
+        
       }
     },    
     common: {

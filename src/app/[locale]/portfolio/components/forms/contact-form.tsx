@@ -16,9 +16,12 @@ import { useToast } from '@/app/[locale]/hooks/use-toast';
 import { useMutation } from '@tanstack/react-query';
 import { AxiosInstance } from '@/lib/axios';
 import { playMp3 } from '@/lib/mp3';
+import { useScopedI18n } from '@/locales/client';
 
 
 export const ContactForm = () => {
+
+  const t = useScopedI18n("landing.get_in_touch.contact_form")
 
 
 
@@ -26,19 +29,18 @@ const sendMessageMutation = useMutation({
   mutationKey: ["sendMessage"],
   mutationFn: async (data: z.infer<typeof ContactformSchema>) => {
     return await AxiosInstance.post('/contacts', data).then(() => {
-  // Fonction de mise à jour de la matrice de jeu
       playMp3("/mp3/notif.mp3")
       toast({
-        title: "Merci pour votre message 💫",
-        description: "Je vous reviendrai très vite 🔥.",
+        title: t("tost_messages.sucess.title"),
+        description: t("tost_messages.sucess.description"),
       });
       form.reset();
     }).catch(() => {
       playMp3("/mp3/notif.mp3")
       toast({
-        title: "Une erreur est survenue",
         variant: "destructive",
-        description: "Votre message n'a pas pu etre envoye.",
+        title: t("tost_messages.error.title"),
+        description: t("tost_messages.error.description"),
       });
     })
   }
@@ -60,7 +62,7 @@ const { toast } = useToast();
   return (
     <Card>
     <CardHeader>
-      <CardTitle>Formulaire de contact</CardTitle>
+      <CardTitle>{t("title")} </CardTitle>
     </CardHeader>
       <Form {...form} >
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -70,9 +72,9 @@ const { toast } = useToast();
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Nom</FormLabel>
+                <FormLabel> {t("name.label")} </FormLabel>
                 <FormControl>
-                  <Input className='py-6' placeholder="Votre nom" {...field} />
+                  <Input className='py-6' placeholder={t("name.placeholder")} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -83,9 +85,9 @@ const { toast } = useToast();
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel>{t("email.label")}</FormLabel>
                 <FormControl>
-                  <Input className='py-6' placeholder="votre@email.com" {...field} />
+                  <Input className='py-6' placeholder={t("email.placeholder")} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -96,9 +98,9 @@ const { toast } = useToast();
             name="message"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Message</FormLabel>
+                <FormLabel>{t("message.label")}</FormLabel>
                 <FormControl>
-                  <Textarea rows={4} placeholder="Votre message..." {...field} />
+                  <Textarea rows={4} placeholder={t("message.placeholder")} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -112,7 +114,7 @@ const { toast } = useToast();
           variant="secondary"
           size={sendMessageMutation.isLoading ? "icon" : "lg"}
           type="submit" >
-            {sendMessageMutation.isLoading ? <Loader className="animate-spin" /> : "Envoyer"}
+            {sendMessageMutation.isLoading ? <Loader className="animate-spin" /> : t("send")}
           </Button>
       </CardFooter>
           </form>

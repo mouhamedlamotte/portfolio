@@ -76,7 +76,7 @@ Trained at **Sonatel Academy** 🎓, I bring a **dual expertise** in backend and
         play_again : "Play again"
       },
       contact_form : {
-        title : "",
+        title : "Leave me a message ",
           name : {
             label : "Name",
             placeholder : "Enter your name",
@@ -92,7 +92,17 @@ Trained at **Sonatel Academy** 🎓, I bring a **dual expertise** in backend and
             placeholder : "Your message...",
             error_message : "The message must contain at least 10 characters."
           },
-          send : "Send"
+          send : "Send",
+          tost_messages : {
+              sucess : {
+                title : "Thank you for your message 💫",
+                description: "I'll get back to you very soon 🔥.",
+              },
+              error :{
+                title : "An error occurred.",
+                description: "Your message could not be sent.",
+              }
+          }
       }
     },
     common: {
