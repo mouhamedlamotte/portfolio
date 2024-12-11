@@ -10,7 +10,7 @@ import { ProjectCard } from "../components/cards/project-card";
 import React from "react";
 import { projectCardType, ProjectDetails } from "./components/project-details";
 import { Section } from "../components/section";
-import { getCurrentLocale } from "@/locales/server";
+import { getCurrentLocale, getScopedI18n } from "@/locales/server";
 
 
 export default async function Page({ params }: { params: Promise<{ name: string }> }) {
@@ -31,6 +31,8 @@ export default async function Page({ params }: { params: Promise<{ name: string 
   });
 
   const locale = await getCurrentLocale()
+  const t = await getScopedI18n("portfolio.detail")
+  const common = await getScopedI18n("landing.common")
 
   return (
     <Section >
@@ -51,7 +53,7 @@ export default async function Page({ params }: { params: Promise<{ name: string 
           <Link prefetch={false} href="/portfolio">
           <AnimatedShinyText className="inline-flex items-center">
             <ArrowLeft className="me-2" size={16} />
-            Retour
+            {common("return")}
           </AnimatedShinyText>
           </Link>
         </Button>
@@ -63,7 +65,7 @@ export default async function Page({ params }: { params: Promise<{ name: string 
           <div className="  pb-10 flex  items-start">
             <div>
               <h2 className="text-lg md:text-4xl mb-4 max-w-4xl  font-bold">
-                Autres projets du genre
+                {t("more_such_project")}
               </h2>
             </div>
             <Button
@@ -71,7 +73,7 @@ export default async function Page({ params }: { params: Promise<{ name: string 
               className="ml-auto  hover:text-muted-foreground"
             >
               <AnimatedShinyText className="inline-flex items-center">
-                <Link prefetch={false} href="/projects">Voir tous les projets</Link>
+                <Link prefetch={false} href="/projects"> {common("see_more")} </Link>
                 <ArrowRight className="ms-2" size={16} />
               </AnimatedShinyText>
             </Button>

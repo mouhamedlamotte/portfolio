@@ -107,6 +107,7 @@ Trained at **Sonatel Academy** 🎓, I bring a **dual expertise** in backend and
     },
     common: {
       see_more: "See More",
+      return : "Back"
     },
     footer : {
       contact : {
@@ -136,5 +137,8 @@ Trained at **Sonatel Academy** 🎓, I bring a **dual expertise** in backend and
       mobile: "Mobile application projects",
       web: "Web projects",
     },
+    detail :{
+      more_such_project : "More projects like this"
+    }
   }
 } as const;

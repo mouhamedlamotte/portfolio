@@ -62,71 +62,73 @@ Formé à **Sonatel Academy** 🎓, j’ai une **double expertise** en développ
     },
     get_in_touch: {
       title: "Joue & Prends contact",
-      subtitle: "J'ai créé un petit jeu pour toi ! Relève le défi et tente de battre le niveau impossible.",
+      subtitle:
+        "J'ai créé un petit jeu pour toi ! Relève le défi et tente de battre le niveau impossible.",
       game: {
         levels: {
           easy: "Facile",
-          hard: "Impossible"
+          hard: "Impossible",
         },
         your_turn: "C'est à ton tour !",
         show_me: "Tu as battu le niveau Impossible ? 🥵 Montre-moi ça !",
         congrats: "Bravo ! 🎉",
         you_won: "Tu as gagné ! 🏆",
         pc_won: "La machine t'a battu ! Reprends ta revanche ! 🤖",
-        play_again: "Rejouer"
+        play_again: "Rejouer",
       },
       contact_form: {
         title: "Formulaire de contact",
         name: {
           label: "Nom",
           placeholder: "Saisis ton nom",
-          error_message: "Le nom doit contenir au moins 2 caractères."
+          error_message: "Le nom doit contenir au moins 2 caractères.",
         },
         email: {
           label: "Email",
           placeholder: "Saisis ton email",
-          error_message: "Email invalide."
+          error_message: "Email invalide.",
         },
         message: {
           label: "Message",
           placeholder: "Ton message...",
-          error_message: "Le message doit contenir au moins 10 caractères."
+          error_message: "Le message doit contenir au moins 10 caractères.",
         },
         send: "Envoyer",
         tost_messages: {
           success: {
             title: "Merci pour votre message 💫",
-            description: "Je vous reviendrai très vite 🔥."
+            description: "Je vous reviendrai très vite 🔥.",
           },
           error: {
             title: "Une erreur est survenue.",
-            description: "Votre message n'a pas pu être envoyé."
-          }
-        }
-        
-      }
-    },    
+            description: "Votre message n'a pas pu être envoyé.",
+          },
+        },
+      },
+    },
     common: {
       see_more: "Voir plus",
+      return: "Retour",
     },
-    footer : {
-      contact : {
-        title : "Contactez-moi",
+    footer: {
+      contact: {
+        title: "Contactez-moi",
       },
-      navigation : {
-        title : "Naviguer",
-        home : "Accueil",
-        portfolio : "Portfolio",
-        blog : "Blog",
+      navigation: {
+        title: "Naviguer",
+        home: "Accueil",
+        portfolio: "Portfolio",
+        blog: "Blog",
       },
-      social : {
-        title : "Suivez-moi",
-      }
-    }
+      social: {
+        title: "Suivez-moi",
+      },
+    },
   },
   portfolio: {
     title: "Portfolio",
-    subtitle: "Decouvrez les projets que j'ai pu realiser en cours, en entreprise ou en autodidacte",
+    subtitle:
+      "Decouvrez les projets que j'ai pu realiser en cours, en entreprise ou en autodidacte",
     categories: {
       all: "Tous les projets",
       saas: "Projets de SaaS",
@@ -137,5 +139,29 @@ Formé à **Sonatel Academy** 🎓, j’ai une **double expertise** en développ
       mobile: "Projets d'applications mobiles",
       web: "Projets web",
     },
+    detail: {
+      more_such_project: "Autres projets du genre",
+    },
+  },
+  devis :{
+    title :"Demande de devis",
+    subtitle : "Remplissez ce formulaire pour recevoir un devis personnalisé pour votre projet.",
+    form : {
+        name : {
+          label : "Nom complet",
+          placeholder : "Entrez votre nom"
+        },
+        email : {
+          label : "Email",
+          placeholder : "lamotte@gmail.com"
+        },
+        company : {
+          label : "Entreprise (optionnel)",
+          placeholder : "Nom de votre entreprise"
+        },
+        prject_type :{
+          label : ""
+        }
+    }
   }
 } as const;
