@@ -1,4 +1,3 @@
-import { contact } from "./contact";
 import { projects } from "./projects";
 import { skills } from "./skills";
 import { work } from "./work";
@@ -32,7 +31,7 @@ Formé à **Sonatel Academy** 🎓, j’ai une **double casquette** : backend et
 `,
     avatarUrl: "/me.jpeg",
     skills: skills,
-    contact: contact,
+    contact: {},
     work: work,
     projects: projects,
   } as const;

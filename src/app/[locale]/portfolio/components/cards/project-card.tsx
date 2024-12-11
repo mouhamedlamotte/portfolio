@@ -1,3 +1,5 @@
+"use client"
+
 import { LiveIndicator } from "@/app/[locale]/components/common/live-indicator";
 import AnimatedShinyText from "@/app/[locale]/components/ui/animated-shiny-text";
 import { Badge } from "@/app/[locale]/components/ui/badge";
@@ -10,6 +12,7 @@ import {
   CardTitle,
 } from "@/app/[locale]/components/ui/card";
 import { cn } from "@/lib/utils";
+import { useCurrentLocale } from "@/locales/client";
 import Image from "next/image";
 import Link from "next/link";
 import Markdown from "react-markdown";
@@ -31,9 +34,14 @@ interface Props {
   }[];
   className?: string;
   ongoing?: boolean;
+  eng_desc : string 
+  
 }
 
 export function ProjectCard({project, stack}: {project: Props, stack?: boolean}) {
+
+  const locale = useCurrentLocale()
+
   return (
     <Card
       className={
@@ -80,7 +88,7 @@ export function ProjectCard({project, stack}: {project: Props, stack?: boolean})
             {project.title} 
           </div>
           <Markdown className="prose max-w-full text-pretty font-sans text-xs text-muted-foreground dark:prose-invert text-justify md:text-start">
-            {project.description}
+            {locale === "fr" ? project.description : project.eng_desc}
           </Markdown>
         </div>
       </CardHeader>

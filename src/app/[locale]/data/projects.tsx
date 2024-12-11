@@ -14,6 +14,7 @@ export const projects = [
       name: "nexcom",
       title: "NexCom",
       href: "/portfolio/nexcom",
+      eng_desc : "A SaaS communication platform that integrates messaging channels (e.g., WhatsApp, Facebook Messenger) to streamline customer interactions.",
       description:
         "NexCom est une plateforme de communication centralisée qui aide les entreprises à gérer leurs interactions client sur plusieurs canaux (WhatsApp, Facebook Messenger, Twitter, etc.). Son objectif est de simplifier les échanges, d'améliorer la réactivité et d'offrir une expérience client optimale grâce à une gestion unifiée et en temps réel des messages.",
       dates: "2024 - en cours",
@@ -49,8 +50,9 @@ export const projects = [
       name: "windam",
       title: "Windam pro",
       href: "/portfolio/windam",
+      eng_desc : "A modern chat application with features like real-time messaging, friend management, posts, and user search, developed in collaboration with **[@Helicia Tsika](https://heli2805.github.io/Personal-Portfolio/)**.",
       description:
-        "Windam pre (refonte de **[windam-v1](/portfolio/windam-v1)** est une application de chat moderne offrant des fonctionnalités telles que la messagerie en temps réel, la gestion d'amis, des publications (feed) et la recherche utilisateur en collaboration avec **[@Helicia Tsika](https://heli2805.github.io/Personal-Portfolio/)**. Conçue pour être rapide, intuitive et évolutive, elle utilise des technologies modernes pour une expérience fluide.",
+        "Windam v1 (refonte de **[windam-v1](/portfolio/windam-v1)** ) est une application de chat moderne offrant des fonctionnalités telles que la messagerie en temps réel, la gestion d'amis, des publications (feed) et la recherche utilisateur en collaboration avec **[@Helicia Tsika](https://heli2805.github.io/Personal-Portfolio/)**. Conçue pour être rapide, intuitive et évolutive, elle utilise des technologies modernes pour une expérience fluide.",
       dates: "2024 - en cours",
       tags: [
         "Django",
@@ -88,6 +90,7 @@ export const projects = [
       name: "indexation",
       title: "Indexation et Recherche de Données",
       href: "/portfolio/indexation",
+      eng_desc : "A project focused on building a specialized search engine using **Elasticsearch** and **Kibana** to analyze and visualize trends in data.",
       description:
         "Projet de création d'un moteur de recherche spécialisé basé sur Elasticsearch et Kibana, permettant la collecte, l'analyse et la visualisation des données pour identifier les tendances et extraire des insights exploitables.",
       dates: "2024",
@@ -116,6 +119,7 @@ export const projects = [
       name: "windam-v1",
       title: "Windam Chat V1",
       href: "/portfolio/windam-v1",
+      eng_desc : "A simple chat application developed for learning purposes using technologies like **React** , **Next.js** , and **Firebase** .",
       description:
         "Windam Chat V1 est une application de messagerie conçue comme un projet d'apprentissage pour expérimenter des technologies modernes comme React, Next.js, Tailwind CSS, et Firebase. L'accent est mis sur l'authentification utilisateur sécurisée, mais le système de messagerie n'est pas destiné à des communications sensibles. Ce projet vise à démontrer des compétences techniques.",
       dates: "2023",
@@ -146,6 +150,7 @@ export const projects = [
       name: "boblioloan",
       title: "Boblioloan",
       href: "/portfolio/boblioloan",
+      eng_desc : "A loan management platform designed for libraries and institutions, developed as part of a course with **[@Kamal moustoifa](https://www.linkedin.com/in/moustoifa-ben-kamal-moussa-38a698236/)**.",
       description:
         "Boblioloan (projet de cours) est une plateforme de gestion de prêts en collaboration avec **[@Kamal moustoifa](https://www.linkedin.com/in/moustoifa-ben-kamal-moussa-38a698236/)** qui facilite le suivi des emprunts et des remboursements pour les bibliothèques et autres institutions. Conçue pour être intuitive, elle permet une gestion efficace des membres, des prêts et des retours grâce à une interface moderne et une intégration d'outils de reporting.",
       dates: "2024 - en cours",
@@ -175,6 +180,7 @@ export const projects = [
       name: "promptmaster",
       title: "PromptMaster",
       href: "/portfolio/promptmaster",
+      eng_desc : "A project that involves developing a REST API to manage user submissions (prompts) with Flask, including roles and voting mechanisms.",
       description:
         "PromptMaster est un projet de cours où une API REST est développée avec Flask pour gérer des utilisateurs et des propositions de textes (Prompts). Le système inclut des rôles différents pour les utilisateurs, comme administrateurs et membres, et propose des mécanismes pour gérer les connexions, autorisations, ainsi que la notation et l'activation des Prompts en fonction des votes.",
       dates: "2024 - en cours",
@@ -210,6 +216,7 @@ export const projects = [
       name: "odc-inside",
       title: "Odc Inside",
       href: "/portfolio/odc-inside",
+      eng_desc : "A site for **Sonatel Academy** that includes features like random student selection for a table and an alumni directory for recruiters.",
       description:
         "Un site comprenant deux parties principales : une section 'Inside' permettant de tirer au sort aléatoirement un étudiant de Sonatel Academy pour aller à la table, et une section présentant les alumni de la Sonatel Academy avec des filtres par niveau et d'autres critères pour les recruteurs.",
       dates: "2024",
@@ -245,6 +252,7 @@ export const projects = [
       name: "mysubito-landing-clone",
       title: "MySubito Landing Page Clone",
       href: "/portfolio/mysubito-landing-clone",
+      eng_desc : "A clone of the landing page for the MySubito app, created as a React project for frontend learning.",
       description:
         "Le clone de la landing page de MySubito est une reproduction réalisée pour apprendre React. Cette version permet de présenter les fonctionnalités de l'application de réservation de voitures avec un design réactif, tout en intégrant des pratiques modernes de développement frontend avec React et Tailwind CSS.",
       dates: "2024",
@@ -268,6 +276,7 @@ export const projects = [
       name: "aora",
       title: "Aora",
       href: "/portfolio/aora",
+      eng_desc : "A mobile app for video sharing and content creation, developed with React Native and Appwrite.",
       description:
         "Aora est une application mobile de partage de vidéos et de création de contenu, développée avec React Native, Appwrite et NativeWind. L'application permet aux utilisateurs de créer, partager et interagir avec des vidéos tout en offrant des outils intuitifs de création de contenu et une interface fluide.",
       dates: "2024",
@@ -302,6 +311,7 @@ export const projects = [
       name: "mysubito",
       title: "MySubito app",
       href: "/portfolio/mysubito",
+      eng_desc : "A mobile app for car reservations, refactored using React Native, with features like real-time booking management and notifications.",
       description:
         "MySubito est une refonte de l'application Subito, développée avec React Native. L'application permet aux utilisateurs de réserver des voitures de manière simple et rapide, avec des fonctionnalités comme la gestion des réservations, le suivi en temps réel et des notifications pour une expérience utilisateur fluide.",
       dates: "2024 - en cours",
@@ -337,6 +347,7 @@ export const projects = [
       name: "gestion-fichiers",
       title: "Gestion de Fichiers",
       href: "/portfolio/gestion-fichiers",
+      eng_desc : "A file management tool supporting JSON, YAML, XLSX, CSV formats, with both desktop and web versions.",
       description:
         "Ce projet permet de gérer des fichiers au format JSON, YAML, XLSX, CSV, et plus. Il dispose d'une version desktop, développée avec Tkinter, et d'une version web utilisant Flask, Tailwind CSS et JavaScript. Les utilisateurs peuvent importer des fichiers dans l'un de ces formats et les convertir dans un autre format, grâce à une interface intuitive et fluide.",
       dates: "2024",
@@ -368,6 +379,7 @@ export const projects = [
       name: "organick",
       title: "Organick",
       href: "/portfolio/organick",
+      eng_desc : "",
       description:
         "Une intégration web basée sur une maquette fournie, réalisée avec Tailwind CSS. Cet exercice met en avant les compétences en design réactif et en structuration moderne.",
       dates: "2024",
@@ -399,6 +411,7 @@ export const projects = [
       name: "golio",
       href: "/portfolio/golio",
       title: "Golio",
+      eng_desc : "",
       description:
         "Une intégration web réalisée uniquement avec HTML et CSS, basée sur une maquette fournie. Cet exercice se concentre sur la structuration propre et le design fidèle aux maquettes.",
       dates: "2024",
@@ -425,6 +438,7 @@ export const projects = [
       name: "bella",
       href: "/portfolio/bella",
       title: "Bella Ojene",
+      eng_desc : "",
       description:
         "Une intégration web fidèle à une maquette fournie, réalisée exclusivement avec HTML et CSS. L'objectif est de perfectionner les compétences de base en intégration et en design statique.",
       dates: "2024 - en cours",
