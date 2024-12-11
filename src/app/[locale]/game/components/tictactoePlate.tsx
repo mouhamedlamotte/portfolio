@@ -8,6 +8,7 @@ import { ArrowRight, Camera, Share } from 'lucide-react';
 import { Button } from '@/app/[locale]/components/ui/button';
 import { downloadAsImage } from '@/lib/save-images';
 import Tictactoe from './tictactoe';
+import { useScopedI18n } from '@/locales/client';
 
 
 
@@ -18,6 +19,7 @@ export const TictactoePlate = () => {
 
   const setLevel = useTictactoeLevelStore((state) => state.setLevel);
   const cardRef = useRef<HTMLDivElement>(null);
+  const t =  useScopedI18n("landing.get_in_touch.game")
 
 
   return (
@@ -29,8 +31,8 @@ export const TictactoePlate = () => {
             <SelectValue placeholder="Niveau" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="1" >Facile 😌</SelectItem>
-            <SelectItem value="2" >Impossible 🥵</SelectItem>
+            <SelectItem value="1" >{t("levels.easy")} 😌</SelectItem>
+            <SelectItem value="2" >{t("levels.hard")} 🥵</SelectItem>
           </SelectContent>
         </Select>
       </CardHeader>
@@ -38,7 +40,7 @@ export const TictactoePlate = () => {
         <Tictactoe cardRef={cardRef} />
       </CardContent>
       <CardFooter>
-        <p className="text-muted-foreground text-xs">Tu as gagné(e) contre le niveau Impossible ? 🥵 montre moi </p>
+        <p className="text-muted-foreground text-xs">{t("show_me")}</p>
         <ArrowRight className="h-4 w-4 ms-3 text-muted-foreground" />
         <div className="flex items-center gap-2 ml-auto">
           <Button variant="ghost" className="text-muted-foreground" size="icon" onClick={() => downloadAsImage("png", cardRef, "tictactoe")}>

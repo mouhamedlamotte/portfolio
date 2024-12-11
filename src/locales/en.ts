@@ -60,6 +60,41 @@ Trained at **Sonatel Academy** 🎓, I bring a **dual expertise** in backend and
       title: "Recent Posts",
       subtitle: "Here are some of my most recent articles",
     },
+    get_in_touch : {
+      title : "Play & Get in touch",
+      subtitle : "I made a little game for you! I challenge you to win against the impossible level.",
+      game : {
+        levels : {
+          easy : "Easy",
+          hard : "Impossible"
+        },
+        your_turn : "It's your turn ",
+        show_me : "You beat the Impossible level? 🥵 Show me!",
+        congrats : "Congratulations !  🎉",
+        you_won : "You won ! 🏆",
+        pc_won : "The machine won! Take your revenge! 🤖",
+        play_again : "Play again"
+      },
+      contact_form : {
+        title : "",
+          name : {
+            label : "Name",
+            placeholder : "Enter your name",
+            error_message :  "The name must contain at least 2 characters."
+          },
+          email : {
+            label : "Email",
+            placeholder : "Enter your Email",
+            error_message : "Invalid email."
+          },
+          message : {
+            label : "Message",
+            placeholder : "Your message...",
+            error_message : "The message must contain at least 10 characters."
+          },
+          send : "Send"
+      }
+    },
     common: {
       see_more: "See More",
     },

@@ -60,6 +60,41 @@ Formé à **Sonatel Academy** 🎓, j’ai une **double expertise** en développ
       title: "Articles Recents",
       subtitle: "Voici quelques-uns de mes articles les plus recents",
     },
+    get_in_touch: {
+      title: "Joue & Prends contact",
+      subtitle: "J'ai créé un petit jeu pour toi ! Relève le défi et tente de battre le niveau impossible.",
+      game: {
+        levels: {
+          easy: "Facile",
+          hard: "Impossible"
+        },
+        your_turn: "C'est à ton tour !",
+        show_me: "Tu as battu le niveau Impossible ? 🥵 Montre-moi ça !",
+        congrats: "Bravo ! 🎉",
+        you_won: "Tu as gagné ! 🏆",
+        pc_won: "La machine t'a battu ! Reprends ta revanche ! 🤖",
+        play_again: "Rejouer"
+      },
+      contact_form: {
+        title: "Formulaire de contact",
+        name: {
+          label: "Nom",
+          placeholder: "Saisis ton nom",
+          error_message: "Le nom doit contenir au moins 2 caractères."
+        },
+        email: {
+          label: "Email",
+          placeholder: "Saisis ton email",
+          error_message: "Email invalide."
+        },
+        message: {
+          label: "Message",
+          placeholder: "Ton message...",
+          error_message: "Le message doit contenir au moins 10 caractères."
+        },
+        send: "Envoyer"
+      }
+    },    
     common: {
       see_more: "Voir plus",
     },

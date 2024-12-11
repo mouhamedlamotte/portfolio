@@ -23,9 +23,12 @@ import { kdebug } from "@/lib/kdebug";
 import { useMutation } from "@tanstack/react-query";
 import { z } from "zod";
 import { AxiosInstance } from "@/lib/axios";
+import { useScopedI18n } from "@/locales/client";
 
 
 export default function Tictactoe({cardRef} : {cardRef: React.RefObject<HTMLDivElement>}) {
+  const t =  useScopedI18n("landing.get_in_touch.game")
+
 
   const addGamePlayMutation = useMutation({
     mutationKey: ["addGamePlay"],
@@ -83,23 +86,6 @@ export default function Tictactoe({cardRef} : {cardRef: React.RefObject<HTMLDivE
         // Vérifier si la matrice est pleine et qu'il n'y a pas de gagnant
         if (!hasWinner && isBoardFull(new_matrice)) {
           setPlaying(false);
-          setTimeout(() => {
-            toast({
-              title: "Match nul !",
-              description: "Le jeu est fini sans gagnant.",
-              action: (
-                <Button
-                  variant="destructive"
-                  onClick={() => {
-                    resetGame();
-                    setOpen(false);
-                  }}
-                >
-                  Recommencer
-                </Button>
-              )
-            })
-          }, 1000);
           const dataUrl = await createImg("png", cardRef);
           const image = await uploadDataUrlFile("ticatoe/tictactoe.png", dataUrl ?? "");
           addGamePlayMutation.mutate({
@@ -278,10 +264,10 @@ export default function Tictactoe({cardRef} : {cardRef: React.RefObject<HTMLDivE
       </div>
       <div className="w-full flex justify-center mt-8">
       {
-        hasWinner || isBoardFull(matrice) ? <Button onClick={resetGame}>Rejouer</Button> :
+        hasWinner || isBoardFull(matrice) ? <Button onClick={resetGame}>{t("play_again")}</Button> :
           <div className="">
             {
-              playerOne ? <span className="text-sm font-bold">C&apos;est a ton tour {" ==>"} <span className="text-xl text-blue-400">X</span></span> :
+              playerOne ? <span className="text-sm font-bold">{t("your_turn")} {" ==>"} <span className="text-xl text-blue-400">X</span></span> :
                 <span className="text-sm font-bold">C&apos;est Au tour de la machine{" ==>"} <span className="text-xl text-green-400">0</span></span>
             }
           </div>
@@ -297,18 +283,20 @@ export default function Tictactoe({cardRef} : {cardRef: React.RefObject<HTMLDivE
 
 // Dialogue de victoire
 const WinnerDialog = ({ open, setOpen, winner }: { open: boolean, setOpen: Dispatch<SetStateAction<boolean>>, winner: string }) => {
+  const t =  useScopedI18n("landing.get_in_touch.game")
+
   return (
     <Dialog open={open} onOpenChange={() => setOpen(!open)}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle>{
-            winner === "X" ? "Félicitations !" : "Oups 🥱😅🚶🏾‍♂️ !"
+            winner === "X" ? t("congrats") : "Oups 🥱😅🚶🏾‍♂️ !"
             }</DialogTitle>
         </DialogHeader>
         <div className="py-4">
           {
-            winner === "X" ? <DialogDescription>Vous avez gagné !</DialogDescription> :
-              <DialogDescription>La machine a gagné ! prends ta revanche !</DialogDescription>
+            winner === "X" ? <DialogDescription> {t("you_won")} </DialogDescription> :
+              <DialogDescription> {t("pc_won")} </DialogDescription>
           }
         </div>
         <DialogFooter className="sm:justify-end">
