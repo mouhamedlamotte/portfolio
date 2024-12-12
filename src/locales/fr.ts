@@ -159,7 +159,7 @@ Formé à **Sonatel Academy** 🎓, j’ai une **double expertise** en développ
           label : "Entreprise (optionnel)",
           placeholder : "Nom de votre entreprise"
         },
-        prject_type :{
+        projectType :{
           label : "Type de projet",
           placeholder : "Sellectionnez un type de projet",
           types : {
@@ -183,7 +183,17 @@ Formé à **Sonatel Academy** 🎓, j’ai une **double expertise** en développ
           label : "Description du projet",
           placeholder : "Decrivez votre projet en detail" 
         },
-        send : "Demander un devis"
+        send : "Demander un devis",
+        toast: {
+          success: {
+            title: "Merci pour votre demande de devis 💫",
+            description: "Je vous reviendrai rapidement 🔥.",
+          },
+          error: {
+            title: "Une erreur est survenue.",
+            description: "Votre demande de devis n'a pas pu etre envoyee.",
+          }
+        }
     }
   }
 } as const;

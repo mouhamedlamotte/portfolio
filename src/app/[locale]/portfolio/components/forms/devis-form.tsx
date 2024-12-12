@@ -37,27 +37,29 @@ import { AxiosInstance } from "@/lib/axios";
 import { playMp3 } from "@/lib/mp3";
 import { useScopedI18n } from "@/locales/client";
 
-export default function FormulaireDevis() {
+export default function DevisForm() {
   const { toast } = useToast();
   const [isUploading, setIsUploading] = useState(false);
 
-  const envoyerDevisMutation = useMutation({
-    mutationKey: ["envoyerDevis"],
+  const t = useScopedI18n("quoteRequest.form");
+
+  const sendDevisMutation = useMutation({
+    mutationKey: ["sendDevis"],
     mutationFn: async (data: z.infer<typeof devisSchema>) => {
       return await AxiosInstance.post('/devis', data).then((res) => {
-        playMp3("/mp3/notif.mp3")
+        playMp3("/mp3/notif.mp3");
         toast({
-          title: "Demande envoyée",
-          description: "Votre demande a été envoyée avec succès.",
+          title: t("toast.success.title"),
+          description: t("toast.success.description"),
         });
         form.reset();
         setResetForm(true);
         setIsUploading(false);
       });
-    }
+    },
   });
 
-  const [fichiers, setFichiers] = useState<File[]>([]);
+  const [files, setFiles] = useState<File[]>([]);
   const [resetForm, setResetForm] = useState(false);
 
   const form = useForm<z.infer<typeof devisSchema>>({
@@ -74,23 +76,23 @@ export default function FormulaireDevis() {
     try {
       setIsUploading(true);
       let url;
-      if (fichiers.length > 0) {
-        const fichier = fichiers[0];
-        url = await uploadFile(fichier, "devis");
+      if (files.length > 0) {
+        const file = files[0];
+        url = await uploadFile(file, "devis");
       }
-      envoyerDevisMutation.mutate({ ...values, file: url });
+      sendDevisMutation.mutate({ ...values, file: url });
     } catch (error) {
       playMp3("/mp3/notif.mp3");
       toast({
-        title: "Une erreur est survenue",
+        title: t("toast.error.title"),
         variant: "destructive",
-        description: "Votre demande n'a pas pu être envoyée.",
+        description: t("toast.error.description"),
       });
-      kdebug("Une erreur est survenue :", error);
+      kdebug("Error occurred:", error);
     }
   }
 
-  const t = useScopedI18n("quoteRequest.form");
+  
 
   return (
     <Card className="py-4">
@@ -106,11 +108,11 @@ export default function FormulaireDevis() {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Nom complet</FormLabel>
+                    <FormLabel>{t("name.label")}</FormLabel>
                     <FormControl>
                       <Input
                         className="py-6"
-                        placeholder="John Doe"
+                        placeholder={t("name.placeholder")}
                         {...field}
                       />
                     </FormControl>
@@ -123,11 +125,11 @@ export default function FormulaireDevis() {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel>{t("email.label")}</FormLabel>
                     <FormControl>
                       <Input
                         className="py-6"
-                        placeholder="john@example.com"
+                        placeholder={t("email.placeholder")}
                         {...field}
                       />
                     </FormControl>
@@ -140,11 +142,11 @@ export default function FormulaireDevis() {
                 name="company"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Entreprise (optionnel)</FormLabel>
+                    <FormLabel>{t("company.label")}</FormLabel>
                     <FormControl>
                       <Input
                         className="py-6"
-                        placeholder="Nom de votre entreprise"
+                        placeholder={t("company.placeholder")}
                         {...field}
                       />
                     </FormControl>
@@ -157,22 +159,22 @@ export default function FormulaireDevis() {
                 name="projectType"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Type de projet</FormLabel>
+                    <FormLabel>{t("projectType.label")}</FormLabel>
                     <Select
                       onValueChange={field.onChange}
                       defaultValue={field.value}
                     >
                       <FormControl>
                         <SelectTrigger className="py-6">
-                          <SelectValue placeholder="Sélectionnez un type de projet" />
+                          <SelectValue placeholder={t("projectType.placeholder")} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="website">Site web</SelectItem>
-                        <SelectItem value="webapp">Application web</SelectItem>
-                        <SelectItem value="ecommerce">E-commerce</SelectItem>
-                        <SelectItem value="api">API / Backend</SelectItem>
-                        <SelectItem value="other">Autre</SelectItem>
+                        <SelectItem value="website">{t("projectType.types.website")}</SelectItem>
+                        <SelectItem value="webapp">{t("projectType.types.webapp")}</SelectItem>
+                        <SelectItem value="ecommerce">{t("projectType.types.ecommerce")}</SelectItem>
+                        <SelectItem value="api">{t("projectType.types.api_back")}</SelectItem>
+                        <SelectItem value="other">{t("projectType.types.other")}</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -184,29 +186,21 @@ export default function FormulaireDevis() {
                 name="budget"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Budget estimé</FormLabel>
+                    <FormLabel>{t("budget.label")}</FormLabel>
                     <Select
                       onValueChange={field.onChange}
                       defaultValue={field.value}
                     >
                       <FormControl>
                         <SelectTrigger className="py-6">
-                          <SelectValue placeholder="Sélectionnez une fourchette de budget" />
+                          <SelectValue placeholder={t("budget.placeholder")} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="small">
-                          Moins de 500 000 FCFA
-                        </SelectItem>
-                        <SelectItem value="medium">
-                          500 000 - 2 000 000 FCFA
-                        </SelectItem>
-                        <SelectItem value="large">
-                          2 000 000 - 5 000 000 FCFA
-                        </SelectItem>
-                        <SelectItem value="enterprise">
-                          Plus de 5 000 000 FCFA
-                        </SelectItem>
+                        <SelectItem value="small">-100.000</SelectItem>
+                        <SelectItem value="medium">100.000 - 300.000</SelectItem>
+                        <SelectItem value="large">300.000 - 500.000</SelectItem>
+                        <SelectItem value="enterprise">+500.000</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -215,13 +209,16 @@ export default function FormulaireDevis() {
               />
             </div>
 
-            {/*  */}
+            {/* Right Column */}
             <div className="flex-1 space-y-5">
               <div>
-                <FormLabel>Cahier des charges ou document de projet</FormLabel>
-
+                <FormLabel>{t("doc.label")}</FormLabel>
                 <div className="w-full border border-dashed rounded-lg mt-2">
-                  <FileUpload onChange={(files) => { setFichiers(files); }} reset={resetForm} setResetForm={setResetForm} />
+                  <FileUpload
+                    onChange={(files) => setFiles(files)}
+                    reset={resetForm}
+                    setResetForm={setResetForm}
+                  />
                 </div>
               </div>
               <FormField
@@ -229,10 +226,10 @@ export default function FormulaireDevis() {
                 name="description"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Description du projet</FormLabel>
+                    <FormLabel>{t("desc.label")}</FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder="Décrivez votre projet en détail..."
+                        placeholder={t("desc.placeholder")}
                         className="min-h-[150px]"
                         {...field}
                       />
@@ -241,8 +238,16 @@ export default function FormulaireDevis() {
                   </FormItem>
                 )}
               />
-              <Button type="submit" size={envoyerDevisMutation.isLoading || isUploading ? "icon" : "lg"} className="w-full">
-                {envoyerDevisMutation.isLoading || isUploading ? <Loader className="animate-spin" /> : "Demander un devis"}
+              <Button
+                type="submit"
+                size={sendDevisMutation.isLoading || isUploading ? "icon" : "lg"}
+                className="w-full"
+              >
+                {sendDevisMutation.isLoading || isUploading ? (
+                  <Loader className="animate-spin" />
+                ) : (
+                  t("send")
+                )}
               </Button>
             </div>
           </form>

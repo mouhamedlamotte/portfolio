@@ -181,8 +181,19 @@ Trained at **Sonatel Academy** 🎓, I bring a **dual expertise** in backend and
         label: "Project Description",
         placeholder: "Describe your project in detail"
       },
-      send: "Request a Quote"
+      send: "Request a Quote",
+      toast: {
+        success: {
+          title: "Thank you for your request",
+          description: "We will get back to you as soon as possible."
+        },
+        error: {
+          title: "An error occurred.",
+          description: "Your request could not be sent."
+        }
+      }
     }
   }
+  
   
 } as const;
