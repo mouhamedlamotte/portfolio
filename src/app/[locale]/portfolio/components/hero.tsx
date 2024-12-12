@@ -23,7 +23,7 @@ export  function HomeHero() {
         <div className="absolute bg-background inset-0 w-full h-full  z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none space-y-6" />
 
         <Boxes />
-        <Avatar className="z-20 h-32 w-32">
+        <Avatar className="h-32 w-32">
           <AvatarFallback className="font-bold text-3xl">{resume.initials.toUpperCase()}</AvatarFallback>
           <AvatarImage
             src={resume.avatarUrl}

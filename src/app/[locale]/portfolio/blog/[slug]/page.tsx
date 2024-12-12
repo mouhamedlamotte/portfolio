@@ -90,7 +90,7 @@ export default async function BlogDetail({
           </div>
 
           <img
-            src={p.cover?.file?.url ?? "/placeholder.svg"}
+            src={p.properties?.thumb?.rich_text[0]?.text?.content ?? "/placeholder.svg"}
             alt={
               p?.properties?.title?.title[0]?.plain_text as unknown as string
             }

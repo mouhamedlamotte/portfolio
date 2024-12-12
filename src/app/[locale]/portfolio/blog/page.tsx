@@ -2,11 +2,9 @@
 /* eslint-disable @next/next/no-img-element */
 import { fetchPages } from "@/lib/notion";
 import { Section } from "../components/section";
-import NotFound from "@/app/[locale]/not-found";
 import AnimatedShinyText from "@/app/[locale]/components/ui/animated-shiny-text";
 import { Button } from "@/app/[locale]/components/ui/button";
-import { resume } from "@/app/[locale]/data";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import Markdown from "react-markdown";
 import React from "react";
@@ -51,7 +49,7 @@ export default async function Page() {
             <BlogCard
                 href={`/portfolio/blog/${post.properties?.slug?.rich_text[0]?.plain_text}`}
                 key={post.id}
-                imageUrl={post.cover?.file?.url ?? "/placeholder.svg"}
+                imageUrl={post.properties?.thumb?.rich_text[0]?.text?.content ?? "/placeholder.svg"}
                 title={post.properties?.title?.title[0]?.plain_text}
                 excerpt={post.properties?.excerpt?.rich_text[0]?.plain_text}
                 author={{

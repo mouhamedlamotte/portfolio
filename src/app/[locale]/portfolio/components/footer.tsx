@@ -1,5 +1,5 @@
 import { Icons } from "@/app/[locale]/icons";
-import { Mail, MapPin } from "lucide-react";
+import { Mail, MailOpen, MapPin } from "lucide-react";
 import Link from "next/link";
 import { Section } from "./section";
 import { Button } from "@/app/[locale]/components/ui/button";
@@ -17,12 +17,12 @@ export async function Footer () {
           <div className="space-y-4">
             <h3 className="font-semibold text-lg mb-2">{t("contact.title")}</h3>
             <div className="flex items-center space-x-2 text-muted-foreground">
-              <Mail className="h-5 w-5" />
+              <MailOpen className="h-5 w-5" />
               <a
-                href="mailto:lamottelymouhamed@gmail.com"
+                href="mailto:mouhamethlamotte@orange-sonatel.com"
                 className=" transition-colors"
               >
-                lamottelymouhamed@gmail.com
+                mouhamethlamotte@orange-sonatel.com
               </a>
             </div>
             <div className="flex items-center space-x-2 text-muted-foreground">

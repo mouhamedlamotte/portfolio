@@ -5,11 +5,11 @@ export default {
     header: {
       navbar: {
         home: "Home",
-        devis: "Devis",
+        devis: "Quote",
         portfolio: "Portfolio",
         blog: "Blog",
         buttons : {
-          ask_for_devis: "Ask for devis",
+          ask_for_devis: "Request a quote",
         }
       },
       hero: {
@@ -140,5 +140,49 @@ Trained at **Sonatel Academy** 🎓, I bring a **dual expertise** in backend and
     detail :{
       more_such_project : "More projects like this"
     }
+  },
+  quoteRequest: {
+    title: "Request a Quote",
+    subtitle: "Fill out this form to receive a personalized quote for your project.",
+    form: {
+      name: {
+        label: "Full Name",
+        placeholder: "Enter your name"
+      },
+      email: {
+        label: "Email",
+        placeholder: "lamotte@gmail.com"
+      },
+      company: {
+        label: "Company (optional)",
+        placeholder: "Enter your company name"
+      },
+      projectType: {
+        label: "Project Type",
+        placeholder: "Select a project type",
+        types: {
+          website: "Website",
+          webapp: "Web Application",
+          mobileapp: "Mobile Application",
+          ecommerce: "E-commerce",
+          api_back: "Backend API",
+          other: "Other"
+        }
+      },
+      budget: {
+        label: "Budget",
+        placeholder: "Enter your budget"
+      },
+      doc: {
+        label: "Project Brief or Document",
+        placeholder: "Enter your message"
+      },
+      desc: {
+        label: "Project Description",
+        placeholder: "Describe your project in detail"
+      },
+      send: "Request a Quote"
+    }
   }
+  
 } as const;

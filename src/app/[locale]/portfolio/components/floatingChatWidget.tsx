@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from 'zod'
-import { Loader, MessageSquare, X, Send, Minimize2, Maximize2 } from 'lucide-react'
+import { Loader,  X, Send, Minimize2, Maximize2, MessageSquareText } from 'lucide-react'
 import { useToast } from '../../hooks/use-toast'
 import { useMutation } from '@tanstack/react-query'
 import { Button } from '../../components/ui/button'
@@ -16,8 +16,7 @@ import { Input } from '../../components/ui/input'
 import { Textarea } from '../../components/ui/textarea'
 import { IconMarkdown } from '@tabler/icons-react'
 import Markdown from 'react-markdown'
-
-
+import { AxiosInstance } from '@/lib/axios'
 
 const ChatSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -50,19 +49,27 @@ export const FloatingChatWidget = () => {
   const sendMessageMutation = useMutation({
     mutationKey: ["sendMessage"],
     mutationFn: async (data: z.infer<typeof ChatSchema>) => {
-      await new Promise(resolve => setTimeout(resolve, 1000))
-      if (!userInfo) {
-        setUserInfo({ name: data.name, email: data.email })
-      }
-      const newMessage: ChatMessage = { id: Date.now().toString(), content: data.message, sender: 'user' }
-      setMessages(prev => [...prev, newMessage])
-      
-      setTimeout(() => {
-        const botMessage: ChatMessage = { id: (Date.now() + 1).toString(), content: `Thank you, ${data.name}! How can I assist you further?`, sender: 'bot' }
-        setMessages(prev => [...prev, botMessage])
-      }, 1500)
+      return await AxiosInstance.post('/contacts', data).then(() => {
+        if (!userInfo) {
+          setUserInfo({ name: data.name, email: data.email })
+        }
+        const newMessage: ChatMessage = { id: Date.now().toString(), content: data.message, sender: 'user' }
+        setMessages(prev => [...prev, newMessage])
+        
+        setTimeout(() => {
+          const botMessage: ChatMessage = { id: (Date.now() + 1).toString(), content: !userInfo ? `Thank you, ${data.name}! How can I assist you further?` : `I'll get back to you as soon as possible`, sender: 'bot' }
+          setMessages(prev => [...prev, botMessage])
+        }, 1500)
 
-      form.reset({ name: data.name, email: data.email, message: "" })
+        form.reset({ name: data.name, email: data.email, message: "" })
+      })
+    },
+    onError: (error) => {
+      toast({
+        title: "Error",
+        description: "There was an error sending your message. Please try again.",
+        variant: "destructive",
+      })
     }
   })
 
@@ -78,7 +85,7 @@ export const FloatingChatWidget = () => {
           className="h-12 w-12 rounded-full  shadow shadow-primary focus-ring-0 hover:scale-110 focus-visible:scale-90  transform active:scale-75 transition-transform"
           size="icon"
         >
-          <MessageSquare  />
+         <MessageSquareText fill='white' stroke='white'  size={30}/>
         </Button>
       )}
       {isOpen && (
@@ -158,7 +165,7 @@ export const FloatingChatWidget = () => {
                               <Button 
                                 type="submit" 
                                 size="icon"
-                                disabled={sendMessageMutation.isLoading ?? form.getValues("message") === ""}
+                                disabled={sendMessageMutation.isLoading || form.getValues("message") === ""}
                                 className="bg-primary hover:bg-primary/90"
                               >
                                 {sendMessageMutation.isLoading ? <Loader className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}

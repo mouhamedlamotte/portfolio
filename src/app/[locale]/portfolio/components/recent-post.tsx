@@ -46,7 +46,7 @@ export const RecentPost = async () => {
             <BlogCard
                 href={`/portfolio/blog/${post.properties?.slug?.rich_text[0]?.plain_text}`}
                 key={post.id}
-                imageUrl={post.cover?.file?.url ?? "/placeholder.svg"}
+                imageUrl={post.properties?.thumb?.rich_text[0]?.text?.content ?? "/placeholder.svg"}
                 title={post.properties?.title?.title[0]?.plain_text}
                 excerpt={post.properties?.excerpt?.rich_text[0]?.plain_text}
                 author={{

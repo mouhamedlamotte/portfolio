@@ -35,31 +35,30 @@ import { kdebug } from "@/lib/kdebug";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosInstance } from "@/lib/axios";
 import { playMp3 } from "@/lib/mp3";
+import { useScopedI18n } from "@/locales/client";
 
-export default function DevisForm() {
+export default function FormulaireDevis() {
   const { toast } = useToast();
   const [isUploading, setIsUploading] = useState(false);
 
-  const sendDevisMutation = useMutation({
-    mutationKey: ["sendDevis"],
+  const envoyerDevisMutation = useMutation({
+    mutationKey: ["envoyerDevis"],
     mutationFn: async (data: z.infer<typeof devisSchema>) => {
       return await AxiosInstance.post('/devis', data).then((res) => {
-      playMp3("/mp3/notif.mp3")
+        playMp3("/mp3/notif.mp3")
         toast({
-          title: "Demande envoyee",
-          description: "Votre demande a ete envoyee avec success.",
-        })
+          title: "Demande envoyée",
+          description: "Votre demande a été envoyée avec succès.",
+        });
         form.reset();
-        setResetForm(true)
-        setIsUploading(false)
-      })
+        setResetForm(true);
+        setIsUploading(false);
+      });
     }
-  })
+  });
 
-
-  const [files, setFiles] = useState<File[]>([])
-  const [resetForm, setResetForm] = useState(false)
-
+  const [fichiers, setFichiers] = useState<File[]>([]);
+  const [resetForm, setResetForm] = useState(false);
 
   const form = useForm<z.infer<typeof devisSchema>>({
     resolver: zodResolver(devisSchema),
@@ -72,26 +71,26 @@ export default function DevisForm() {
   });
 
   async function onSubmit(values: z.infer<typeof devisSchema>) {
-   try {
-    setIsUploading(true)
-    let url;
-    if(files.length > 0) {
-      const file = files[0]
-       url = await uploadFile(file, "devis")
+    try {
+      setIsUploading(true);
+      let url;
+      if (fichiers.length > 0) {
+        const fichier = fichiers[0];
+        url = await uploadFile(fichier, "devis");
+      }
+      envoyerDevisMutation.mutate({ ...values, file: url });
+    } catch (error) {
+      playMp3("/mp3/notif.mp3");
+      toast({
+        title: "Une erreur est survenue",
+        variant: "destructive",
+        description: "Votre demande n'a pas pu être envoyée.",
+      });
+      kdebug("Une erreur est survenue :", error);
     }
-    sendDevisMutation.mutate({ ...values, file: url })
-   } catch (error) {
-    playMp3("/mp3/notif.mp3")
-    toast({
-      title: "Une erreur est survenue",
-      variant: "destructive",
-      description: "Votre demande n'a pas pu etre envoye.",
-    })
-    kdebug("une erreur est survenue :", error);
-   }
   }
 
-
+  const t = useScopedI18n("quoteRequest.form");
 
   return (
     <Card className="py-4">
@@ -219,11 +218,11 @@ export default function DevisForm() {
             {/*  */}
             <div className="flex-1 space-y-5">
               <div>
-              <FormLabel>Cahier des charges ou document de projet</FormLabel>
-              
-              <div className="w-full border border-dashed rounded-lg mt-2">
-                <FileUpload onChange={(files) => {setFiles(files)}} reset={resetForm} setResetForm={setResetForm} />
-              </div>
+                <FormLabel>Cahier des charges ou document de projet</FormLabel>
+
+                <div className="w-full border border-dashed rounded-lg mt-2">
+                  <FileUpload onChange={(files) => { setFichiers(files); }} reset={resetForm} setResetForm={setResetForm} />
+                </div>
               </div>
               <FormField
                 control={form.control}
@@ -242,8 +241,8 @@ export default function DevisForm() {
                   </FormItem>
                 )}
               />
-              <Button type="submit" size={sendDevisMutation.isLoading || isUploading ? "icon" : "lg"} className="w-full">
-                {sendDevisMutation.isLoading || isUploading ? <Loader className="animate-spin" /> : "Demander un devis"}
+              <Button type="submit" size={envoyerDevisMutation.isLoading || isUploading ? "icon" : "lg"} className="w-full">
+                {envoyerDevisMutation.isLoading || isUploading ? <Loader className="animate-spin" /> : "Demander un devis"}
               </Button>
             </div>
           </form>

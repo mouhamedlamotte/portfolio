@@ -143,7 +143,7 @@ Formé à **Sonatel Academy** 🎓, j’ai une **double expertise** en développ
       more_such_project: "Autres projets du genre",
     },
   },
-  devis :{
+  quoteRequest :{
     title :"Demande de devis",
     subtitle : "Remplissez ce formulaire pour recevoir un devis personnalisé pour votre projet.",
     form : {
@@ -160,8 +160,30 @@ Formé à **Sonatel Academy** 🎓, j’ai une **double expertise** en développ
           placeholder : "Nom de votre entreprise"
         },
         prject_type :{
-          label : ""
-        }
+          label : "Type de projet",
+          placeholder : "Sellectionnez un type de projet",
+          types : {
+              website : "Site web",
+              webapp : "Application web",
+              mobileapp : "Application mobile",
+              ecommerce : "E-commerce",
+              api_back : "API Backend",
+              other : "Autre"
+          }
+        },
+        budget : {
+          label : "Budget",
+          placeholder : "Entrez votre budget"
+        },
+        doc : {
+          label : "Cahier des charges ou document de projet",
+          placeholder : "Entrez votre message"
+        },
+        desc : {
+          label : "Description du projet",
+          placeholder : "Decrivez votre projet en detail" 
+        },
+        send : "Demander un devis"
     }
   }
 } as const;
