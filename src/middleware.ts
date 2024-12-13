@@ -31,7 +31,7 @@ export async function middleware(request : NextRequest) {
     secret: process.env.NEXTAUTH_SECRET,
   });
 
-  if (pathname.startsWith('/admin') && !token) {
+  if ((pathname.startsWith('/admin') || pathname.startsWith('fr/admin') || pathname.startsWith('en/admin')) && !token) {
     return NextResponse.redirect(
       new URL(`/auth/login?next=${request.nextUrl.pathname}`, request.url)
     );
@@ -43,7 +43,7 @@ export async function middleware(request : NextRequest) {
 
   // const isDirectVisit = !request.referrer 
 
-  if ((pathname.startsWith('/portfolio') || pathname === '/' )  && !token && !searchParams.get("_rsc")) {
+  if ((pathname.startsWith('/portfolio') || pathname === '/' || pathname.startsWith('/fr/portfolio') || pathname.startsWith('/en/portfolio') || pathname == '/fr' || pathname === '/en' )  && !token && !searchParams.get("_rsc")) {
     try {
       await AxiosInstance.post('/visit', {
         url : pathname ?? 'unknown',
@@ -61,7 +61,7 @@ export async function middleware(request : NextRequest) {
     }
   }
 
-  if (pathname.startsWith('/admin/messages')) {
+  if (pathname.startsWith('/admin/messages') || pathname.startsWith('/fr/admin/messages') || pathname.startsWith('/en/admin/messages')) {
     const headers = new Headers(request.headers);
     headers.set('x-current-path', request.nextUrl.pathname + request.nextUrl.search);
     return NextResponse.next({ headers });
