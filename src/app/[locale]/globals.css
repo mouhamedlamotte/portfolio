@@ -88,8 +88,16 @@
   .text-zinc-500{
     @apply !hidden
   }
+  .data-[theme=dark]:bg-black{
+    @apply !hidden
+  }
 }
 
+@layer utilities {
+  .data-[theme=dark]:bg-black{
+    @apply !hidden
+  }
+}
 .scrollbar-none::-webkit-scrollbar{
   display: none !important;
 }
@@ -114,5 +122,8 @@
 
 
 .text-zinc-500{
+  display: none !important;
+}
+.data-[theme=dark]:bg-black{
   display: none !important;
 }

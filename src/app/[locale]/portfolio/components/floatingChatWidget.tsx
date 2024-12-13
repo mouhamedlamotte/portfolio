@@ -17,6 +17,7 @@ import { Textarea } from '../../components/ui/textarea'
 import { IconMarkdown } from '@tabler/icons-react'
 import Markdown from 'react-markdown'
 import { AxiosInstance } from '@/lib/axios'
+import { cn } from '@/lib/utils'
 
 const ChatSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -96,16 +97,22 @@ export const FloatingChatWidget = () => {
       )}
       {isOpen && (
         <Card className={`w-full h-full md:w-96 shadow-xl transition-all duration-300 ${
-          isMinimized ? 'h-14' : 'md:h-[36rem]'
+          isMinimized ? 'h-14' : 'md:h-[45rem]'
         }`}>
-          <CardHeader className="flex flex-row items-center justify-between p-4 bg-primary rounded-t-lg">
+          <CardHeader className={cn("flex flex-row items-center justify-between p-4 bg-primary rounded-t-lg",
+          !isMinimized && 'p-2 flex justify-end bg-transparent'
+          )}>
+              {
+                isMinimized && (
             <div className="flex items-center space-x-2">
               <Avatar>
                 <AvatarImage src="/me.jpeg" alt="Chat Support" />
                 <AvatarFallback>CS</AvatarFallback>
               </Avatar>
               <h2 className="text-lg font-semibold">Mouhamed baba</h2>
-            </div>
+            </div> 
+                )
+              }
             <div className="flex space-x-2">
               <Button variant="ghost" size="icon" onClick={() => setIsMinimized(!isMinimized)} className="">
                 {isMinimized ? <Maximize2 className="h-4 w-4" /> : <Minimize2 className="h-4 w-4" />}
@@ -120,7 +127,7 @@ export const FloatingChatWidget = () => {
                 <iframe
     src="https://www.chatbase.co/chatbot-iframe/LnXE-mQPodk6QdLIJDrYh"
     width="100%"
-    className='h-[calc(100%-2rem)] md:h-[35rem]'
+    className='h-[calc(100%-1rem)] md:h-[45rem]'
     ></iframe>
               {/* <CardContent className="space-y-4 flex flex-col h-[calc(100%-4rem)] md:h-[32rem] overflow-hidden">
                 <ScrollArea className="w-full pr-4 h-[calc(100%-8rem)] md:h-[30rem]">
