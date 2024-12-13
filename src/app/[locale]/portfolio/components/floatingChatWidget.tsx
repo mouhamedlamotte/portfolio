@@ -29,7 +29,7 @@ type ChatMessage = {
   content: string
   sender: 'user' | 'bot'
 }
-
+        
 export const FloatingChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [isMinimized, setIsMinimized] = useState(false)
@@ -117,7 +117,12 @@ export const FloatingChatWidget = () => {
           </CardHeader>
           {!isMinimized && (
             <>
-              <CardContent className="space-y-4 flex flex-col h-[calc(100%-4rem)] md:h-[32rem] overflow-hidden">
+                <iframe
+    src="https://www.chatbase.co/chatbot-iframe/LnXE-mQPodk6QdLIJDrYh"
+    width="100%"
+    className='h-[calc(100%-2rem)] md:h-[35rem]'
+    ></iframe>
+              {/* <CardContent className="space-y-4 flex flex-col h-[calc(100%-4rem)] md:h-[32rem] overflow-hidden">
                 <ScrollArea className="w-full pr-4 h-[calc(100%-8rem)] md:h-[30rem]">
                   {messages.map((msg) => (
                     <Markdown
@@ -189,7 +194,7 @@ export const FloatingChatWidget = () => {
                     />
                   </form>
                 </Form>
-              </CardContent>
+              </CardContent> */}
             </>
           )}
         </Card>

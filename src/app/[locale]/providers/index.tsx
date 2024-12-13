@@ -21,6 +21,7 @@ export const Provider = (props: PropsWithChildren<{ locale: string }>) => {
         <QueryClientProvider client={queryClient}>
           <SessionProvider>{props.children}</SessionProvider>
         <FloatingChatWidget />
+        
         </QueryClientProvider>
       </I18nProviderClient>
     </ThemeProvider>

@@ -85,6 +85,9 @@
   body {
     @apply bg-background text-foreground;
   }
+  .text-zinc-500{
+    @apply !hidden
+  }
 }
 
 .scrollbar-none::-webkit-scrollbar{
@@ -109,3 +112,7 @@
   background: linear-gradient(45deg, #160796, #7a3ca4) !important;
 }
 
+
+.text-zinc-500{
+  display: none !important;
+}
