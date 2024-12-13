@@ -59,7 +59,7 @@ export function ProjectCard({project, stack}: {project: Props, stack?: boolean})
             loop
             muted
             playsInline
-            className="pointer-events-none mx-auto h-full w-full object-cover object-top hover:scale-110 transition-transform ease-out duration-1000"
+            className="pointer-events-none mx-auto h-full w-full object-cover object-top"
           />
         )}
         {project.image && (
@@ -68,7 +68,7 @@ export function ProjectCard({project, stack}: {project: Props, stack?: boolean})
             alt={project.title}
             width={500}
             height={300}
-            className="h-full w-full overflow-hidden object-cover object-top hover:scale-110 transition-transform ease-out duration-1000"
+            className="h-full w-full overflow-hidden object-cover object-top"
           />
         )}
       </Link>
