@@ -15,7 +15,7 @@ export const RecentProjects = async () => {
 
   return (
     <Section>
-   <div className="w-full  mx-auto px-10 md:px-0">
+   <div className="w-full  mx-auto px-4 md:px-0">
       <div className="flex  items-start">
         <div>
         <h2 className="text-lg md:text-4xl mb-4 text-black dark:text-white max-w-4xl">
