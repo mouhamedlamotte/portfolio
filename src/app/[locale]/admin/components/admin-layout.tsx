@@ -19,12 +19,14 @@ import { resume } from "@/app/[locale]/data";
 import { signOut, useSession } from "next-auth/react";
 import DynamicBreadcrumb from "./breadcrumb";
 import { Globe } from "lucide-react";
+import { ScrollArea } from "../../components/ui/scroll-area";
+import { Separator } from "../../components/ui/separator";
 
 
 const links = [
   {
     label: "Dashboard",
-    href: "#",
+    href: "/admin",
     icon: (
       <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
     ),
@@ -126,10 +128,13 @@ export const AdminLayout = (props: PropsWithChildren) => {
           </div>
         </SidebarBody>
       </Sidebar>
-      <div className="flex flex-1">
-        <div className="p-2 md:p-10 rounded-tl-2xl border  flex flex-col gap-2 flex-1 w-full h-full bg-background overflow-y-auto">
+      <div className="flex grow">
+        <div className="p-2  rounded-tl-2xl border  flex flex-col gap-2 flex-1 w-full h-full bg-background ">
           <DynamicBreadcrumb/>
+          <Separator/>
+          <ScrollArea className="h-full">
           {props.children}
+          </ScrollArea>
         </div>
       </div>
     </div>
@@ -161,5 +166,14 @@ export const LogoIcon = () => {
     >
       <div className="h-5 w-6 bg-black dark:bg-white rounded-br-lg rounded-tr-sm rounded-tl-lg rounded-bl-sm flex-shrink-0" />
     </Link>
+  );
+};
+
+const Footer = () => {
+  return (
+    <div className="text-xs text-muted-foreground flex justify-between items-center px-2 py-2">
+      <span>© {new Date().getFullYear()} {resume.name}</span>
+      <span>Powered by Next.js</span>
+    </div>
   );
 };

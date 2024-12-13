@@ -15,7 +15,7 @@ export const DynamicBreadcrumb = () => {
   const pathname = usePathname();
   const breadcrumbs = pathname.split("/").filter((crumb) => crumb !== "");
   return (
-    <Breadcrumb className="hidden md:flex">
+    <Breadcrumb className="hidden md:flex px-4 py-2">
       <BreadcrumbList>
         {breadcrumbs.map((crumb, index) => (
           <React.Fragment key={crumb}>
