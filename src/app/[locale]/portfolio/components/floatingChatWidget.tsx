@@ -78,7 +78,13 @@ export const FloatingChatWidget = () => {
   }
 
   return (
-    <div className="fixed bottom-4 right-4 z-50">
+    <div className={`fixed z-50 transition-all duration-300 ${
+      isOpen 
+        ? isMinimized
+          ? 'bottom-4 right-4 left-4 md:bottom-4 md:right-4 md:left-auto md:w-auto'
+          : 'inset-0 md:inset-auto md:bottom-4 md:right-4 md:w-96 md:h-auto'
+        : 'bottom-4 right-4'
+    }`}>
       {!isOpen && (
         <Button
           onClick={() => setIsOpen(true)}
@@ -89,7 +95,9 @@ export const FloatingChatWidget = () => {
         </Button>
       )}
       {isOpen && (
-        <Card className={`w-96 shadow-xl transition-all duration-300 ${isMinimized ? 'h-14' : 'h-[36rem]'}`}>
+        <Card className={`w-full h-full md:w-96 shadow-xl transition-all duration-300 ${
+          isMinimized ? 'h-14' : 'md:h-[36rem]'
+        }`}>
           <CardHeader className="flex flex-row items-center justify-between p-4 bg-primary rounded-t-lg">
             <div className="flex items-center space-x-2">
               <Avatar>
@@ -109,8 +117,8 @@ export const FloatingChatWidget = () => {
           </CardHeader>
           {!isMinimized && (
             <>
-              <CardContent className="p-4 space-y-4 flex flex-col h-[32rem] overflow-hidden">
-                <ScrollArea className="w-full pr-4 h-[28rem]">
+              <CardContent className="space-y-4 flex flex-col h-[calc(100%-4rem)] md:h-[32rem] overflow-hidden">
+                <ScrollArea className="w-full pr-4 h-[calc(100%-8rem)] md:h-[30rem]">
                   {messages.map((msg) => (
                     <Markdown
                       key={msg.id}
