@@ -85,19 +85,9 @@
   body {
     @apply bg-background text-foreground;
   }
-  .text-zinc-500{
-    @apply !hidden
-  }
-  .data-[theme=dark]:bg-black{
-    @apply !hidden
-  }
 }
 
-@layer utilities {
-  .data-[theme=dark]:bg-black{
-    @apply !hidden
-  }
-}
+
 .scrollbar-none::-webkit-scrollbar{
   display: none !important;
 }
