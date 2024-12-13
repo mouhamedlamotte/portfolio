@@ -85,7 +85,7 @@ export const getDataCharts = async () => {
 
     const data = {
       downloads_gameplays: chartData.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()), 
-      visits: visitsChartData,
+      visits: visitsChartData.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()),
     };
 
     return data;

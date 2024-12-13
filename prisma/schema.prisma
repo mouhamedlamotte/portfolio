@@ -45,7 +45,7 @@ model Visit {
 }
 model VisitedPage {
   id        String   @id @default(uuid())
-  visit     Visit    @relation(fields: [visitId], references: [id])
+  visit     Visit    @relation(fields: [visitId], references: [id], onDelete: Cascade)
   visitId   String
   url      String
   visitDate DateTime @default(now())
