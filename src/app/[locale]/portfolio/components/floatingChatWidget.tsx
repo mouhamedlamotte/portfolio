@@ -107,7 +107,7 @@ export const FloatingChatWidget = () => {
             <div className="flex items-center space-x-2">
               <Avatar>
                 <AvatarImage src="/me.jpeg" alt="Chat Support" />
-                <AvatarFallback>CS</AvatarFallback>
+                <AvatarFallback>ML</AvatarFallback>
               </Avatar>
               <h2 className="text-lg font-semibold">Mouhamed baba</h2>
             </div> 
@@ -125,6 +125,7 @@ export const FloatingChatWidget = () => {
           {!isMinimized && (
             <>
                 <iframe
+                title = "Chatbot"
     src="https://www.chatbase.co/chatbot-iframe/LnXE-mQPodk6QdLIJDrYh"
     width="100%"
     className='h-[calc(100%-1rem)] md:h-[45rem]'
