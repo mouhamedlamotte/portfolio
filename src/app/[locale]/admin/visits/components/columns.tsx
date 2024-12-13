@@ -3,7 +3,7 @@
 import { Button } from "@/app/[locale]/components/ui/button";
 import { formatDate } from "@/lib/utils";
 import { ColumnDef } from "@tanstack/react-table"
-import { ChevronDown, Copy, CopyCheck, MoreHorizontal } from "lucide-react";
+import { Bot, ChevronDown, Copy, CopyCheck, MoreHorizontal, User } from "lucide-react";
 import { useState } from "react";
 import { RenderBroswer, RenderOS, RenderSource } from "./render-badges";
 
@@ -157,13 +157,13 @@ export const visitColumns:ColumnDef<Visit>[] = [
     header: "IP",
     cell: ({ row }) => {
       return (
-        <RenderIp ip={row.original.ipAddress} />
+        <RenderIp ip={row.original.ipAddress} isBot={row.original.isBot} />
       )
     }
   },
 ]
 
-export const RenderIp = ({ip}: {ip : string}) => {
+export const RenderIp = ({ip, isBot}: {ip : string, isBot : boolean}) => {
   const [copied, setCopied] = useState(false);
 
 
@@ -180,7 +180,14 @@ export const RenderIp = ({ip}: {ip : string}) => {
     onClick={handleCopy}
     className="items-center flex justify-center *:hover:block px-0 hover:bg-transparent"
   >
-    <span>{ip}</span>
+    {
+      isBot ? (
+        <Bot className="w-4 h-4" />
+      ) : (
+        <User className="w-4 h-4" />
+      )
+    }
+    <span className="ml-2">{ip}</span>
     
     <div className="hidden ">
     {
