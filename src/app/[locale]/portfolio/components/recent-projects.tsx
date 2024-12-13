@@ -34,7 +34,7 @@ export const RecentProjects = async () => {
               </AnimatedShinyText>
             </Button>
       </div>
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-10 sm:mx-20 md:mx-0">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-10 sm:mx-4 md:mx-0">
         {resume.projects.slice(0, 3).map((project) => (
           <ProjectCard key={project.title} project={project} stack={false} />
         ))}
