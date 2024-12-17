@@ -5,7 +5,7 @@ import { Provider } from "./providers";
 import { Toaster } from "@/app/[locale]/components/ui/toaster";
 import { ImgPreview } from "@/app/[locale]/components/common/img-preview";
 import { Suspense } from "react";
-import { Loader } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { FloatingChatWidget } from "./portfolio/components/floatingChatWidget";
 
 
@@ -144,8 +144,8 @@ const FallbackComponent = () => {
     <div className="w-full h-screen flex items-center justify-center">
       <div className="flex flex-col items-center gap-2">
         <span className=" text-center font-bold ">Hello ! 👋</span>
-        <span className=" text-center font-bold  text-xs inline-flex items-center">Juste un instant...</span>
-        <Loader className="h-4 w-4 animate-spin" />
+        <span className=" text-center font-bold  text-xs inline-flex items-center">Juste un instant ...</span>
+        <Loader2 className="h-4 w-4 animate-spin" />
       </div>
     </div>
   );
