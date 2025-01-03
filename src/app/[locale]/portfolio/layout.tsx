@@ -1,7 +1,6 @@
 import React, { PropsWithChildren } from 'react'
 import { Navbar } from './components/navbar'
 import { Footer } from './components/footer'
-import Intercom from '@intercom/messenger-js-sdk'
 
 const Layout = (props : PropsWithChildren) => {
 
