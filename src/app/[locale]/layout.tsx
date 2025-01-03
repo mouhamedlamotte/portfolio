@@ -7,6 +7,8 @@ import { ImgPreview } from "@/app/[locale]/components/common/img-preview";
 import { Suspense } from "react";
 import { Loader2 } from "lucide-react";
 import { FloatingChatWidget } from "./portfolio/components/floatingChatWidget";
+import Intercom from "@intercom/messenger-js-sdk";
+import Script from "next/script";
 
 
 
@@ -25,6 +27,9 @@ export const metadata: Metadata = {
   description:
     "Portfolio de Mouhameth Lamotte, développeur web passionné basé à Dakar",
   keywords: [
+    "Mouhamed Lamotte",
+    "Mouhamed baba Lamotte",
+    "Lamotte",
     "développeur web",
     "Dakar",
     "Next.js",
@@ -83,6 +88,10 @@ export default async function RootLayout({
 
   const lcl =  (await params).locale
 
+  Intercom({
+    app_id: 'hjenzpx2',
+  });
+
   return (
     <html lang={lcl} suppressHydrationWarning>
       <head>
@@ -134,6 +143,16 @@ export default async function RootLayout({
             </Provider>
           <Toaster />
           <ImgPreview />
+
+            <Script id="ddd">
+           { `window.intercomSettings = {
+    api_base: "https://api-iam.intercom.io",
+    app_id: "hjenzpx2",
+  };`}
+            </Script>
+            <Script id="dfjj">
+{`(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/hjenzpx2';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();`}
+            </Script>
       </body>
     </html>
   );

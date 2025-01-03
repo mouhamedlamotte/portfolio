@@ -80,7 +80,7 @@ type MessagesItemProps = {
     
 
     return (
-      <Link prefetch={false} 
+      <Link prefetch={true} 
       onClick={handleClick}
         {...props} 
         href={`/admin/messages?id=${message.id}`} 

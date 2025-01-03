@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse, userAgent } from 'next/server';
-import { AxiosInstance } from './lib/axios';
 import { getToken } from 'next-auth/jwt';
 import { createI18nMiddleware } from 'next-international/middleware';
 
@@ -11,8 +10,8 @@ const I18nMiddleware = createI18nMiddleware({
 
 // Middleware
 export async function middleware(request: NextRequest) {
-  const { pathname, searchParams } = request.nextUrl;
-  const user_agent = userAgent(request);
+  const { pathname } = request.nextUrl;
+  // const user_agent = userAgent(request);
   const allowedHosts =
     process.env.NEXT_PUBLIC_ALLOWED_HOSTS?.split(',').map((item) => item.trim()) ?? [];
 
@@ -44,34 +43,34 @@ export async function middleware(request: NextRequest) {
   }
 
   // Track visits for specific paths
-  const portfolioPaths = [
-    '/portfolio',
-    '/fr/portfolio',
-    '/en/portfolio',
-    '/',
-    '/fr',
-    '/en',
-  ];
-  if (
-    portfolioPaths.some((path) => pathname.startsWith(path)) &&
-    !token &&
-    !searchParams.get('_rsc')
-  ) {
-    try {
-      await AxiosInstance.post('/visit', {
-        url: pathname ?? 'unknown',
-        deviceType: user_agent.device.type ?? 'unknown',
-        os: user_agent.os.name ?? 'unknown',
-        browser: user_agent.browser.name ?? 'unknown',
-        referrer: request.referrer ?? 'unknown',
-        ipAddress: request.headers.get('x-forwarded-for') ?? 'unknown',
-        isBot: user_agent.isBot,
-        source: searchParams.get('source') ?? 'unknown',
-      });
-    } catch (error) {
-      console.error('Error tracking visit:', error);
-    }
-  }
+  // const portfolioPaths = [
+  //   '/portfolio',
+  //   '/fr/portfolio',
+  //   '/en/portfolio',
+  //   '/',
+  //   '/fr',
+  //   '/en',
+  // ];
+  // if (
+  //   portfolioPaths.some((path) => pathname.startsWith(path)) &&
+  //   !token &&
+  //   !searchParams.get('_rsc')
+  // ) {
+  //   try {
+  //     await AxiosInstance.post('/visit', {
+  //       url: pathname ?? 'unknown',
+  //       deviceType: user_agent.device.type ?? 'unknown',
+  //       os: user_agent.os.name ?? 'unknown',
+  //       browser: user_agent.browser.name ?? 'unknown',
+  //       referrer: request.referrer ?? 'unknown',
+  //       ipAddress: request.headers.get('x-forwarded-for') ?? 'unknown',
+  //       isBot: user_agent.isBot,
+  //       source: searchParams.get('source') ?? 'unknown',
+  //     });
+  //   } catch (error) {
+  //     console.error('Error tracking visit:', error);
+  //   }
+  // }
 
   // Add header for message admin paths
   const messageAdminPaths = [

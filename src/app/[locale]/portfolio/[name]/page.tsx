@@ -50,7 +50,7 @@ export default async function Page({ params }: { params: Promise<{ name: string 
           className="ml-auto  hover:text-muted-foreground"
 
         >
-          <Link prefetch={false} href="/portfolio">
+          <Link prefetch={true} href="/portfolio">
           <AnimatedShinyText className="inline-flex items-center">
             <ArrowLeft className="me-2" size={16} />
             {common("return")}
@@ -73,7 +73,7 @@ export default async function Page({ params }: { params: Promise<{ name: string 
               className="ml-auto  hover:text-muted-foreground"
             >
               <AnimatedShinyText className="inline-flex items-center">
-                <Link prefetch={false} href="/projects"> {common("see_more")} </Link>
+                <Link prefetch={true} href="/projects"> {common("see_more")} </Link>
                 <ArrowRight className="ms-2" size={16} />
               </AnimatedShinyText>
             </Button>

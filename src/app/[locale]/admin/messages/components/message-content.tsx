@@ -65,12 +65,12 @@ export const MessageContent = () => {
                 <CardHeader className='flex-row items-center'>
                     <div>
                     <CardTitle className='Capitalize'>{message.name}</CardTitle>
-                        <Link prefetch={false} href={`mailto:${message.email}`} className='mt-1 text-sm  underline'>{message.email}</Link>
+                        <Link prefetch={true} href={`mailto:${message.email}`} className='mt-1 text-sm  underline'>{message.email}</Link>
                     </div>
                     
                     <div className='ml-auto flex space-x-2'>
                         <Button asChild>
-                                <Link prefetch={false}  href={`mailto:${message.email}`}>
+                                <Link prefetch={true}  href={`mailto:${message.email}`}>
                                 Repondre sur Mail 
                                 <IconMail />
                                 </Link>

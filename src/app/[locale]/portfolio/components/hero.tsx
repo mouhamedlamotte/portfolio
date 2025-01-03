@@ -41,24 +41,24 @@ export  function HomeHero() {
 
         <div className="z-20 flex flex-wrap justify-center gap-4 mb-6">
           <Button asChild>
-            <Link prefetch={false} href="/portfolio">{t('buttons.see_my_projects')}</Link>
+            <Link prefetch={true} href="/portfolio">{t('buttons.see_my_projects')}</Link>
           </Button>
           <DownloadCV />
         </div>
 
         <div className="z-20 flex justify-center gap-4 mb-6">
           <Button variant="ghost" size="icon" asChild>
-            <Link prefetch={false} href="https://x.com/MouhamedLamotly" target="_blank">
+            <Link prefetch={true} href="https://x.com/MouhamedLamotly" target="_blank">
               <Icons.x className="h-5 w-5" />
             </Link>
           </Button>
           <Button variant="ghost" size="icon" asChild>
-            <Link prefetch={false} href="https://github.com/mouhamedlamotte" target="_blank">
+            <Link prefetch={true} href="https://github.com/mouhamedlamotte" target="_blank">
               <Icons.github className="h-5 w-5" />
             </Link>
           </Button>
           <Button variant="ghost" size="icon" asChild>
-            <Link prefetch={false}
+            <Link prefetch={true}
               href="https://www.linkedin.com/in/mouhamed-baba-lamotte-876291252/"
               target="_blank"
             >

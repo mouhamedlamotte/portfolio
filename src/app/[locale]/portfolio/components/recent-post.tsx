@@ -32,7 +32,7 @@ export const RecentPost = async () => {
         </div>
             <Button variant="link" className="ml-auto  hover:text-muted-foreground">
               <AnimatedShinyText className="inline-flex items-center" >
-              <Link prefetch={false} href="/portfolio/blog" className="hover:underline-none" >
+              <Link prefetch={true} href="/portfolio/blog" className="hover:underline-none" >
               {common("see_more")}
               </Link>
               <ArrowRight className="ml-2" size={16} />

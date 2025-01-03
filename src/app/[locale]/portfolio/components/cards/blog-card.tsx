@@ -47,7 +47,7 @@ export default function BlogCard({ imageUrl, title, excerpt, author, date, href 
       </CardContent >
       <CardFooter className="mt-auto">
         <Button variant="link">
-          <Link prefetch={false} href={href}>
+          <Link prefetch={true} href={href}>
         Lire la suite
           </Link>
         <ArrowRight/>

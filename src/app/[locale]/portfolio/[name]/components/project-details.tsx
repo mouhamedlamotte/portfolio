@@ -117,7 +117,7 @@ export const ProjectDetails = ({project, imgs} : projectDetailsProps) => {
           <div className="flex flex-wrap gap-4">
             {project.links.map((link, idx) => (
                 <Button variant="outline" key={idx}  asChild>
-              <Link prefetch={false} href={link.href} target="_blank">
+              <Link prefetch={true} href={link.href} target="_blank">
                   <AnimatedShinyText className="inline-flex items-center justify-center px-4 py-1 transition ease-out gap-2">
                     {link.icon}
                     <span>{link.type}</span>

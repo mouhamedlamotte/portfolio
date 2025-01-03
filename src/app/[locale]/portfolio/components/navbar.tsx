@@ -39,7 +39,7 @@ export function Navbar() {
         <div className="container flex h-16 items-center justify-between w-full">
           <div className="hidden md:flex md:gap-x-6">
             {mainNavigation.map((item) => (
-              <Link prefetch={false}
+              <Link prefetch={true}
                 key={item.name}
                 href={item.href}
                 className={cn(
@@ -64,7 +64,7 @@ export function Navbar() {
               <DropdownMenuContent align="start" className="w-[200px]">
                 {mainNavigation.map((item) => (
                   <DropdownMenuItem key={item.name} asChild>
-                    <Link prefetch={false}
+                    <Link prefetch={true}
                       href={item.href}
                       className={cn(
                         pathname === item.href
@@ -84,10 +84,10 @@ export function Navbar() {
           <ThemeToggle />
           <LanguageSwitcher />
             <Button asChild variant="default">
-              <Link prefetch={false} href="/portfolio/devis">{t("buttons.ask_for_devis")}</Link>
+              <Link prefetch={true} href="/portfolio/devis">{t("buttons.ask_for_devis")}</Link>
             </Button>
             {session.status === "authenticated" && (
-                <Link prefetch={false} href="/admin">
+                <Link prefetch={true} href="/admin">
                 <Avatar>
                   <AvatarImage
                   className="rotate-3"

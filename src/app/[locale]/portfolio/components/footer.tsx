@@ -45,21 +45,21 @@ export async function Footer () {
             <h3 className="font-semibold text-lg mb-4">{t("navigation.title")}</h3>
             <nav className="space-y-2 text-muted-foreground">
               <Link
-                prefetch={false}
+                prefetch={true}
                 href="/"
                 className="block  transition-colors"
               >
                 {t("navigation.home")}
               </Link>
               <Link
-                prefetch={false}
+                prefetch={true}
                 href="/portfolio"
                 className="block  transition-colors"
               >
                 {t("navigation.portfolio")}
               </Link>
               <Link
-                prefetch={false}
+                prefetch={true}
                 href="/blog"
                 className="block  transition-colors"
               >
@@ -74,7 +74,7 @@ export async function Footer () {
             <div className="z-20 flex  gap-4 mb-6">
               <Button variant="ghost" size="icon" asChild>
                 <Link
-                  prefetch={false}
+                  prefetch={true}
                   href="https://x.com/MouhamedLamotly"
                   target="_blank"
                 >
@@ -83,7 +83,7 @@ export async function Footer () {
               </Button>
               <Button variant="ghost" size="icon" asChild>
                 <Link
-                  prefetch={false}
+                  prefetch={true}
                   href="https://github.com/mouhamedlamotte"
                   target="_blank"
                 >
@@ -92,7 +92,7 @@ export async function Footer () {
               </Button>
               <Button variant="ghost" size="icon" asChild>
                 <Link
-                  prefetch={false}
+                  prefetch={true}
                   href="https://www.linkedin.com/in/mouhamed-baba-lamotte-876291252/"
                   target="_blank"
                 >
@@ -107,7 +107,7 @@ export async function Footer () {
         <div className="mt-8 pt-8 border-t text-center">
           <p className="text-muted-foreground text-center text-sm">
             Copyright &copy; {new Date().getFullYear()}{" "}
-            <Link prefetch={false} href="/" className="font-bold italic">
+            <Link prefetch={true} href="/" className="font-bold italic">
               @Mouhameth Lamotte
             </Link>
           </p>

@@ -33,7 +33,7 @@ export default async function Page() {
             className="ml-auto  hover:text-muted-foreground"
   
           >
-            <Link prefetch={false} href="/portfolio">
+            <Link prefetch={true} href="/portfolio">
             <AnimatedShinyText className="inline-flex items-center">
               <ArrowLeft className="me-2" size={16} />
               Retour

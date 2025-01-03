@@ -48,7 +48,7 @@ export function ProjectCard({project, stack}: {project: Props, stack?: boolean})
         "flex flex-col overflow-hidden border hover:shadow-lg transition-all duration-300 ease-out h-full"
       }
     >
-      <Link prefetch={false}
+      <Link prefetch={true}
         href={project.href || "#"}
         className={cn("block cursor-pointer bg-[url('/placeholder.svg')] h-40", project.className)}
       >
@@ -110,7 +110,7 @@ export function ProjectCard({project, stack}: {project: Props, stack?: boolean})
         {project.links && project.links.length > 0 && (
           <div className="flex flex-row flex-wrap items-start gap-1">
             {project.links?.map((link, idx) => (
-              <Link prefetch={false} href={link?.href} key={idx} target="_blank">
+              <Link prefetch={true} href={link?.href} key={idx} target="_blank">
 <div className="items-center justify-center">
       <Button variant="outline">
       <AnimatedShinyText className="inline-flex items-center justify-center px-4 py-1 transition ease-out ">
