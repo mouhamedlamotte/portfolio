@@ -138,7 +138,6 @@ export default async function RootLayout({
             </Provider>
           <Toaster />
           <ImgPreview />
-          <FloatingChatWidget />
       </body>
     </html>
   );
