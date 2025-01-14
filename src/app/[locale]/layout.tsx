@@ -127,6 +127,7 @@ export default async function RootLayout({
           name="twitter:image"
           content="https://www.mouhamedlamotte.tech/og.png"
         />
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
