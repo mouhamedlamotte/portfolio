@@ -19,10 +19,10 @@ export async function Footer () {
             <div className="flex items-center space-x-2 text-muted-foreground">
               <MailOpen className="h-5 w-5" />
               <a
-                href="mailto:mouhamethlamotte@orange-sonatel.com"
+                href="mailto:contact@mouhamedlamotte.tech"
                 className=" transition-colors"
               >
-                mouhamethlamotte@orange-sonatel.com
+                contact@mouhamedlamotte.tech
               </a>
             </div>
             <div className="flex items-center space-x-2 text-muted-foreground">
