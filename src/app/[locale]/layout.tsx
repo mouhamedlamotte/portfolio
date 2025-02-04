@@ -52,11 +52,11 @@ export const metadata: Metadata = {
     title: "Mouhameth Lamotte - Développeur Web",
     description:
       "Portfolio de Mouhameth Lamotte, développeur web basé à Dakar.",
-    url: "https://www.mouhamedlamotte.tech",
+    url: "https://portfolio.mouhamedlamotte.tech",
     siteName: "Mouhameth Lamotte Portfolio",
     images: [
       {
-        url: "https://www.mouhamedlamotte.tech/og.png",
+        url: "https://portfolio.mouhamedlamotte.tech/og.png",
         width: 1200,
         height: 630,
         alt: "Aperçu du portfolio de Mouhameth Lamotte",
@@ -72,7 +72,7 @@ export const metadata: Metadata = {
     title: "Mouhameth Lamotte - Développeur Web",
     description:
       "Portfolio de Mouhameth Lamotte, développeur web basé à Dakar.",
-    images: ["https://www.mouhamedlamotte.tech/og.png"],
+    images: ["https://portfolio.mouhamedlamotte.tech/og.png"],
   },
 };
 
@@ -98,11 +98,11 @@ export default async function RootLayout({
           property="og:description"
           content="Portfolio de Mouhameth Lamotte, développeur web basé à Dakar."
         />
-        <meta property="og:url" content="https://www.mouhamedlamotte.tech" />
+        <meta property="og:url" content="https://portfolio.mouhamedlamotte.tech" />
         <meta property="og:site_name" content="Mouhameth Lamotte Portfolio" />
         <meta
           property="og:image"
-          content="https://www.mouhamedlamotte.tech/og.png"
+          content="https://portfolio.mouhamedlamotte.tech/og.png"
         />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
@@ -125,7 +125,7 @@ export default async function RootLayout({
         />
         <meta
           name="twitter:image"
-          content="https://www.mouhamedlamotte.tech/og.png"
+          content="https://portfolio.mouhamedlamotte.tech/og.png"
         />
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
       </head>
