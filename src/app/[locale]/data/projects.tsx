@@ -33,7 +33,7 @@ export const projects = [
       links: [
         {
           type: "Landing Page",
-          href: "https://nexcom-sn.vercel.app/",
+          href: "https://nexcom.mouhamedlamotte.tech",
           icon: <Icons.globe className="size-4" />,
         },
       ],
