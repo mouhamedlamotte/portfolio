@@ -117,3 +117,73 @@
 .data-[theme=dark]:bg-black{
   display: none !important;
 }
+
+@layer components {
+  /* Container principal du code */
+  .notion-code {
+    @apply bg-muted text-foreground p-4 rounded-lg border border-border overflow-x-auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  /* Lignes de code */
+  .notion-code code {
+    @apply bg-transparent p-0;
+    color: inherit;
+  }
+
+  /* Surlignage syntaxique (exemple pour Markdown) */
+  .notion-code .hljs-keyword { color: hsl(var(--primary)); }
+  .notion-code .hljs-string { color: hsl(var(--destructive)); }
+  .notion-code .hljs-title { color: hsl(var(--ring)); }
+  .notion-code .hljs-code { color: hsl(var(--muted-foreground)); }
+  .notion-code .hljs-meta { color: hsl(var(--accent-foreground)); }
+
+  /* Tableaux */
+  .notion-table {
+    @apply w-full my-4 border-collapse;
+  }
+  
+  .notion-table_row {
+    @apply border-b border-border;
+  }
+  
+  .notion-table_cell {
+    @apply px-4 py-2 align-top border-r border-border last:border-r-0;
+  }
+}
+
+/* Amélioration de la prose globale */
+.prose {
+  .notion-code {
+    @apply my-6;
+  }
+
+  .notion-table {
+    @apply my-8;
+  }
+
+  .notion-heading_2 {
+    @apply mt-8 mb-4 text-2xl font-semibold;
+  }
+
+  .notion-heading_3 {
+    @apply mt-6 mb-3 text-xl font-medium;
+  }
+}
+
+/* Dark mode adaptation */
+.dark {
+  .notion-code {
+    @apply bg-muted/50;
+  }
+  
+  .notion-table {
+    @apply border-border/50;
+    
+    .notion-table_cell {
+      @apply border-border/30;
+    }
+  }
+}

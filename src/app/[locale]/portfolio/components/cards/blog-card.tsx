@@ -3,6 +3,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/app/[locale]/components/u
 import { Button } from "@/app/[locale]/components/ui/button"
 import {  ArrowRight, CalendarIcon } from 'lucide-react'
 import Link from "next/link"
+import Image from "next/image"
 
 interface BlogCardProps {
   imageUrl: string
@@ -20,10 +21,13 @@ export default function BlogCard({ imageUrl, title, excerpt, author, date, href 
   return (
     <Card className="flex flex-col  max-w-sm overflow-hidden transition-all hover:shadow-lg h-full">
       <div className="h-40 bg-[url('/placeholder.svg')]">
-      <img 
+      <Image
+        width={500}
+        height={300}
+        alt="image"
         title="image"
         src={imageUrl} 
-        className="w-full  object-cover h-full"
+        className="w-full  object-contain h-full"
       />
       </div>
       <CardHeader>

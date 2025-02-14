@@ -5,13 +5,6 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@/app/[locale]/components/ui/avatar";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/app/[locale]/components/ui/card";
 import { CalendarIcon } from "lucide-react";
 import { Section } from "../../components/section";
 import { fetchBySlug, fetchPageBlocks, notion } from "@/lib/notion";
@@ -60,12 +53,12 @@ export default async function BlogDetail({
   return (
     <>
       <Section>
-        <article className="max-w-3xl mx-auto">
+        <article className="max-w-3xl mx-auto mt-4">
           <h1 className="text-4xl font-bold mb-4">
             {p?.properties?.title?.title[0]?.plain_text as unknown as string}
           </h1>
           <div className="mb-6 flex flex-col items-start space-y-2 md:flex-row md:items-center ">
-            <div className="flex items-center space-x-4 ">
+            <div className="flex items-center space-x-4  mt-6">
               <Avatar>
                 <AvatarImage src="/me.jpeg" alt="Mouhamed Lamotte" />
                 <AvatarFallback>ML</AvatarFallback>
@@ -88,14 +81,17 @@ export default async function BlogDetail({
               }
             </div>
           </div>
+              <div className="h-[300px] w-full border rounded-md mt-6 mb-8 overflow-hidden">
 
           <img
             src={p.properties?.thumb?.rich_text[0]?.text?.content ?? "/placeholder.svg"}
             alt={
               p?.properties?.title?.title[0]?.plain_text as unknown as string
             }
-            className="w-full h-[400px] object-cover rounded-lg mb-8"
+            className="object-contain rounded-lg mb-8 h-full w-full"
           />
+              </div>
+
           <div
             className="prose prose-lg max-w-none dark:prose-invert"
             dangerouslySetInnerHTML={{ __html: html }}
