@@ -15,6 +15,61 @@ import bookmarkPlugin from "@notion-render/bookmark-plugin";
 import { Block } from "@notion-render/client/dist/types";
 import { formatDate } from "@/lib/utils";
 import { Badge } from "@/app/[locale]/components/ui/badge";
+import { Metadata } from 'next';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const slug = params.slug;
+  const post = await fetchBySlug(slug);
+
+  if (!post) {
+    return {
+      title: 'Not Found',
+      description: 'The blog post you are looking for does not exist.',
+    };
+  }
+
+  const p: any = post;
+
+  return {
+    title: p?.properties?.title?.title[0]?.plain_text || 'Blog Post',
+    description: p?.properties?.description?.rich_text[0]?.text?.content || 'A blog post by Mouhameth Lamotte',
+    openGraph: {
+      title: p?.properties?.title?.title[0]?.plain_text || 'Blog Post',
+      description: p?.properties?.description?.rich_text[0]?.text?.content || 'A blog post by Mouhameth Lamotte',
+      url: `https://portfolio.mouhamedlamotte.tech/blog/${slug}`,
+      siteName: 'Mouhameth Lamotte Portfolio',
+      images: [
+        {
+          url: p.properties?.thumb?.rich_text[0]?.text?.content || 'https://portfolio.mouhamedlamotte.tech/og.png',
+          width: 1200,
+          height: 630,
+          alt: p?.properties?.title?.title[0]?.plain_text || 'Blog Post',
+        },
+      ],
+      type: 'article',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      site: '@MouhamedLamotly',
+      creator: '@MouhamedLamotly',
+      title: p?.properties?.title?.title[0]?.plain_text || 'Blog Post',
+      description: p?.properties?.description?.rich_text[0]?.text?.content || 'A blog post by Mouhameth Lamotte',
+      images: [
+        {
+          url: p.properties?.thumb?.rich_text[0]?.text?.content || 'https://portfolio.mouhamedlamotte.tech/og.png',
+          width: 1200,
+          height: 630,
+          alt: p?.properties?.title?.title[0]?.plain_text || 'Blog Post',
+        },
+      ],
+    },
+  };
+}
+
 
 export default async function BlogDetail({
   params,
@@ -98,51 +153,6 @@ export default async function BlogDetail({
           />
         </article>
       </Section>
-
-      {/* <Section>
-        <h2 className="text-2xl font-bold mb-6">Articles Similaires</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Card>
-            <CardHeader>
-              <CardTitle>Les tendances du développement web en 2024</CardTitle>
-              <CardDescription>Par Marie Dupont • 15 mars 2024</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p className="line-clamp-3">Découvrez les technologies et pratiques qui façonneront le paysage du développement web cette année.</p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle>Comment l&apos;IA améliore l&apos;expérience utilisateur</CardTitle>
-              <CardDescription>Par Jean Martin • 22 mars 2024</CardDescription>
-            </CardHeader>
-            <CardContent>
-
-            </CardContent>
-          </Card>
-        </div>
-      </Section>
-
-      <Section>
-        <h2 className="text-2xl font-bold mb-6">Commentaires</h2>
-        <Card className="border-y-0 border-r-0 rounded-none border-l-2">
-          <CardHeader>
-            <div className="flex items-center space-x-4">
-              <Avatar>
-                <AvatarImage src="/placeholder.svg?height=40&width=40" alt="Sophie Lefebvre" />
-                <AvatarFallback>SL</AvatarFallback>
-              </Avatar>
-              <div>
-                <CardTitle>Sophie Lefebvre</CardTitle>
-                <CardDescription>Il y a 2 jours</CardDescription>
-              </div>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <p>Excellent article ! J&apos;ai particulièrement apprécié la partie sur l&apos;optimisation des performances. C&apos;est fascinant de voir comment l&apos;IA peut améliorer l&apos;expérience utilisateur de manière si significative.</p>
-          </CardContent>
-        </Card>
-      </Section> */}
     </>
   );
 }
