@@ -17,12 +17,16 @@ import { formatDate } from "@/lib/utils";
 import { Badge } from "@/app/[locale]/components/ui/badge";
 import { Metadata } from 'next';
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Promise<Metadata> {
-  const slug = params.slug;
+export async function generateMetadata({params}: {params: Promise<{ slug: string }>}) : Promise<Metadata> {
+  const {slug} = await params
+
+  if (!params || !slug) {
+    return {
+      title: 'Not Found',
+      description: 'The blog post you are looking for does not exist.',
+    };
+  }
+
   const post = await fetchBySlug(slug);
 
   if (!post) {
@@ -71,12 +75,12 @@ export async function generateMetadata({
 }
 
 
-export default async function BlogDetail({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const slug = (await params).slug;
+export default async function BlogDetail({params}: {params: Promise<{ slug: string }>}) {
+  const {slug} = await params
+
+  if (!params || !slug) {
+    return notFound();
+  }
 
   const post = await fetchBySlug(slug);
 
