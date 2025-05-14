@@ -163,3 +163,10 @@ model Downloads {
   visitId   String?
   createdAt DateTime @default(now())
 }
+
+
+model NexcomWaitlist {
+  id        String   @id @default(uuid())
+  email     String
+  createdAt DateTime @default(now())
+}
