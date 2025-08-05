@@ -95,8 +95,7 @@
 
 
 ::-webkit-scrollbar {
-  width:6px !important; 
-  height:8px !important; 
+display: none !important;
 }
 
 

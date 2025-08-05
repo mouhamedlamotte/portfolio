@@ -30,7 +30,7 @@ export const useSidebar = () => {
 };
 
 export const SidebarProvider = ({
-  children,
+children,
   open: openProp,
   setOpen: setOpenProp,
   animate = true,
@@ -93,7 +93,7 @@ export const DesktopSidebar = ({
           className
         )}
         animate={{
-          width: animate ? (open ? "300px" : "60px") : "300px",
+          width: animate ? (open ? "150px" : "45px") : "150px",
         }}
         onMouseEnter={() => setOpen(true)}
         onMouseLeave={() => setOpen(false)}

@@ -60,7 +60,7 @@ export default function AnalyticsDashboardCustom() {
 
   return (
     <div className="min-h-screen  p-8 dark">
-      <div className="mx-auto max-w-7xl space-y-8">
+      <div className="mx-auto space-y-8">
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {/* Downloads Card */}
           <Card className="">

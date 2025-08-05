@@ -1,10 +1,13 @@
 "use client";
 
-import { Sidebar, SidebarBody, SidebarLink } from "@/app/[locale]/components/ui/sidebare";
+import {
+  Sidebar,
+  SidebarBody,
+  SidebarLink,
+} from "@/app/[locale]/components/ui/sidebare";
 import { cn } from "@/lib/utils";
 import {
   IconAddressBook,
-  IconArrowLeft,
   IconBrandTabler,
   IconMessage,
   IconSettings,
@@ -18,10 +21,9 @@ import { motion } from "framer-motion";
 import { resume } from "@/app/[locale]/data";
 import { signOut, useSession } from "next-auth/react";
 import DynamicBreadcrumb from "./breadcrumb";
-import { Globe } from "lucide-react";
+import { Globe, LogOutIcon } from "lucide-react";
 import { ScrollArea } from "../../components/ui/scroll-area";
 import { Separator } from "../../components/ui/separator";
-
 
 const links = [
   {
@@ -78,9 +80,9 @@ const links = [
 export const AdminLayout = (props: PropsWithChildren) => {
   const [open, setOpen] = useState(false);
 
-  const { data: session, status } = useSession()
+  const { data: session, status } = useSession();
 
-  const user = session?.user
+  const user = session?.user;
 
   return (
     <div
@@ -95,46 +97,29 @@ export const AdminLayout = (props: PropsWithChildren) => {
             {open ? <Logo /> : <LogoIcon />}
             <div className="mt-8 flex flex-col gap-2">
               {links.map((link, idx) => (
-                <SidebarLink key={idx} link={link}  />
+                <SidebarLink key={idx} link={link} />
               ))}
-              <SidebarLink
-                link={{
-                  label: "Logout",
-                  href: "#",
-                  icon: (
-                    <IconArrowLeft className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
-                  ),
-                }}
-                onClick={() => signOut()}
-              />
             </div>
           </div>
           <div>
             <SidebarLink
-              link={{
-                label: resume.name.split(" ")[0],
-                href: "#",
-                icon: (
-                  <Image
-                    src={resume.avatarUrl}
-                    className="h-7 w-7 flex-shrink-0 rounded-full"
-                    width={50}
-                    height={50}
-                    alt="Avatar"
-                  />
-                ),
-              }}
-            />
+                link={{
+                  label: "Logout",
+                  href: "#",
+                  icon: (
+                    <LogOutIcon className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+                  ),
+                }}
+                onClick={() => signOut()}
+              />
           </div>
         </SidebarBody>
       </Sidebar>
       <div className="flex grow">
-        <div className="p-2  rounded-tl-2xl border  flex flex-col gap-2 flex-1 w-full h-full bg-background ">
-          <DynamicBreadcrumb/>
-          <Separator/>
-          <ScrollArea className="h-full">
-          {props.children}
-          </ScrollArea>
+        <div className="p-2 rounded-tl-2xl border  flex flex-col gap-2 flex-1 w-full h-full bg-background ">
+          <DynamicBreadcrumb />
+          <Separator />
+          <ScrollArea className="h-full w-full">{props.children}</ScrollArea>
         </div>
       </div>
     </div>
@@ -143,11 +128,18 @@ export const AdminLayout = (props: PropsWithChildren) => {
 
 export const Logo = () => {
   return (
-    <Link prefetch={true}
+    <Link
+      prefetch={true}
       href="#"
       className="font-normal flex space-x-2 items-center text-sm py-1 relative z-20"
     >
-      <div className="h-5 w-6 rounded-br-lg rounded-tr-sm rounded-tl-lg rounded-bl-sm flex-shrink-0" />
+      <Image
+        src={resume.avatarUrl}
+        className="h-7 w-7 flex-shrink-0 rounded-full"
+        width={50}
+        height={50}
+        alt="Avatar"
+      />
       <motion.span
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -160,11 +152,18 @@ export const Logo = () => {
 };
 export const LogoIcon = () => {
   return (
-    <Link prefetch={true}
+    <Link
+      prefetch={true}
       href="#"
       className="font-normal flex space-x-2 items-center text-sm  py-1 relative z-20"
     >
-      <div className="h-5 w-6 bg-black dark:bg-white rounded-br-lg rounded-tr-sm rounded-tl-lg rounded-bl-sm flex-shrink-0" />
+      <Image
+        src={resume.avatarUrl}
+        className="h-7 w-7 flex-shrink-0 rounded-full"
+        width={50}
+        height={50}
+        alt="Avatar"
+      />
     </Link>
   );
 };
@@ -172,7 +171,9 @@ export const LogoIcon = () => {
 const Footer = () => {
   return (
     <div className="text-xs text-muted-foreground flex justify-between items-center px-2 py-2">
-      <span>© {new Date().getFullYear()} {resume.name}</span>
+      <span>
+        © {new Date().getFullYear()} {resume.name}
+      </span>
       <span>Powered by Next.js</span>
     </div>
   );
