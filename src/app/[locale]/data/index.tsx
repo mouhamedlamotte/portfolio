@@ -31,7 +31,7 @@ Formé à **Sonatel Academy** 🎓, j’ai une **double casquette** : backend et
 
 **Let’s code, collab, and create some magic ✨.**
 `,
-    avatarUrl: "/me.jpeg",
+    avatarUrl: "https://github.com/mouhamedlamotte.png",
     skills: skills,
     contact: {},
     work: work,
