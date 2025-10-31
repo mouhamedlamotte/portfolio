@@ -77,7 +77,6 @@ description:
       "Redis",
       "React.js",
       "Next.js",
-      "Microservices",
       "API Gateway",
     ],
     image: "/img/preview/nexcom-light.png",
