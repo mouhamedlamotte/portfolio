@@ -16,6 +16,8 @@ export default {
         title: "Mouhameth Lamotte",
         subtitle:
           "Je suis un developpeur web passionne de donnees et d'intelligence artificielle",
+        available: "Disponible pour de nouveaux projets",
+        job: "Full Stack Developer",
         buttons: {
           see_my_projects: "Voir mes projets",
           download_cv: "Télécharger mon CV",

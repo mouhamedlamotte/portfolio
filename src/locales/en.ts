@@ -14,8 +14,10 @@ export default {
       },
       hero: {
         title: "Mouhameth Lamotte",
+        job: "Full Stack Developer",
         subtitle:
           "I am a web developer passionate about data and artificial intelligence",
+        available: "Available for new projects",
         buttons: {
           see_my_projects: "See my projects",
           download_cv: "Download my resume",
