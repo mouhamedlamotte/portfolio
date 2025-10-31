@@ -1,8 +1,15 @@
+import { cn } from '@/lib/utils'
 import React, { PropsWithChildren } from 'react'
 
-export  const Section = (props : PropsWithChildren) => {
+
+interface SectionProps {
+  children: React.ReactNode
+  className?: string
+}
+
+export  const Section = (props: PropsWithChildren<SectionProps>) => {
   return (
-    <div className='px-2 md:px-16 max-w-7xl mx-auto'>
+    <div className={cn('px-2 md:px-16 max-w-7xl mx-auto', props.className)}>
             {props.children}
     </div>
   )

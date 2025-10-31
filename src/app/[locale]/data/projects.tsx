@@ -2,6 +2,55 @@ import { Icons } from "@/app/[locale]/icons";
 
 export const projects = [
   {
+    ongoing: false,
+    type: "open-source",
+    video: "",
+    images: [
+      "/img/nexpay/1.png",
+      "/img/nexpay/2.png",
+      "/img/nexpay/3.png",
+      "/img/nexpay/4.png",
+      "/img/nexpay/5.png",
+    ] as string[],
+    name: "nexpay",
+    title: "Nexpay",
+    href: "/portfolio/nexpay",
+eng_desc:
+  "NexPay is a self-hosted mobile payment platform enabling businesses to accept payments via Wave, Orange Money, and other popular providers across Africa. " +
+  "The solution provides full control over your payment infrastructure, a comprehensive dashboard to monitor transactions in real time, secure webhooks, and support for managing multiple projects from a single instance. " +
+  "With its REST API, NexPay integrates easily with any application, ensuring security, reliability, and seamless payment operations.",
+
+description:
+  "NexPay est une plateforme de paiement mobile auto-hébergée qui permet aux entreprises d’accepter facilement des paiements via Wave, Orange Money et d’autres fournisseurs populaires en Afrique. " +
+  "La solution offre un contrôle total sur l’infrastructure, un dashboard complet pour suivre les transactions en temps réel, des webhooks sécurisés, et la possibilité de gérer plusieurs projets depuis une seule instance. " +
+  "Grâce à son API REST, NexPay s’intègre facilement à n’importe quelle application tout en garantissant sécurité et fiabilité.",
+
+    dates: "2025 - Version 1.0",
+    tags: [
+      "NestJS",
+      "Docker",
+      "PostgreSQL",
+      "Redis",
+      "Next.js",
+      "Swagger",
+      "Microservices",
+      "API Gateway",
+    ],
+    image: "/img/preview/nexpay.png",
+    links: [
+      {
+        type: "Docs",
+        href: "https://nexpay.thenexcom.com",
+        icon: <Icons.globe className="size-4" />,
+      },
+       {
+        type: "Code",
+        href: "https://github.com/mouhamedlamotte/nexpay",
+        icon: <Icons.github className="size-4" />,
+      },
+    ],
+  },
+  {
     ongoing: true,
     type: "saas",
     video: "",
@@ -36,6 +85,11 @@ export const projects = [
       {
         type: "Landing Page",
         href: "https://thenexcom.com",
+        icon: <Icons.globe className="size-4" />,
+      },
+      {
+        type: "Application",
+        href: "https://hub.thenexcom.com",
         icon: <Icons.globe className="size-4" />,
       },
     ],

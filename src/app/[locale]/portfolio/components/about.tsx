@@ -19,7 +19,7 @@ export default function About() {
         <Card className="bg-gray-900 md:border border-gray-800  ">
           <CardHeader className="pb-4 border-b border-gray-800 flex-row items-center">
             <CardTitle className="text-xl text-gray-200">
-              {t('title')}
+              {t('main_skills_title')}
             </CardTitle>
             <Badge className="bg-gray-800 text-gray-300 border border-gray-700 hover:bg-gray-700 ml-auto space-x-2 py-3 px-5">
               Notion lover
@@ -43,14 +43,14 @@ export default function About() {
             </Badge>
           </CardHeader>
           <CardContent className="space-y-6 text-gray-300 py-4">
-            <Markdown>
+            {/* <Markdown>
             {t("content")}
-            </Markdown>
-            <Separator />
+            </Markdown> */}
+            {/* <Separator /> */}
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-gray-200">
+              {/* <h3 className="text-lg font-semibold text-gray-200">
                 {t("main_skills_title")}
-              </h3>
+              </h3> */}
               <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-2">
                 {resume.skills.map((skill) => (
                   <Badge

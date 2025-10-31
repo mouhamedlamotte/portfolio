@@ -1,268 +1,131 @@
 'use client';
 
-import { Button } from "@/app/[locale]/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "../../components/ui/avatar";
+import { Boxes } from "../../components/ui/background-boxes";
+import { ArrowRight, Github, Linkedin, Twitter, Download, Sparkles } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Button } from "../../components/ui/button";
+import { resume } from "../../data";
 import Link from "next/link";
-
-
-import { Avatar, AvatarFallback, AvatarImage } from "@/app/[locale]/components/ui/avatar";
-import { Boxes } from "@/app/[locale]/components/ui/background-boxes";
-import { resume } from "@/app/[locale]/data";
-import { Icons } from "@/app/[locale]/icons";
 import { DownloadCV } from "./download-cv-buttons";
-import { useScopedI18n } from "@/locales/client";
 
-
-export  function HomeHero() {
+export function HomeHero() {
 
 
 
-  const t = useScopedI18n("landing.header.hero")
 
   return (
-      <div className="relative bg-background w-full overflow-hidden  flex flex-col items-center justify-center rounded-lg py-40 " >
-        <div className="absolute bg-background inset-0 w-full h-full  z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none space-y-6" />
-
+    <div className="relative min-h-screen w-full -mt-6 overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 flex items-center justify-center">
+      {/* Animated background */}
+      <div className="absolute inset-0 w-full h-full z-0">
         <Boxes />
-        <Avatar className="h-32 w-32">
-          <AvatarFallback className="font-bold text-3xl">
-            <MESVG/>
-          </AvatarFallback>
-          <AvatarImage
-            src={resume.avatarUrl}
-            className="object-fill rotate-3"
-          />
-        </Avatar>
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent" />
+      </div>
 
-        <h1 className="z-20 text-4xl font-bold tracking-tight sm:text-6xl text-center mb-6">
-          {t('title')}
-        </h1>
 
-        <p className="z-20 px-2 mx-auto max-w-2xl text-lg text-muted-foreground text-center mb-6">
-          {t('subtitle')}
-        </p>
+      <div 
+        className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse"
+      />
 
-        <div className="z-20 flex flex-wrap justify-center gap-4 mb-6">
-          <Button asChild>
-            <Link prefetch={true} href="/portfolio">{t('buttons.see_my_projects')}</Link>
-          </Button>
-          <DownloadCV />
-        </div>
+      {/* Content */}
+      <div className="relative z-20 max-w-6xl mx-auto px-6 py-20">
+        <div className={`text-center space-y-8 transition-all duration-1000`}>
+          
+          {/* Avatar with glow effect */}
+          <div className="flex justify-center">
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-1000 animate-pulse" />
+              <Avatar className="relative h-32 w-32 border-4 border-slate-900">
+                <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-600 text-white text-3xl font-bold">
+                  ML
+                </AvatarFallback>
+                <AvatarImage
+                  src={resume.avatarUrl}
+                  className="object-cover"
+                  alt="Mouhamed Lamotte"
+                />
+              </Avatar>
+            </div>
+          </div>
 
-        <div className="z-20 flex justify-center gap-4 mb-6">
-          <Button variant="ghost" size="icon" asChild>
-            <Link prefetch={true} href="https://x.com/MouhamedLamotly" target="_blank">
-              <Icons.x className="h-5 w-5" />
-            </Link>
-          </Button>
-          <Button variant="ghost" size="icon" asChild>
-            <Link prefetch={true} href="https://github.com/mouhamedlamotte" target="_blank">
-              <Icons.github className="h-5 w-5" />
-            </Link>
-          </Button>
-          <Button variant="ghost" size="icon" asChild>
-            <Link prefetch={true}
-              href="https://www.linkedin.com/in/mouhamed-baba-lamotte-876291252/"
-              target="_blank"
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 backdrop-blur-sm">
+            <Sparkles className="h-4 w-4 text-blue-400" />
+            <span className="text-sm text-blue-400 font-medium">Disponible pour de nouveaux projets</span>
+          </div>
+
+          {/* Main title with gradient */}
+          <div className="space-y-4">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight">
+              <span className="bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
+                {resume.name}
+              </span>
+            </h1>
+            <p className="text-2xl md:text-3xl font-semibold text-blue-400">
+              {resume.title}
+            </p>
+          </div>
+
+          {/* Description */}
+          <p className="max-w-2xl mx-auto text-lg md:text-xl text-slate-300 leading-relaxed">
+            {resume.description}
+          </p>
+
+          {/* CTA Buttons */}
+          <div className="flex flex-wrap justify-center gap-4 pt-4">
+            <Button
+              size="lg" 
+              className="group bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold px-8 py-6 text-lg shadow-lg shadow-blue-500/25 transition-all hover:shadow-xl hover:shadow-blue-500/40 hover:scale-105"
             >
-              <Icons.linkedin className="h-5 w-5" />
-            </Link>
-          </Button>
+              <Link href="/portfolio" className="inline-flex items-center">
+              Voir mes projets
+              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </Button>
+
+            <DownloadCV />
+          </div>
+
+          {/* Social Links */}
+          <div className="flex justify-center gap-4 pt-8">
+            <Button 
+              variant="ghost" 
+              size="icon"
+              className="h-12 w-12 rounded-full border border-slate-700 hover:border-blue-500 hover:bg-blue-500/10 transition-all hover:scale-110"
+            >
+              <Link href="https://x.com/MouhamedLamotly" target="_blank">
+              <Twitter className="h-5 w-5 text-slate-400 hover:text-blue-400" />
+              </Link>
+            </Button>
+            
+            <Button 
+            asChild
+              variant="ghost" 
+              size="icon"
+              className="h-12 w-12 rounded-full border border-slate-700 hover:border-purple-500 hover:bg-purple-500/10 transition-all hover:scale-110"
+            >
+              <Link href="https://github.com/mouhamedlamotte" target="_blank">
+
+              <Github className="h-5 w-5 text-slate-400 hover:text-purple-400" />
+              </Link>
+            </Button>
+            
+            <Button 
+            asChild
+              variant="ghost" 
+              size="icon"
+              className="h-12 w-12 rounded-full border border-slate-700 hover:border-blue-500 hover:bg-blue-500/10 transition-all hover:scale-110"
+            >
+              <Link href="https://www.linkedin.com/in/mouhamed-baba-lamotte-876291252/" target="_blank">
+              <Linkedin className="h-5 w-5 text-slate-400 hover:text-blue-400" />
+              </Link>
+            </Button>
+          </div>
         </div>
       </div>
+
+      {/* Decorative grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:100px_100px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]" />
+    </div>
   );
-}
-
-
-const MESVG = () => {
-  return (
-    <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-     width="1024.000000pt" height="1024.000000pt" viewBox="0 0 1024.000000 1024.000000"
-     preserveAspectRatio="xMidYMid meet">
-    
-    <g transform="translate(0.000000,1024.000000) scale(0.100000,-0.100000)"
-    fill="#fff" stroke="none">
-    <path d="M0 5120 l0 -5120 5120 0 5120 0 0 5120 0 5120 -5120 0 -5120 0 0
-    -5120z m5300 3570 c478 -123 770 -621 635 -1085 -50 -171 -131 -295 -354 -543
-    -324 -361 -375 -467 -388 -798 l-6 -172 -70 -81 -69 -80 -50 59 -50 60 1 138
-    c2 249 -28 387 -116 531 -55 91 -96 142 -276 344 -256 286 -333 420 -372 644
-    -18 105 -19 175 -1 273 32 178 108 328 231 458 129 137 281 223 465 263 114
-    25 299 20 420 -11z m-1267 -170 c25 -23 26 -83 3 -109 -53 -58 -140 -19 -138
-    62 2 68 83 97 135 47z m2176 15 c46 -23 55 -74 21 -118 -26 -33 -63 -41 -99
-    -23 -59 31 -57 111 4 144 27 15 41 15 74 -3z m-2421 -137 c2 -18 -3 -30 -17
-    -37 -29 -16 -51 -3 -51 28 0 35 8 43 40 39 19 -2 26 -10 28 -30z m2631 14 c7
-    -14 6 -25 -5 -41 -21 -29 -58 -25 -62 7 -7 46 47 72 67 34z m-2831 -84 c18
-    -18 14 -45 -9 -62 -27 -18 -47 -11 -55 20 -11 42 34 72 64 42z m3020 0 c17
-    -17 15 -44 -4 -62 -22 -23 -43 -20 -55 8 -21 45 26 87 59 54z m-3218 -161 c13
-    -23 13 -28 -4 -46 -23 -25 -53 -27 -78 -4 -23 21 -23 48 2 73 24 24 58 15 80
-    -23z m3440 23 c24 -24 25 -38 4 -68 -36 -51 -107 -8 -84 52 15 39 50 46 80 16z
-    m-3631 -129 c16 -10 18 -58 3 -73 -15 -15 -60 -1 -67 22 -13 42 27 74 64 51z
-    m3803 -16 c9 -21 8 -28 -7 -45 -37 -41 -90 -5 -67 44 16 35 58 36 74 1z
-    m-3940 -141 c15 -33 1 -58 -35 -62 -33 -4 -51 26 -37 62 13 36 56 36 72 0z
-    m4082 10 c19 -18 20 -28 6 -55 -19 -34 -80 -19 -80 20 0 18 29 51 46 51 7 0
-    20 -7 28 -16z m-3401 -118 c18 -7 44 -26 59 -42 118 -127 -3 -319 -172 -274
-    -112 30 -161 168 -94 264 40 58 137 82 207 52z m2794 -2 c71 -34 113 -122 93
-    -196 -35 -128 -204 -167 -294 -68 -124 138 33 343 201 264z m-3607 -30 c14
-    -37 13 -43 -15 -56 -31 -14 -55 3 -55 42 0 33 7 40 37 40 16 0 27 -8 33 -26z
-    m4344 10 c20 -20 20 -27 -2 -54 -35 -43 -88 0 -57 46 18 28 37 30 59 8z
-    m-4464 -138 c20 -26 8 -61 -22 -64 -23 -3 -30 2 -38 24 -17 44 30 76 60 40z
-    m4578 2 c16 -16 15 -33 -4 -52 -34 -35 -75 -5 -59 44 7 22 44 27 63 8z m-4674
-    -124 c20 -20 20 -27 -2 -55 -23 -27 -49 -20 -58 16 -11 45 28 71 60 39z m4764
-    4 c31 -31 -3 -87 -42 -72 -31 12 -14 84 19 84 6 0 16 -5 23 -12z m-4163 -78
-    c0 -29 -4 -36 -23 -38 -43 -6 -69 37 -40 66 7 7 24 12 38 10 21 -3 25 -8 25
-    -38z m3581 15 c8 -33 -12 -57 -45 -53 -18 2 -27 10 -29 26 -6 37 5 52 37 52
-    24 0 32 -5 37 -25z m-4282 -101 c19 -18 19 -20 6 -45 -18 -33 -70 -18 -70 21
-    0 19 19 40 36 40 7 0 20 -7 28 -16z m4972 -9 c8 -31 -12 -57 -40 -53 -15 2
-    -22 12 -24 32 -6 48 52 67 64 21z m-3659 -86 c224 -30 397 -151 492 -343 41
-    -82 80 -228 81 -297 l0 -36 -83 -18 c-59 -12 -113 -16 -184 -13 -92 3 -107 7
-    -179 42 -155 76 -273 230 -309 401 -15 71 -21 256 -8 268 10 10 102 8 190 -4z
-    m2481 -131 c-4 -124 -8 -152 -31 -210 -64 -165 -195 -301 -332 -344 -80 -26
-    -223 -30 -322 -9 l-84 18 6 51 c24 184 75 316 162 415 128 146 296 216 527
-    220 l78 1 -4 -142z m-3884 59 c11 -8 17 -23 14 -38 -2 -19 -10 -25 -35 -27
-    -18 -2 -33 1 -33 7 0 5 -3 16 -6 24 -5 14 19 47 35 47 4 0 15 -6 25 -13z
-    m5140 -3 c29 -29 15 -64 -25 -64 -23 0 -30 6 -35 27 -5 19 -2 30 11 40 24 17
-    30 16 49 -3z m-4540 -68 c18 -7 43 -26 55 -42 21 -26 23 -36 18 -105 l-6 -75
-    87 -86 c48 -47 95 -88 105 -91 26 -10 32 -35 12 -57 -10 -11 -22 -20 -27 -20
-    -5 0 -59 51 -119 114 l-110 114 -52 -4 c-64 -6 -111 19 -133 71 -29 70 -5 146
-    57 177 41 22 69 22 113 4z m3990 0 c50 -21 76 -60 76 -115 0 -58 -16 -89 -60
-    -119 -29 -20 -43 -23 -81 -19 l-47 6 -115 -117 c-115 -115 -116 -116 -136 -98
-    -26 23 -27 45 -3 53 9 3 59 49 109 102 82 84 92 99 86 121 -4 14 -8 46 -8 72
-    0 38 5 52 30 78 48 51 89 61 149 36z m-4664 -135 c15 -30 12 -49 -10 -61 -27
-    -15 -60 4 -60 33 0 45 50 65 70 28z m5304 3 c18 -18 18 -17 10 -38 -17 -45
-    -74 -38 -74 8 0 42 36 59 64 30z m-5389 -269 c51 -50 17 -135 -54 -135 -56 0
-    -86 38 -82 103 4 55 92 77 136 32z m5510 19 c19 -8 45 -55 45 -84 0 -31 -44
-    -70 -79 -70 -43 0 -60 9 -77 42 -36 70 34 141 111 112z m-4335 -124 c23 -23
-    25 -40 8 -62 -34 -43 -88 -23 -88 32 0 47 46 64 80 30z m3118 4 c31 -22 26
-    -63 -10 -83 -24 -14 -28 -14 -47 3 -25 23 -27 58 -5 80 20 20 34 20 62 0z
-    m-3728 -104 c8 -14 8 -26 0 -40 -19 -35 -80 -20 -80 20 0 40 61 55 80 20z
-    m4354 -2 c16 -26 -4 -53 -40 -53 -23 0 -30 5 -32 23 -2 13 -1 30 2 38 8 20 56
-    14 70 -8z m-3903 -207 c35 -35 38 -77 9 -114 -40 -50 -116 -43 -145 13 -47 91
-    64 173 136 101z m3477 13 c33 -23 45 -60 32 -100 -23 -69 -91 -85 -142 -34
-    -26 27 -30 36 -25 68 11 68 82 103 135 66z m-2467 -64 c30 -5 88 -26 129 -46
-    63 -31 95 -57 205 -168 72 -72 145 -150 163 -173 l32 -41 -80 -82 -80 -83
-    -142 146 c-171 174 -200 192 -313 192 -63 0 -89 -5 -120 -22 -87 -47 -134
-    -128 -135 -233 0 -131 82 -233 233 -290 132 -50 136 -52 148 -66 17 -21 -22
-    -60 -96 -95 -50 -24 -73 -29 -136 -29 -68 0 -84 4 -149 36 -137 69 -241 201
-    -271 342 -17 85 -7 234 22 302 96 230 337 357 590 310z m1604 -10 c320 -82
-    473 -452 306 -742 -32 -57 -117 -147 -170 -180 -56 -36 -142 -59 -213 -59 -78
-    0 -134 21 -191 71 l-38 33 23 24 c12 13 47 31 78 40 94 27 163 65 217 120 65
-    66 88 128 80 219 -13 173 -174 273 -353 219 -94 -28 -115 -47 -619 -544 -310
-    -306 -428 -413 -525 -476 -87 -57 -104 -61 -132 -35 -13 12 -58 52 -101 88
-    l-78 66 68 26 c145 56 174 81 718 621 365 362 390 385 468 438 129 88 296 113
-    462 71z m-2538 -322 c51 -48 15 -138 -54 -138 -70 0 -106 78 -62 134 27 34 82
-    36 116 4z m3328 -3 c51 -50 17 -135 -54 -135 -82 0 -116 98 -52 147 27 21 79
-    15 106 -12z m-3545 -50 l0 -35 -465 0 -465 0 0 28 c0 16 3 32 7 35 3 4 213 7
-    465 7 l458 0 0 -35z m4570 0 l0 -35 -460 0 -460 0 0 35 0 35 460 0 460 0 0
-    -35z m-4819 -346 c181 -92 112 -369 -91 -369 -151 0 -247 158 -177 290 53 100
-    164 133 268 79z m4337 -1 c183 -86 118 -367 -86 -368 -146 -1 -243 145 -183
-    275 20 45 80 102 114 109 54 12 63 13 87 9 14 -3 45 -14 68 -25z m-4908 2 c50
-    -25 85 -72 101 -133 39 -156 -127 -286 -277 -218 -81 37 -128 141 -105 229 14
-    50 57 103 103 125 46 23 130 21 178 -3z m5478 -4 c38 -20 90 -90 98 -133 14
-    -74 -31 -167 -95 -198 -46 -22 -157 -33 -146 -15 5 9 4 11 -4 6 -13 -8 -49 12
-    -83 46 -51 51 -62 145 -25 218 32 62 111 104 179 96 26 -3 60 -12 76 -20z
-    m-4506 -33 c25 -23 22 -50 -8 -70 -43 -28 -88 14 -66 61 14 30 46 34 74 9z
-    m3418 -3 c11 -11 20 -24 20 -30 0 -14 -37 -50 -52 -50 -17 0 -48 31 -48 48 0
-    20 29 52 47 52 7 0 22 -9 33 -20z m-1332 -140 c117 -125 192 -180 304 -226
-    l78 -31 -52 -44 c-79 -67 -161 -129 -169 -129 -4 0 -41 22 -82 50 -90 60 -199
-    159 -284 259 l-64 75 78 78 c43 43 80 78 83 78 3 0 52 -50 108 -110z m-339
-    -223 l53 -59 -5 -341 c-4 -366 -7 -388 -62 -513 -88 -199 -340 -469 -570 -612
-    -393 -243 -863 -238 -1180 14 -151 120 -269 297 -310 467 -66 273 10 550 201
-    741 104 103 212 164 352 197 74 18 108 20 227 16 169 -5 254 -29 390 -109 122
-    -72 307 -256 434 -431 l93 -127 -46 -73 c-25 -39 -55 -83 -66 -96 -25 -29 -11
-    -40 -143 125 -207 261 -392 392 -583 413 -138 16 -249 -19 -347 -109 -100 -91
-    -142 -204 -135 -357 7 -149 53 -248 168 -364 106 -107 227 -158 392 -166 241
-    -12 423 54 633 230 187 158 278 304 305 492 5 39 10 184 10 323 l0 253 67 74
-    c37 41 68 73 68 72 1 -1 25 -28 54 -60z m1395 -108 c257 -62 464 -264 537
-    -524 31 -108 33 -315 5 -420 -83 -311 -354 -564 -681 -636 -77 -17 -302 -17
-    -380 0 -210 44 -379 123 -554 256 -104 80 -161 135 -239 234 l-51 64 34 53
-    c19 29 44 72 56 96 12 24 23 45 25 47 2 3 45 -39 94 -92 206 -218 410 -333
-    638 -356 237 -25 443 62 581 245 185 244 125 578 -127 712 -141 75 -332 57
-    -508 -49 -106 -64 -301 -266 -430 -445 l-21 -29 -28 33 c-36 43 -105 145 -105
-    155 0 5 23 43 51 85 151 226 355 423 529 512 167 85 379 106 574 59z m-3778
-    -119 c58 -37 69 -123 20 -169 -39 -37 -83 -44 -127 -19 -43 24 -60 51 -61 96
-    -1 44 18 78 56 96 42 21 72 20 112 -4z m4767 -20 c40 -44 38 -107 -4 -149 -25
-    -25 -39 -31 -74 -31 -85 0 -133 87 -93 167 29 58 123 66 171 13z m-3369 -464
-    c68 -29 115 -126 95 -200 -35 -130 -193 -181 -287 -93 -72 66 -74 197 -6 259
-    53 48 133 61 198 34z m1992 -5 c18 -11 45 -36 60 -57 25 -32 29 -47 29 -99 0
-    -49 -5 -69 -25 -98 -66 -97 -224 -100 -290 -6 -51 71 -34 192 34 244 53 40
-    141 47 192 16z m-1012 -608 l56 -58 0 -287 c0 -224 -3 -288 -12 -288 -9 0 -8
-    -4 2 -11 11 -8 12 -12 3 -16 -7 -2 -13 -14 -14 -26 -1 -20 -2 -20 -9 3 -5 19
-    -7 13 -6 -22 1 -59 12 -62 21 -7 4 22 9 38 12 36 2 -3 1 -21 -3 -41 -9 -48
-    -84 -125 -84 -86 0 6 6 10 13 10 7 0 18 9 25 20 7 12 8 20 2 20 -5 0 -10 -4
-    -10 -10 0 -12 -69 -45 -77 -36 -3 3 2 6 12 6 15 0 16 3 7 12 -9 9 -15 9 -24 0
-    -9 -9 -16 -8 -30 5 -20 18 -25 4 -6 -15 9 -9 9 -12 0 -12 -6 0 -23 17 -37 37
-    l-25 38 0 325 0 325 61 68 c33 37 62 67 64 67 2 0 28 -26 59 -57z m-47 -819
-    c-3 -3 -12 -4 -19 -1 -8 3 -5 6 6 6 11 1 17 -2 13 -5z m-2327 -504 c19 -19 20
-    -33 20 -251 l0 -232 124 7 c84 5 131 4 145 -3 24 -13 37 -71 22 -99 -9 -18
-    -24 -20 -198 -24 -159 -5 -191 -3 -205 10 -16 14 -18 41 -18 298 0 244 2 285
-    16 298 22 22 70 20 94 -4z m847 12 c23 -15 273 -551 273 -586 0 -28 -16 -36
-    -70 -36 -43 0 -52 8 -95 93 l-32 62 -64 3 c-35 2 -88 1 -116 -3 -50 -6 -54 -9
-    -71 -48 -32 -73 -68 -107 -112 -107 -48 0 -64 19 -57 66 6 33 90 229 123 284
-    8 14 22 43 31 65 30 73 94 190 111 203 18 13 60 16 79 4z m693 -136 c58 -77
-    110 -141 115 -143 6 -1 27 23 48 55 59 89 84 123 133 180 51 58 88 68 124 32
-    19 -19 20 -33 20 -299 0 -241 -2 -282 -16 -295 -18 -19 -85 -21 -102 -4 -8 8
-    -12 62 -12 175 0 138 -2 163 -15 163 -8 0 -15 -3 -15 -8 0 -9 -104 -148 -138
-    -184 -14 -16 -29 -28 -34 -28 -4 0 -44 50 -89 110 -44 61 -85 110 -90 110 -5
-    0 -9 -71 -9 -163 0 -113 -4 -167 -12 -175 -17 -17 -78 -15 -100 5 -17 15 -18
-    38 -18 296 0 316 1 321 69 315 32 -3 43 -14 141 -142z m1150 112 c108 -64 170
-    -166 170 -280 0 -128 -62 -230 -176 -288 -42 -21 -62 -25 -144 -25 -86 0 -100
-    3 -148 29 -107 60 -175 170 -176 286 -2 124 80 242 201 291 73 29 213 23 273
-    -13z m2098 5 c17 -23 15 -68 -4 -87 -13 -13 -42 -16 -160 -16 l-144 0 0 -60 0
-    -60 120 0 c108 0 120 -2 130 -19 15 -29 12 -62 -7 -83 -14 -15 -32 -18 -130
-    -18 l-113 0 0 -66 0 -66 139 7 c133 7 139 7 160 -14 11 -11 21 -33 21 -48 0
-    -57 -3 -58 -217 -64 -109 -3 -206 -2 -215 3 -26 13 -29 53 -26 331 3 223 5
-    260 19 270 11 8 76 11 215 10 174 -2 201 -5 212 -20z m-1274 -15 c6 -18 6 -38
-    0 -55 -9 -27 -12 -28 -99 -33 l-90 -5 -3 -234 c-1 -152 -6 -239 -13 -248 -16
-    -18 -84 -16 -103 3 -14 13 -16 50 -16 250 l0 234 -86 0 c-71 0 -89 3 -100 18
-    -16 21 -18 56 -4 83 10 18 22 19 258 17 l247 -3 9 -27z m645 1 c12 -22 12 -29
-    0 -55 -14 -28 -16 -29 -102 -32 l-87 -3 0 -227 c0 -261 -3 -272 -70 -272 -68
-    0 -71 11 -70 270 l1 225 -76 2 c-57 1 -82 6 -96 19 -21 19 -25 55 -9 85 10 18
-    22 19 253 17 l241 -3 15 -26z"/>
-    <path d="M4995 8429 c-144 -13 -254 -66 -365 -178 -199 -200 -236 -499 -92
-    -751 39 -68 104 -151 232 -295 134 -150 159 -182 239 -299 l59 -86 43 67 c62
-    95 106 149 259 322 74 84 155 180 179 214 186 263 186 570 1 790 -137 163
-    -325 236 -555 216z m193 -257 c160 -51 259 -179 269 -352 11 -175 -71 -316
-    -225 -388 -51 -24 -69 -27 -167 -27 -100 0 -115 3 -165 27 -145 73 -223 202
-    -221 371 0 131 57 245 156 313 103 70 237 92 353 56z"/>
-    <path d="M3644 7693 c-37 -26 -33 -82 6 -103 27 -14 57 -5 76 25 23 35 1 79
-    -41 83 -17 1 -35 -1 -41 -5z"/>
-    <path d="M6428 7688 c-27 -22 -30 -53 -7 -81 11 -15 28 -27 38 -27 30 0 61 30
-    61 59 0 49 -55 78 -92 49z"/>
-    <path d="M3860 7107 c0 -17 7 -56 15 -86 53 -199 205 -334 396 -350 44 -4 83
-    -3 85 1 13 20 -34 150 -80 221 -84 132 -209 210 -383 241 -32 5 -33 4 -33 -27z"/>
-    <path d="M6200 7124 c-36 -7 -97 -29 -136 -49 -125 -61 -235 -203 -268 -343
-    l-14 -62 51 0 c55 0 127 17 191 44 94 40 202 163 235 269 22 73 30 149 16 153
-    -5 1 -39 -4 -75 -12z"/>
-    <path d="M3027 7042 c-17 -19 -22 -68 -9 -88 36 -53 122 -21 122 45 0 51 -79
-    81 -113 43z"/>
-    <path d="M7020 7040 c-25 -25 -26 -72 -2 -93 42 -38 112 -6 112 51 0 57 -69
-    83 -110 42z"/>
-    <path d="M3303 6273 c-12 -8 -16 -26 -14 -55 1 -22 43 -24 61 -4 17 22 9 61
-    -15 64 -11 1 -25 -1 -32 -5z"/>
-    <path d="M6785 6264 c-19 -20 -16 -43 8 -58 37 -23 77 35 41 61 -23 17 -29 16
-    -49 -3z"/>
-    <path d="M2831 5446 c-33 -18 -50 -53 -51 -103 0 -58 38 -102 97 -110 84 -11
-    143 37 143 114 0 38 -5 50 -34 79 -29 29 -40 34 -82 34 -27 -1 -60 -7 -73 -14z"/>
-    <path d="M7154 5426 c-29 -29 -34 -41 -34 -81 0 -40 5 -52 34 -81 28 -28 42
-    -34 75 -34 81 0 131 45 131 118 0 37 -6 50 -34 78 -30 30 -40 34 -86 34 -46 0
-    -56 -4 -86 -34z"/>
-    <path d="M2262 5444 c-48 -34 -65 -101 -37 -154 36 -69 144 -80 197 -21 22 25
-    28 41 28 77 0 39 -5 51 -34 80 -29 29 -41 34 -83 34 -28 0 -58 -7 -71 -16z"/>
-    <path d="M7755 5456 c-92 -40 -88 -182 5 -220 59 -23 137 2 159 51 30 66 3
-    142 -59 167 -48 19 -65 19 -105 2z"/>
-    <path d="M2665 4834 c-19 -20 -16 -63 6 -77 26 -16 68 0 75 29 12 48 -46 83
-    -81 48z"/>
-    <path d="M7410 4831 c-28 -54 3 -101 51 -78 27 14 38 60 18 83 -17 20 -56 17
-    -69 -5z"/>
-    <path d="M5119 3102 c16 -30 8 -54 -15 -45 -16 6 -16 7 2 15 11 4 3 5 -21 2
-    -22 -4 -44 -11 -50 -16 -7 -6 -7 -9 0 -8 6 2 17 2 25 1 13 -1 13 -3 1 -10 -8
-    -5 -21 -7 -30 -4 -11 4 -13 3 -6 -5 7 -8 24 -7 63 4 43 13 52 19 52 39 0 12
-    -7 29 -17 36 -15 13 -15 12 -4 -9z"/>
-    <path d="M3533 2215 c-34 -82 -33 -85 37 -85 38 0 60 4 60 11 0 22 -53 129
-    -64 129 -6 0 -21 -25 -33 -55z"/>
-    <path d="M5270 2360 c-46 -8 -68 -21 -109 -64 -30 -31 -35 -44 -39 -96 -5 -74
-    1 -100 34 -140 91 -108 243 -88 312 41 68 128 -53 287 -198 259z"/>
-    </g>
-    </svg>
-    
-  )
 }

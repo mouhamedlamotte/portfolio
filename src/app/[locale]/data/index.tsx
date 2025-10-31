@@ -1,3 +1,4 @@
+import { title } from "process";
 import { projects } from "./projects";
 import { skills } from "./skills";
 import { work } from "./work";
@@ -6,6 +7,7 @@ import { work } from "./work";
   
 export const resume = {
     name: "Mouhamed Lamotte",
+    title: "Full Stack Developer",
     initials: "ML",
     url: "https://mouhamethlamotte.com",
     location: "San Francisco, CA",

@@ -41,11 +41,14 @@ export const DownloadCV = () => {
   const t = useScopedI18n("landing.header.hero.buttons");
 
   return (
-    <Button variant="secondary"
+    <Button
+      size="lg"
+      variant="outline"
+      className="group border-2 border-slate-700 hover:border-blue-500 bg-slate-900/50 backdrop-blur-sm hover:bg-slate-800/50 text-white font-semibold px-8 py-6 text-lg transition-all hover:scale-105"
       onClick={() => handleDownload(l === "en" ? english : french)}
     >
-      <AnimatedShinyText className="inline-flex items-center justify-center px-4 py-1 transition ease-out ">
-        <Download className="mr-2 h-4 w-4" />
+      <AnimatedShinyText className="inline-flex items-center">
+        <Download className="mr-2 h-5 w-5" />
         {t("download_cv")}
       </AnimatedShinyText>
     </Button>

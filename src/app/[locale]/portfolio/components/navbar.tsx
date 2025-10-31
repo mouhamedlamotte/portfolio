@@ -81,7 +81,6 @@ export function Navbar() {
           </div>
 
           <div className="flex items-center gap-4">
-          <ThemeToggle />
           <LanguageSwitcher />
             <Button asChild variant="default">
               <Link prefetch={true} href="/portfolio/devis">{t("buttons.ask_for_devis")}</Link>
