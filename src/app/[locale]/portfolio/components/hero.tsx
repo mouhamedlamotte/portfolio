@@ -60,7 +60,7 @@ export async function  HomeHero() {
               </span>
             </h1>
             <p className="text-2xl md:text-3xl font-semibold text-blue-400">
-              {t('subtitle')}
+              {t('job')}
             </p>
           </div>
 
